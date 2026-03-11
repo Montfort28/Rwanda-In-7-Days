@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "rwanda-signature-7-days",
+    "title": "Rwanda in 7 Days | Premium Signature Circuit",
+    "country": "Rwanda",
+    "type": "Adventure Tours",
+    "duration_days": 7,
+    "from_price_usd": 3995,
+    "rating": 4.9,
+    "hero_image": "/assets/img/tours/rwanda-7.jpg",
+    "booking_url": "https://booking.iforeveryoungtours.com",
+    "summary": "Gorilla trekking, Nyungwe, Akagera, culture, and premium logistics."
+  },
+  {
+    "slug": "morocco-cultural-8-days",
+    "title": "Morocco Cultural Journey",
+    "country": "Morocco",
+    "type": "Cultural Tours",
+    "duration_days": 8,
+    "from_price_usd": 2890,
+    "rating": 4.8,
+    "hero_image": "/assets/img/tours/morocco-8.jpg",
+    "booking_url": "https://booking.iforeveryoungtours.com",
+    "summary": "Markets, mountains, cuisine, heritage, and curated city experiences."
+  },
+  {
+    "slug": "caribbean-cruise-7-nights",
+    "title": "Caribbean Cruise Escape",
+    "country": "Caribbean",
+    "type": "Cruises",
+    "duration_days": 8,
+    "from_price_usd": 2490,
+    "rating": 4.7,
+    "hero_image": "/assets/img/tours/cruise-7.jpg",
+    "booking_url": "https://booking.iforeveryoungtours.com",
+    "summary": "Ocean luxury, curated ports, and effortless travel flow."
+  }
+]
