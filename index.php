@@ -99,30 +99,51 @@ include 'includes/header.php';
     --secondary-green: #32CD32;
 }
 
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
 .hero-section {
-    background: linear-gradient(135deg, rgba(218, 165, 32, 0.7), rgba(34, 139, 34, 0.65)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1400&h=700&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    padding: 160px 24px;
-    border-radius: 20px;
-    margin-bottom: 60px;
-    box-shadow: 0 30px 80px rgba(218, 165, 32, 0.25);
+    background: #ffffff;
+    padding: 60px 24px;
+    margin-bottom: 0;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
-    text-align: center;
-    border: none;
+}
+
+.hero-container {
+    background: linear-gradient(to bottom right, #1e3a8a 0%, #1e40af 50%, #06b6d4 100%);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-width: 1300px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.hero-container:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .hero-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
     align-items: center;
-    justify-content: center;
-    max-width: 900px;
-    margin: 0 auto;
+    padding: 50px 60px;
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .hero-content {
@@ -130,121 +151,196 @@ include 'includes/header.php';
 }
 
 .hero-content h1 {
-    font-size: 3.8rem;
+    font-size: 3.2rem;
     font-weight: 900;
-    color: var(--white);
-    margin-bottom: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
     line-height: 1.15;
-    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.99);
-    margin-bottom: 48px;
-    line-height: 1.8;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 32px;
+    line-height: 1.7;
     font-weight: 500;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .btn-row {
     display: flex;
     gap: 16px;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    margin-bottom: 48px;
-}
-
-.hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 0;
-}
-
-.stat-item {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 24px 16px;
-    border-radius: 12px;
-    border: none;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-4px);
-}
-
-.stat-item strong {
-    display: block;
-    font-size: 2.2rem;
-    color: var(--white);
-    margin-bottom: 8px;
-    font-weight: 900;
-}
-
-.stat-item span {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 600;
 }
 
 .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 280px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.circular-container {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1;
+}
+
+.circle-main {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: visible;
+}
+
+.circle-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 22px solid rgba(255, 255, 255, 0.28);
+    border-top-color: rgba(255, 255, 255, 0.85);
+    border-right-color: rgba(255, 255, 255, 0.55);
+    transform: rotate(34deg);
+    transition: transform 0.5s ease;
+}
+
+.circle-main:hover .circle-border {
+    transform: rotate(44deg);
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.24) 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.orb-large {
+    width: 48px;
+    height: 48px;
+    right: -24px;
+    top: 33.33%;
+}
+
+.orb-small {
+    width: 32px;
+    height: 32px;
+    left: 8px;
+    top: -16px;
+}
+
+.circle-main:hover .orb {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.circle-main:hover .orb:hover {
+    transform: scale(1.1);
+}
+
+.stat-item {
     display: none;
+}
+
+.hero-stats {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 40px 40px;
+        gap: 30px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-visual {
+        min-height: 280px;
+    }
 }
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 80px 24px;
+        padding: 40px 16px;
+        min-height: auto;
     }
+    
+    .hero-container {
+        border-radius: 16px;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+    
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
+    
     .hero-content p {
         font-size: 1rem;
-        margin-bottom: 32px;
+        margin-bottom: 24px;
     }
-    .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
+    
     .btn-row {
         flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .hero-visual {
+        min-height: 200px;
+    }
+    
+    .circular-container {
+        max-width: 220px;
     }
 }
 </style>
 
 <main class="main">
     <section class="hero-section">
-        <div class="hero-grid">
-            <div class="hero-content">
-                <h1>Live Bold. Stay Forever Young.</h1>
-                <p>Curated travel experiences, tours, cruises, cultural exchanges, conferences, and premium group journeys across Africa, the Caribbean, Europe, and beyond.</p>
-                <div class="btn-row">
-                    <a href="<?= $base_url ?>pages/packages.php" class="btn primary">Plan Your Next Trip</a>
-                    <a href="<?= $base_url ?>auth/register.php" class="btn secondary">Join Our Community</a>
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Live Bold. Stay Forever Young.</h1>
+                    <p>Curated travel experiences, tours, cruises, cultural exchanges, conferences, and premium group journeys across Africa, the Caribbean, Europe, and beyond.</p>
+                    <div class="btn-row">
+                        <a href="<?= $base_url ?>pages/packages.php" class="btn primary">Plan Your Next Trip</a>
+                        <a href="<?= $base_url ?>auth/register.php" class="btn secondary">Join Our Community</a>
+                    </div>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <strong><?= number_format($total_tours) ?></strong>
-                        <span>Active Tours</span>
-                    </div>
-                    <div class="stat-item">
-                        <strong><?= number_format($total_countries) ?></strong>
-                        <span>Destinations</span>
-                    </div>
-                    <div class="stat-item">
-                        <strong><?= number_format($total_users) ?></strong>
-                        <span>Travelers</span>
-                    </div>
-                    <div class="stat-item">
-                        <strong><?= number_format($total_bookings) ?></strong>
-                        <span>Bookings</span>
+                <div class="hero-visual">
+                    <div class="circular-container">
+                        <div class="circle-main">
+                            <div class="circle-border">
+                                <div class="orb orb-large"></div>
+                                <div class="orb orb-small"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-visual"></div>
         </div>
     </section>
 
@@ -255,14 +351,78 @@ include 'includes/header.php';
                 <p>Discover premium, systems-driven travel experiences structured around comfort, curation, destination quality, and meaningful outcomes.</p>
             </div>
             <div class="grid cards-3">
-                <div class="card"><h3>Adventure Tours</h3><p>Wild landscapes, trekking, safari moments, and bold itineraries.</p></div>
-                <div class="card"><h3>Agro Tours</h3><p>Discover agriculture, local production, sustainability, and enterprise ecosystems.</p></div>
-                <div class="card"><h3>City Breaks</h3><p>Short escapes with strong culture, dining, nightlife, and guided experiences.</p></div>
-                <div class="card"><h3>Cruises</h3><p>Relaxed luxury, curated ports, and ocean experiences with premium flow.</p></div>
-                <div class="card"><h3>Cultural Exchanges</h3><p>Programs focused on people, learning, heritage, and meaningful connection.</p></div>
-                <div class="card"><h3>Motorcoach Tours</h3><p>Comfortable road journeys with group structure and scenic routes.</p></div>
-                <div class="card"><h3>Rail Tours</h3><p>Scenic train-based travel for elegant movement and slow discovery.</p></div>
-                <div class="card"><h3>Conferences & Expos</h3><p>Business travel, networking events, delegation logistics, and structured access.</p></div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/adventure tours 1.jpg" alt="Adventure Tours" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Adventure Tours</h3>
+                        <p>Wild landscapes, trekking, safari moments, and bold itineraries.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/adventure tours.jpg" alt="Agro Tours" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Agro Tours</h3>
+                        <p>Discover agriculture, local production, sustainability, and enterprise ecosystems.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/City Break.jpg" alt="City Breaks" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>City Breaks</h3>
+                        <p>Short escapes with strong culture, dining, nightlife, and guided experiences.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/Cruises.jpg" alt="Cruises" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Cruises</h3>
+                        <p>Relaxed luxury, curated ports, and ocean experiences with premium flow.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/Cultural Exchanges.jpg" alt="Cultural Exchanges" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Cultural Exchanges</h3>
+                        <p>Programs focused on people, learning, heritage, and meaningful connection.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/Motorcoach Tours.jpg" alt="Motorcoach Tours" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Motorcoach Tours</h3>
+                        <p>Comfortable road journeys with group structure and scenic routes.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/Rail Tours.jpg" alt="Rail Tours" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Rail Tours</h3>
+                        <p>Scenic train-based travel for elegant movement and slow discovery.</p>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="<?= $base_url ?>public/images/Conferences & Expos.jpg" alt="Conferences & Expos" onerror="this.src='<?= $base_url ?>assets/images/default-tour.jpg'">
+                    </div>
+                    <div class="category-content">
+                        <h3>Conferences & Expos</h3>
+                        <p>Business travel, networking events, delegation logistics, and structured access.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -356,7 +516,7 @@ include 'includes/header.php';
                             <button type="submit" class="btn primary">Subscribe</button>
                         </form>
                     </div>
-                    <div style="height: 300px; background: linear-gradient(135deg, rgba(218, 165, 32, 0.2), rgba(34, 139, 34, 0.2)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop'); background-size: cover; background-position: center; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);"></div>
+                    <div style="height: 300px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(6, 182, 212, 0.2)), url('<?= $base_url ?>public/images/news letter 2.jpg'); background-size: cover; background-position: center; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);"></div>
                 </div>
             </div>
         </div>

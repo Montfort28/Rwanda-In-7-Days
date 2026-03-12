@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ODIECLOUD²π Ecosystem - Universal Template</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* UNIVERSAL RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    /* UNIVERSAL BODY BACKGROUND - MUST BE USED ON ALL SITES */
+    body {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      color: #0f172a;
+      background: 
+        radial-gradient(circle at 20% 10%, rgba(147, 197, 253, 0.15), transparent 35%),
+        radial-gradient(circle at 80% 90%, rgba(165, 243, 252, 0.15), transparent 35%),
+        radial-gradient(circle at 50% 50%, rgba(191, 219, 254, 0.08), transparent 50%),
+        linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #f0fdfa 100%);
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* UNIVERSAL CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* UNIVERSAL NAVBAR - MUST BE USED ON ALL SITES */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.6);
+      border-bottom: 2px solid rgba(125, 211, 252, 0.4);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 0.75rem 0;
+    }
+
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      text-decoration: none;
+    }
+
+    .navbar-logo {
+      width: 3.5rem;
+      height: auto;
+    }
+
+    .navbar-title {
+      font-size: 1.125rem;
+      font-weight: 900;
+      color: #1e293b;
+      line-height: 1.2;
+    }
+
+    .navbar-subtitle {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #475569;
+      margin-top: 0.125rem;
+    }
+
+    .navbar-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .icon-btn {
+      padding: 0.625rem;
+      border-radius: 0.5rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .icon-btn:hover {
+      background: rgba(224, 242, 254, 0.8);
+    }
+
+    .icon-btn svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #334155;
+    }
+
+    /* UNIVERSAL BUTTON STYLES - MUST BE USED ON ALL SITES */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      font-family: "Inter", sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+      color: white;
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(14, 165, 233, 0.35);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240, 249, 255, 0.9));
+      color: #0369a1;
+      border: 2px solid rgba(14, 165, 233, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: #0ea5e9;
+      background: linear-gradient(135deg, rgba(224, 242, 254, 0.95), rgba(240, 249, 255, 1));
+    }
+
+    /* UNIVERSAL HERO SECTION - FULL PAGE */
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .hero-container {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #06b6d4 100%);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      padding: 4rem 3rem;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text {
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+      max-width: 48rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* UNIVERSAL CARD DESIGN - MUST BE USED ON ALL SITES */
+    .card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240, 249, 255, 0.9) 100%);
+      border: 2px solid rgba(14, 165, 233, 0.15);
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      backdrop-filter: blur(20px);
+      box-shadow: 
+        0 10px 40px rgba(14, 165, 233, 0.08),
+        0 0 0 1px rgba(14, 165, 233, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 20px 50px rgba(14, 165, 233, 0.15),
+        inset 0 2px 0 rgba(255, 255, 255, 1);
+      border-color: rgba(14, 165, 233, 0.25);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-text {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #334155;
+      line-height: 1.625;
+    }
+
+    /* ALTERNATIVE DARK GRADIENT CARDS - FOR SPECIAL SECTIONS */
+    .card-dark {
+      background: linear-gradient(to right, #0a3558, #1d4ed8);
+      border: none;
+      border-radius: 1rem;
+      padding: 1.75rem;
+      box-shadow: 0 10px 40px rgba(10, 53, 88, 0.3);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-dark::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #1a5fa5, #3b9eff);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    .card-dark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.5), transparent);
+      opacity: 0;
+      filter: blur(40px);
+      transition: opacity 0.5s;
+    }
+
+    .card-dark:hover {
+      transform: translateY(-16px);
+      box-shadow: 0 25px 60px rgba(10, 53, 88, 0.4);
+    }
+
+    .card-dark:hover::before {
+      opacity: 1;
+    }
+
+    .card-dark:hover::after {
+      opacity: 0.4;
+    }
+
+    .card-dark-title {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: white;
+      margin: 0 0 0.75rem 0;
+      position: relative;
+      z-index: 10;
+      transition: color 0.3s;
+    }
+
+    .card-dark:hover .card-dark-title {
+      color: #bae6fd;
+    }
+
+    .card-dark-text {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin: 0;
+      position: relative;
+      z-index: 10;
+      transition: color 0.3s;
+    }
+
+    .card-dark:hover .card-dark-text {
+      color: white;
+    }
+
+    /* UNIVERSAL GRID LAYOUT - MUST BE USED ON ALL SITES */
+    .grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    @media (max-width: 768px) {
+      .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .hero-container {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    /* UNIVERSAL SECTION STYLING */
+    .section {
+      padding: 3.5rem 1rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 1rem;
+      letter-spacing: -0.025em;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: #475569;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      max-width: 48rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* UNIVERSAL FOOTER - MUST BE EXACTLY THIS ON ALL SITES */
+    .footer {
+      background: linear-gradient(to bottom, #0d2438, #081827);
+      color: rgba(191, 219, 254, 0.78);
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-logo {
+      width: 4rem;
+      height: auto;
+    }
+
+    .footer-brand-title {
+      font-size: 1rem;
+      font-weight: 900;
+      color: white;
+      margin: 0;
+    }
+
+    .footer-description {
+      font-size: 0.875rem;
+      color: rgba(191, 219, 254, 0.78);
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section h4 {
+      color: white;
+      font-weight: 900;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      display: block;
+      color: rgba(191, 219, 254, 0.78);
+      text-decoration: none;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .footer-trademark {
+      color: rgba(191, 219, 254, 0.78);
+    }
+
+    .footer-powered {
+      color: white;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- UNIVERSAL NAVBAR - REQUIRED ON ALL SITES -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="#" class="navbar-brand">
+          <img src="/images/cloud 2.png" alt="[Company Logo]" class="navbar-logo">
+          <div>
+            <div class="navbar-title">[Company Name]</div>
+            <div class="navbar-subtitle">[Company Tagline]</div>
+          </div>
+        </a>
+        <div class="navbar-actions">
+          <a href="#" class="btn btn-primary">[Primary CTA]</a>
+          <button class="icon-btn" title="Languages">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+          <button class="icon-btn" title="Contact">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- UNIVERSAL HERO SECTION - FULL PAGE TEMPLATE -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-container">
+        <div class="hero-badge">
+          <span style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: rgba(255,255,255,0.8);"></span>
+          [Badge Text - Optional]
+        </div>
+        <h1 class="hero-title">[Hero Headline - Main Value Proposition]</h1>
+        <p class="hero-text">[Hero Description - Brief explanation of what your company/product does and who it serves. Keep this concise and compelling.]</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary">[Primary Action Button]</a>
+          <a href="#" class="btn btn-secondary">[Secondary Action Button]</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE CONTENT SECTION -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Universal Design System</h2>
+      <p class="section-subtitle">
+        All ODIECLOUD²π ecosystem websites must use the same fonts, colors, card designs, button styles, and grid layouts to maintain visual consistency.
+      </p>
+
+      <!-- UNIVERSAL GRID WITH CARDS -->
+      <div class="grid grid-cols-3">
+        <div class="card">
+          <h3 class="card-title">Card Title 1</h3>
+          <p class="card-text">This is a universal card design that must be used across all ecosystem websites. Hover to see the effect.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Card Title 2</h3>
+          <p class="card-text">All cards use the same background gradient, border styling, shadow effects, and hover animations.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Card Title 3</h3>
+          <p class="card-text">Consistent spacing, typography, and color schemes create a unified ecosystem appearance.</p>
+        </div>
+      </div>
+
+      <!-- ALTERNATIVE DARK GRADIENT CARDS (For special sections) -->
+      <h3 style="text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: #0f172a;">Alternative Dark Gradient Cards</h3>
+      <p style="text-align: center; margin-bottom: 2rem; color: #475569;">Use these for special emphasis sections like "Why this exists" or key value propositions</p>
+      <div class="grid grid-cols-3">
+        <div class="card-dark">
+          <h3 class="card-dark-title">Dark Card 1</h3>
+          <p class="card-dark-text">These cards use a blue gradient background for special emphasis sections. Perfect for highlighting key benefits.</p>
+        </div>
+        <div class="card-dark">
+          <h3 class="card-dark-title">Dark Card 2</h3>
+          <p class="card-dark-text">The gradient goes from deep blue (#0a3558) to bright blue (#1d4ed8) creating visual impact.</p>
+        </div>
+        <div class="card-dark">
+          <h3 class="card-dark-title">Dark Card 3</h3>
+          <p class="card-dark-text">Hover effects include color shifts and enhanced glow for premium feel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIVERSAL FOOTER - REQUIRED ON ALL SITES -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Company Info Section -->
+        <div class="footer-section">
+          <div class="footer-brand">
+            <img src="/images/cloud 2.png" alt="[Company Logo]" class="footer-logo">
+            <h4 class="footer-brand-title">[Company Name]</h4>
+          </div>
+          <p class="footer-description">
+            [Company description - Brief overview of what your company does and its mission.]
+          </p>
+          <p class="footer-description">
+            <strong>Member of ODIECLOUD²π Ecosystem.</strong>
+          </p>
+          <p class="footer-description">
+            [Company Name] is a Registered Trademark and Service Mark of Oderson Holdings Ltd.
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h4>About</h4>
+          <a href="#">Overview</a>
+          <a href="#">Solutions</a>
+          <a href="#">Community</a>
+        </div>
+        <div class="footer-section">
+          <h4>Resources</h4>
+          <a href="#">Documentation</a>
+          <a href="#">Support</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Compliance</a>
+        </div>
+      </div>
+
+      <!-- REQUIRED FOOTER BOTTOM - MUST BE EXACTLY THIS -->
+      <div class="footer-bottom">
+        <div class="footer-trademark">
+          <p style="margin: 0 0 0.5rem 0;">All Oderson Holdings subsidiaries are Members of the ODIECLOUD²π Ecosystem.</p>
+          <p style="margin: 0;">ODIECLOUD²π, ODIEBOARD, Oπ, ODIEXA, and AUREX are Registered Trademark and Service Marks of Oderson Holdings Ltd.</p>
+        </div>
+        <div class="footer-powered">Powered By ODIEBOARD</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
