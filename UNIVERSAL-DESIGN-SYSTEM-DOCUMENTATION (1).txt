@@ -1,0 +1,299 @@
+ODIECLOUD²π ECOSYSTEM - UNIVERSAL DESIGN SYSTEM
+================================================
+
+ALL WEBSITES IN THE ECOSYSTEM MUST USE THESE EXACT SPECIFICATIONS
+
+═══════════════════════════════════════════════════════════════════
+
+1. UNIVERSAL TYPOGRAPHY
+   ---------------------
+   Font Family: "Inter", sans-serif
+   - Must be imported from Google Fonts
+   - Font weights to use: 400, 500, 600, 700, 800, 900
+   - Import URL: https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap
+
+   Typography Scale:
+   - Body text: 16px (1rem), weight 400
+   - Small text: 14px (0.875rem), weight 500
+   - Card text: 15px (0.9375rem), weight 500
+   - Buttons: 14px (0.875rem), weight 600
+   - H1: 40-60px (2.5-3.75rem), weight 700-900
+   - H2: 32-48px (2-3rem), weight 700-900
+   - H3: 20-24px (1.25-1.5rem), weight 700
+
+═══════════════════════════════════════════════════════════════════
+
+2. UNIVERSAL COLOR PALETTE
+   ------------------------
+
+   PRIMARY BLUE GRADIENT (Buttons, CTAs, Accents):
+   - Start: #0ea5e9 (Sky 500)
+   - Middle: #0284c7 (Sky 600)
+   - End: #0369a1 (Sky 700)
+   - CSS: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%)
+
+   BACKGROUND COLORS:
+   - Body Background (REQUIRED ON ALL SITES):
+     * Radial gradient 1: rgba(147, 197, 253, 0.15) at 20% 10%
+     * Radial gradient 2: rgba(165, 243, 252, 0.15) at 80% 90%
+     * Radial gradient 3: rgba(191, 219, 254, 0.08) at 50% 50%
+     * Base gradient: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #f0fdfa 100%)
+
+   TEXT COLORS:
+   - Primary text: #0f172a (Slate 900)
+   - Secondary text: #334155 (Slate 700)
+   - Muted text: #475569 (Slate 600)
+   - Light text: #64748b (Slate 500)
+
+   CARD COLORS:
+   - Card background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240, 249, 255, 0.9) 100%)
+   - Card border: rgba(14, 165, 233, 0.15)
+   - Card border hover: rgba(14, 165, 233, 0.25)
+   - Card shadow: 0 10px 40px rgba(14, 165, 233, 0.08)
+
+   FOOTER COLORS:
+   - Footer background: linear-gradient(to bottom, #0d2438, #081827)
+   - Footer text: rgba(191, 219, 254, 0.78)
+   - Footer headings: #ffffff
+
+═══════════════════════════════════════════════════════════════════
+
+3. UNIVERSAL BUTTON STYLES
+   ------------------------
+
+   PRIMARY BUTTON (Main CTAs):
+   - Background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%)
+   - Text color: #ffffff
+   - Padding: 0.75rem 1.5rem
+   - Border radius: 9999px (fully rounded)
+   - Font weight: 600
+   - Box shadow: 0 4px 20px rgba(14, 165, 233, 0.25)
+   - Hover: translateY(-2px) + increased shadow
+
+   SECONDARY BUTTON:
+   - Background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240, 249, 255, 0.9))
+   - Text color: #0369a1
+   - Border: 2px solid rgba(14, 165, 233, 0.3)
+   - Padding: 0.75rem 1.5rem
+   - Border radius: 9999px
+   - Font weight: 600
+   - Backdrop filter: blur(10px)
+
+═══════════════════════════════════════════════════════════════════
+
+4. UNIVERSAL CARD DESIGN
+   ----------------------
+
+   STANDARD LIGHT CARDS:
+   - Background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240, 249, 255, 0.9) 100%)
+   - Border: 2px solid rgba(14, 165, 233, 0.15)
+   - Border radius: 1.5rem (24px)
+   - Padding: 1.75rem (28px)
+   - Backdrop filter: blur(20px)
+   - Box shadow: 0 10px 40px rgba(14, 165, 233, 0.08), 0 0 0 1px rgba(14, 165, 233, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9)
+   
+   HOVER STATE:
+   - Transform: translateY(-8px)
+   - Box shadow: 0 20px 50px rgba(14, 165, 233, 0.15), inset 0 2px 0 rgba(255, 255, 255, 1)
+   - Border color: rgba(14, 165, 233, 0.25)
+   - Transition: all 0.4s ease
+
+   DARK GRADIENT CARDS (For special emphasis sections):
+   - Background: linear-gradient(to right, #0a3558, #1d4ed8)
+   - Border: none
+   - Border radius: 1rem (16px)
+   - Padding: 1.75rem (28px)
+   - Box shadow: 0 10px 40px rgba(10, 53, 88, 0.3)
+   - Text color: white
+   
+   DARK CARD HOVER STATE:
+   - Transform: translateY(-16px)
+   - Box shadow: 0 25px 60px rgba(10, 53, 88, 0.4)
+   - Background overlay: linear-gradient(to right, #1a5fa5, #3b9eff)
+   - Glow effect: radial-gradient with blue tint
+   - Title color: #bae6fd (light blue)
+   - Text color: white (full opacity)
+   - Transition: all 0.5s ease
+
+   WHEN TO USE EACH:
+   - Light cards: General content, features, services, standard sections
+   - Dark gradient cards: Special emphasis sections like "Why this exists", key value propositions, hero benefits
+
+═══════════════════════════════════════════════════════════════════
+
+5. UNIVERSAL GRID LAYOUT
+   ----------------------
+
+   Container:
+   - Max width: 1280px
+   - Padding: 0 1rem
+   - Margin: 0 auto
+
+   Grid System:
+   - Gap: 1.25rem (20px)
+   - Columns: 1, 2, 3, or 4 based on content
+   - Mobile: All grids collapse to 1 column below 768px
+
+═══════════════════════════════════════════════════════════════════
+
+6. UNIVERSAL NAVBAR (REQUIRED)
+   ----------------------------
+
+   MUST INCLUDE:
+   - Logo: Company logo image
+   - Brand name: [Company Name] (font-weight: 900)
+   - Subtitle: Company-specific tagline (font-weight: 500)
+   - Primary CTA button: Site-specific action
+   - Globe icon: Language selector
+   - Email icon: Contact link
+   
+   STYLING:
+   - Position: sticky, top: 0
+   - Background: rgba(255, 255, 255, 0.6)
+   - Backdrop filter: blur(12px)
+   - Border bottom: 2px solid rgba(125, 211, 252, 0.4)
+   - Box shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+   - Z-index: 50
+
+═══════════════════════════════════════════════════════════════════
+
+7. UNIVERSAL FOOTER (REQUIRED - EXACT TEXT)
+   -----------------------------------------
+
+   MUST CONTAIN EXACTLY:
+   
+   Company Section (First column):
+   - Company logo
+   - Company name (font-weight: 900)
+   - Company description
+   - "Member of ODIECLOUD²π Ecosystem." (bold)
+   - "[Company Name] is a Registered Trademark and Service Mark of Oderson Holdings Ltd."
+   
+   Footer Bottom (Left side):
+   "All Oderson Holdings subsidiaries are Members of the ODIECLOUD²π Ecosystem."
+   "ODIECLOUD²π, ODIEBOARD, Oπ, ODIEXA, and AUREX are Registered Trademark and Service Marks of Oderson Holdings Ltd."
+   
+   Footer Bottom (Right side):
+   "Powered By ODIEBOARD"
+
+   STYLING:
+   - Background: linear-gradient(to bottom, #0d2438, #081827)
+   - Text color: rgba(191, 219, 254, 0.78)
+   - Powered by text: white, font-weight: 700
+   - Border top: 1px solid rgba(255, 255, 255, 0.1)
+   - Padding: 3rem 0 1.5rem
+   - Margin top: 4rem
+
+   FOOTER SECTIONS (Optional but recommended):
+   - Can include: About, Resources, Legal, Contact sections
+   - Section headings: white, font-weight: 900
+   - Links: rgba(191, 219, 254, 0.78), hover: white
+
+═══════════════════════════════════════════════════════════════════
+
+8. UNIVERSAL HERO SECTION
+   -----------------------
+
+   STRUCTURE:
+   - Full-page height: min-height: calc(100vh - 80px)
+   - Blue gradient background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #06b6d4 100%)
+   - Border radius: 1.5rem
+   - Padding: 4rem 3rem (desktop), 2.5rem 1.5rem (mobile)
+   
+   ELEMENTS:
+   - Optional badge: Small pill with icon and text
+   - Hero title: 3rem (desktop), 2rem (mobile), weight 700, white
+   - Hero description: 1.125rem, weight 400, white with 92% opacity
+   - Two buttons: Primary and Secondary CTAs
+
+═══════════════════════════════════════════════════════════════════
+
+9. SPACING & LAYOUT STANDARDS
+   ---------------------------
+
+   Section Padding:
+   - Desktop: 3.5rem (56px) vertical
+   - Mobile: 2rem (32px) vertical
+
+   Element Spacing:
+   - Small gap: 0.5rem (8px)
+   - Medium gap: 1rem (16px)
+   - Large gap: 1.5rem (24px)
+   - Section gap: 2.5rem (40px)
+
+   Border Radius:
+   - Small: 0.5rem (8px)
+   - Medium: 1rem (16px)
+   - Large: 1.5rem (24px)
+   - Buttons: 9999px (fully rounded)
+
+═══════════════════════════════════════════════════════════════════
+
+10. ANIMATION & TRANSITIONS
+    ------------------------
+
+    Standard Transitions:
+    - Duration: 0.3s - 0.5s
+    - Easing: ease, ease-out, or cubic-bezier(0.34, 1.56, 0.64, 1)
+
+    Hover Effects:
+    - Cards: translateY(-8px)
+    - Buttons: translateY(-2px) + scale(1.02-1.05)
+    - Links: color change only
+
+    Standard Animations:
+    - Fade in: opacity 0 to 1
+    - Slide up: translateY(30px) to 0
+    - Float: gentle up/down movement for decorative elements
+
+═══════════════════════════════════════════════════════════════════
+
+11. RESPONSIVE BREAKPOINTS
+    ----------------------
+
+    Mobile: < 768px
+    Tablet: 768px - 1024px
+    Desktop: > 1024px
+
+    Rules:
+    - All grids collapse to 1 column on mobile
+    - Font sizes reduce by 10-20% on mobile
+    - Padding reduces by 30-50% on mobile
+    - Navbar becomes hamburger menu on mobile
+
+═══════════════════════════════════════════════════════════════════
+
+IMPLEMENTATION CHECKLIST FOR NEW SITES:
+□ Import Inter font from Google Fonts
+□ Apply universal body background gradient
+□ Use universal navbar with company logo and branding
+□ Apply universal button styles (primary & secondary)
+□ Use universal card design with exact styling
+□ Implement universal grid system
+□ Add universal footer with exact trademark text
+□ Use universal color palette throughout
+□ Apply consistent spacing and border radius
+□ Implement standard hover and transition effects
+□ Include full-page hero section with gradient background
+□ Add globe and email icons to navbar
+
+═══════════════════════════════════════════════════════════════════
+
+TEMPLATE PLACEHOLDERS:
+Replace these in your implementation:
+- [Company Name] → Your company's actual name
+- [Company Logo] → Your company's logo image
+- [Company Tagline] → Your company's tagline/subtitle
+- [Company Description] → Brief description of your company
+- [Primary CTA] → Your main call-to-action text
+- [Hero Headline] → Your hero section headline
+- [Hero Description] → Your hero section description
+- [Primary Action Button] → Your primary button text
+- [Secondary Action Button] → Your secondary button text
+
+═══════════════════════════════════════════════════════════════════
+
+PURPOSE:
+This design system ensures all ODIECLOUD²π ecosystem websites appear as ONE UNIFIED PLATFORM with consistent branding, user experience, and visual identity while allowing each company to maintain its unique identity through customized content.
+
+═══════════════════════════════════════════════════════════════════
