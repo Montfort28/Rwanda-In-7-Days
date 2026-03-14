@@ -15,7 +15,7 @@ export default function Footer() {
       { href: '#', label: 'Cultural Exchanges' },
       { href: '#', label: 'Motorcoach Tours' },
       { href: '#', label: 'Rail Tours' },
-      { href: '#book', label: 'Book a Trip' }
+      { href: '#contact', label: 'Book a Trip' }
     ],
     community: [
       { href: '#', label: 'Become a Member' },

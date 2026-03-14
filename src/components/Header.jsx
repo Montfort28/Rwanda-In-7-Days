@@ -49,7 +49,7 @@ export default function Header() {
           </nav>
 
           <div className="nav-actions">
-            <a className="btn btn-primary" href="#book">Book This Trip</a>
+            <a className="btn btn-primary" href="#contact">Book This Trip</a>
           </div>
 
           <button

@@ -6,6 +6,7 @@ import Itinerary from './components/Itinerary';
 import Pricing from './components/Pricing';
 import Reviews from './components/Reviews';
 import CTA from './components/CTA';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './styles/globals.css';
 
@@ -21,6 +22,7 @@ function App() {
         <Pricing />
         <Reviews />
         <CTA />
+        <Contact />
       </main>
       <Footer />
     </>

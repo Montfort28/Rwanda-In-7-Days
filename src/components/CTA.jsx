@@ -11,8 +11,8 @@ export default function CTA() {
               Reserve your seat, request a private departure, or speak with our team about premium customization, extensions, and future East Africa combinations.
             </p>
             <div className="cta-buttons">
-              <a className="btn btn-primary" href="#">Book Now</a>
-              <a className="btn btn-secondary" href="#">Request a Private Departure</a>
+              <a className="btn btn-primary" href="#contact">Book Now</a>
+              <a className="btn btn-secondary" href="#contact">Request a Private Departure</a>
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>

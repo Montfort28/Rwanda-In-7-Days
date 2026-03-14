@@ -25,7 +25,7 @@ export default function Hero() {
               </div>
 
               <div className="hero-actions">
-                <a className="btn btn-primary" href="#book">Book This Trip</a>
+                <a className="btn btn-primary" href="#contact">Book This Trip</a>
                 <a className="btn btn-secondary" href="#itinerary">See the Day-by-Day Journey</a>
               </div>
             </div>
@@ -58,7 +58,7 @@ export default function Hero() {
                   <span className="panel-value">Scheduled or Private</span>
                 </div>
                 <div style={{ marginTop: '18px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  <a className="btn btn-primary" href="#book" style={{ flex: 1 }}>Reserve Your Seat</a>
+                  <a className="btn btn-primary" href="#contact" style={{ flex: 1 }}>Reserve Your Seat</a>
                   <a className="btn btn-secondary" href="#pricing" style={{ flex: 1 }}>Price & Inclusions</a>
                 </div>
               </div>
