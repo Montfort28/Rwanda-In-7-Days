@@ -52,7 +52,7 @@ export default function Header() {
       <header>
         <div className="container nav-row">
           <a href="#overview" className="brand" onClick={handleNavClick}>
-            <img src="public/images/logo.png" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
+            <img src="images/logo.png" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
             <div>
               <strong>{t('nav.brand')}</strong>
               <span className="brand-tagline-desktop">{t('nav.tagline')}</span>

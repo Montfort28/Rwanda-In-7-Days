@@ -42,7 +42,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-first">
           <div className="footer-logo-box">
-            <img src="public/images/logo.png" alt="Forever Young Tours" />
+            <img src="images/logo.png" alt="Forever Young Tours" />
           </div>
           <div className="footer-content">
             <h4>{t('footer.company')}</h4>
