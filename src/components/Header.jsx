@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { HiInformationCircle, HiSparkles, HiCalendar, HiCurrencyDollar, HiStar } from 'react-icons/hi';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: '#overview', label: 'Overview', icon: <HiInformationCircle /> },
-    { href: '#highlights', label: 'Highlights', icon: <HiSparkles /> },
-    { href: '#itinerary', label: 'Itinerary', icon: <HiCalendar /> },
-    { href: '#pricing', label: 'Pricing', icon: <HiCurrencyDollar /> },
-    { href: '#reviews', label: 'Reviews', icon: <HiStar /> },
+    { href: '#overview', label: 'Overview' },
+    { href: '#highlights', label: 'Highlights' },
+    { href: '#itinerary', label: 'Itinerary' },
+    { href: '#pricing', label: 'Pricing' },
+    { href: '#reviews', label: 'Reviews' },
   ];
 
   const handleNavClick = () => {
@@ -42,7 +41,6 @@ export default function Header() {
           <nav className="nav-links desktop-nav">
             {navLinks.map((link) => (
               <a key={link.href} href={link.href} onClick={handleNavClick}>
-                {link.icon}
                 {link.label}
               </a>
             ))}
@@ -70,7 +68,6 @@ export default function Header() {
         <nav className="nav-links mobile-nav active">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={handleNavClick}>
-              {link.icon}
               {link.label}
             </a>
           ))}

@@ -1089,6 +1089,58 @@ section[id] {
   font-weight: 600;
 }
 
+.contact-info-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.contact-info-section h4 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #10243d;
+}
+
+.contact-info-section p {
+  margin: 8px 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.contact-info-section a {
+  color: #0284c7;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.contact-info-section a:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.form-policy {
+  padding: 14px 16px;
+  background: rgba(14, 165, 233, 0.05);
+  border-left: 3px solid #0ea5e9;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+.form-policy p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.form-policy strong {
+  color: #0369a1;
+  font-weight: 800;
+}
+
 /* ===== CONTACT FORM ===== */
 .contact-form-wrapper {
   display: flex;
