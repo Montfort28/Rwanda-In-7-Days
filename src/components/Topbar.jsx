@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Topbar() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const { t } = useLanguage();
 
   const desktopMessages = [
-    'Premium departures available for curated small groups and private custom travel.',
-    'Join the travel community for priority access, member pricing, and future East Africa circuits.',
+    t('topbar.premium') || 'Premium departures available for curated small groups and private custom travel.',
+    t('topbar.community') || 'Join the travel community for priority access, member pricing, and future East Africa circuits.',
   ];
 
   const mobileMessages = [
-    'Premium Rwanda Tours',
-    'Join Travel Community',
+    t('topbar.premiumShort') || 'Premium Rwanda Tours',
+    t('topbar.communityShort') || 'Join Travel Community',
   ];
 
   const messages = isMobile ? mobileMessages : desktopMessages;

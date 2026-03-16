@@ -1,65 +1,70 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="hero" id="overview">
       <div className="container">
         <div className="hero-card" style={{
-          backgroundImage: 'url("public/images/placeholder.jpg")',
+          backgroundImage: 'linear-gradient(135deg, rgba(15, 52, 96, 0.48) 0%, rgba(26, 84, 144, 0.48) 50%, rgba(6, 182, 212, 0.48) 100%), url("public/images/placeholder.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          borderRadius: '48px'
+          backgroundBlendMode: 'darken',
+          borderRadius: '48px',
         }}>
           <div className="hero-grid">
             <div>
-              <div className="eyebrow">Rwanda Premium Signature Circuit</div>
-              <h1>Rwanda in 7 Days — Signature Circuit (Premium)</h1>
+              <div className="eyebrow">{t('hero.eyebrow')}</div>
+              <h1>{t('hero.title')}</h1>
               <p className="lead">
-                A premium Rwanda journey designed for travelers who want the country's most iconic wildlife, landscapes, and cultural experiences in one elegant, professionally curated circuit.
+                {t('hero.description')}
               </p>
 
               <div className="hero-pills">
-                <span className="hero-pill">Gorilla Trekking</span>
-                <span className="hero-pill">Chimpanzee Trekking</span>
-                <span className="hero-pill">Akagera Safari</span>
-                <span className="hero-pill">Luxury Stays</span>
-                <span className="hero-pill">24/7 FYT Support</span>
+                <span className="hero-pill">{t('hero.gorillaTrekking')}</span>
+                <span className="hero-pill">{t('hero.chimpanzeeTrekking')}</span>
+                <span className="hero-pill">{t('hero.akageraSafari')}</span>
+                <span className="hero-pill">{t('hero.luxuryStays')}</span>
+                <span className="hero-pill">{t('hero.support')}</span>
               </div>
 
               <div className="hero-actions">
-                <a className="btn btn-primary" href="#contact">Book This Trip</a>
-                <a className="btn btn-secondary" href="#itinerary">See the Day-by-Day Journey</a>
+                <a className="btn btn-primary" href="#contact">{t('hero.bookButton')}</a>
+                <a className="btn btn-secondary" href="#itinerary">{t('hero.seeJourney')}</a>
               </div>
             </div>
 
             <div>
               <div className="hero-panel">
-                <h3>Tour Snapshot</h3>
+                <h3>{t('hero.snapshot')}</h3>
                 <div className="panel-row">
-                  <span className="panel-label">Destination</span>
-                  <span className="panel-value">Rwanda</span>
+                  <span className="panel-label">{t('hero.destination')}</span>
+                  <span className="panel-value">{t('hero.destinationValue')}</span>
                 </div>
                 <div className="panel-row">
-                  <span className="panel-label">Travel Style</span>
-                  <span className="panel-value">Premium Guided Circuit</span>
+                  <span className="panel-label">{t('hero.travelStyle')}</span>
+                  <span className="panel-value">{t('hero.travelStyleValue')}</span>
                 </div>
                 <div className="panel-row">
-                  <span className="panel-label">Best For</span>
-                  <span className="panel-value">Adventure, Wildlife, Culture</span>
+                  <span className="panel-label">{t('hero.bestFor')}</span>
+                  <span className="panel-value">{t('hero.bestForValue')}</span>
                 </div>
                 <div className="panel-row">
-                  <span className="panel-label">Inclusions</span>
-                  <span className="panel-value">Permits, Lodging, Transport</span>
+                  <span className="panel-label">{t('hero.inclusions')}</span>
+                  <span className="panel-value">{t('hero.inclusionsValue')}</span>
                 </div>
                 <div className="panel-row">
-                  <span className="panel-label">Support</span>
-                  <span className="panel-value">24/7 FYT Operations</span>
+                  <span className="panel-label">{t('hero.supportLabel')}</span>
+                  <span className="panel-value">{t('hero.supportValue')}</span>
                 </div>
                 <div className="panel-row">
-                  <span className="panel-label">Booking Type</span>
-                  <span className="panel-value">Scheduled or Private</span>
+                  <span className="panel-label">{t('hero.bookingType')}</span>
+                  <span className="panel-value">{t('hero.bookingTypeValue')}</span>
                 </div>
                 <div style={{ marginTop: '18px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  <a className="btn btn-primary" href="#contact" style={{ flex: 1 }}>Reserve Your Seat</a>
-                  <a className="btn btn-secondary" href="#pricing" style={{ flex: 1 }}>Price & Inclusions</a>
+                  <a className="btn btn-primary" href="#contact" style={{ flex: 1 }}>{t('hero.reserveSeat')}</a>
+                  <a className="btn btn-secondary" href="#pricing" style={{ flex: 1 }}>{t('hero.priceInclusions')}</a>
                 </div>
               </div>
             </div>

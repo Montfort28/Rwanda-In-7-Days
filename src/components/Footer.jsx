@@ -1,35 +1,41 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export default function Footer() {
-  const footerLinks = {
-    explore: [
-      { href: '#overview', label: 'Overview' },
-      { href: '#highlights', label: 'Highlights' },
-      { href: '#itinerary', label: 'Itinerary' },
-      { href: '#pricing', label: 'Pricing' },
-      { href: '#reviews', label: 'Reviews' }
-    ],
-    tours: [
-      { href: '#', label: 'Adventure Tours' },
-      { href: '#', label: 'Agro Tours' },
-      { href: '#', label: 'City Breaks' },
-      { href: '#', label: 'Cruises' },
-      { href: '#', label: 'Cultural Exchanges' },
-      { href: '#', label: 'Motorcoach Tours' },
-      { href: '#', label: 'Rail Tours' },
-      { href: '#contact', label: 'Book a Trip' }
-    ],
-    community: [
-      { href: '#', label: 'Become a Member' },
-      { href: '#', label: 'Become an Advisor' },
-      { href: '#', label: 'Create Your Own Tour' },
-      { href: '#', label: 'Resources' }
-    ],
-    legal: [
-      { href: '#', label: 'Privacy Policy' },
-      { href: '#', label: 'Terms & Conditions' },
-      { href: '#', label: 'Disclaimers' },
-      { href: '#', label: 'Contact' }
-    ]
-  };
+  const context = useLanguage();
+  const t = context?.t || ((key) => key);
+
+  const exploreLinks = [
+    { href: '#overview', label: t('nav.overview') },
+    { href: '#highlights', label: t('nav.highlights') },
+    { href: '#itinerary', label: t('nav.itinerary') },
+    { href: '#pricing', label: t('nav.pricing') },
+    { href: '#reviews', label: t('nav.reviews') }
+  ];
+
+  const tourLinks = [
+    { href: '#', label: t('footer.adventureTours') },
+    { href: '#', label: t('footer.agroTours') },
+    { href: '#', label: t('footer.cityBreaks') },
+    { href: '#', label: t('footer.cruises') },
+    { href: '#', label: t('footer.culturalExchanges') },
+    { href: '#', label: t('footer.motorcoachTours') },
+    { href: '#', label: t('footer.railTours') },
+    { href: '#contact', label: t('footer.bookATrip') }
+  ];
+
+  const communityLinks = [
+    { href: '#', label: t('footer.becomeAMember') },
+    { href: '#', label: t('footer.becomeAnAdvisor') },
+    { href: '#', label: t('footer.createOwnTour') },
+    { href: '#', label: t('footer.resources') }
+  ];
+
+  const legalLinks = [
+    { href: '#', label: t('footer.privacyPolicy') },
+    { href: '#', label: t('footer.termsConditions') },
+    { href: '#', label: t('footer.disclaimers') },
+    { href: '#', label: t('footer.contact') }
+  ];
 
   return (
     <footer className="footer">
@@ -39,36 +45,36 @@ export default function Footer() {
             <img src="public/images/logo.png" alt="Forever Young Tours" />
           </div>
           <div className="footer-content">
-            <h4>Forever Young Tours</h4>
-            <p className="footer-slogan">Live Bold. Stay Forever Young.</p>
-            <p>Curated global tours, cultural discovery, premium travel experiences, and systems-driven execution for travelers who live bold.</p>
+            <h4>{t('footer.company')}</h4>
+            <p className="footer-slogan">{t('footer.slogan')}</p>
+            <p>{t('footer.description')}</p>
           </div>
         </div>
 
         <div>
-          <h4>Explore</h4>
-          {footerLinks.explore.map((link, index) => (
+          <h4>{t('footer.explore')}</h4>
+          {exploreLinks.map((link, index) => (
             <a key={index} href={link.href}>{link.label}</a>
           ))}
         </div>
         
         <div>
-          <h4>Legal</h4>
-          {footerLinks.legal.map((link, index) => (
+          <h4>{t('footer.legal')}</h4>
+          {legalLinks.map((link, index) => (
             <a key={index} href={link.href}>{link.label}</a>
           ))}
         </div>
         
         <div>
-          <h4>Travel Community</h4>
-          {footerLinks.community.map((link, index) => (
+          <h4>{t('footer.community')}</h4>
+          {communityLinks.map((link, index) => (
             <a key={index} href={link.href}>{link.label}</a>
           ))}
         </div>
 
         <div>
-          <h4>Tours</h4>
-          {footerLinks.tours.map((link, index) => (
+          <h4>{t('footer.tours')}</h4>
+          {tourLinks.map((link, index) => (
             <a key={index} href={link.href}>{link.label}</a>
           ))}
         </div>
@@ -76,12 +82,12 @@ export default function Footer() {
 
       <div className="container footer-bottom">
         <div className="footer-bottom-left">
-          <p>Member of ODIECLOUD²π Ecosystem.</p>
-          <p>ODIECLOUD²π, ODIEBOARD, Oπ, ODIEXA, and AUREX are Registered Trademark<br />and Service Marks of Oderson Holdings Ltd.</p>
-          <p>© Copyright Forever Young Tours. All Rights Reserved.</p>
+          <p>{t('footer.memberODIECLOUD')}</p>
+          <p>{t('footer.trademark')}</p>
+          <p>{t('footer.copyright')}</p>
         </div>
         <div className="footer-bottom-right">
-          <strong>Powered by ODIEBOARD</strong>
+          <strong>{t('footer.poweredBy')}</strong>
         </div>
       </div>
     </footer>

@@ -8,24 +8,27 @@ import Reviews from './components/Reviews';
 import CTA from './components/CTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { LanguageProvider } from './context/LanguageContext';
 import './styles/globals.css';
 
 function App() {
   return (
-    <>
-      <Topbar />
-      <Header />
-      <main>
-        <Hero />
-        <Highlights />
-        <Itinerary />
-        <Pricing />
-        <Reviews />
-        <CTA />
-        <Contact />
-      </main>
-      <Footer />
-    </>
+    <LanguageProvider>
+      <>
+        <Topbar />
+        <Header />
+        <main>
+          <Hero />
+          <Highlights />
+          <Itinerary />
+          <Pricing />
+          <Reviews />
+          <CTA />
+          <Contact />
+        </main>
+        <Footer />
+      </>
+    </LanguageProvider>
   );
 }
 

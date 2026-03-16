@@ -1,22 +1,26 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export default function Reviews() {
+  const { t } = useLanguage();
+
   const testimonials = [
     {
       stars: 5,
-      quote: '"This was the most complete way to experience Rwanda in one journey — beautifully organized, emotionally powerful, and extremely well paced."',
-      author: 'Premium Wildlife Traveler',
-      type: 'Signature Circuit Guest'
+      quote: t('reviews.quote1'),
+      author: t('reviews.author1'),
+      type: t('reviews.type1')
     },
     {
       stars: 5,
-      quote: '"From gorillas to the safari finish, every segment felt purposeful. We never felt rushed, but we saw so much."',
-      author: 'Luxury Group Traveler',
-      type: 'Private Departure Guest'
+      quote: t('reviews.quote2'),
+      author: t('reviews.author2'),
+      type: t('reviews.type2')
     },
     {
       stars: 5,
-      quote: '"The logistics were excellent. You could feel that the route had been designed by people who care about both detail and experience."',
-      author: 'Adventure Couple',
-      type: 'East Africa Circuit Traveler'
+      quote: t('reviews.quote3'),
+      author: t('reviews.author3'),
+      type: t('reviews.type3')
     }
   ];
 
@@ -24,9 +28,9 @@ export default function Reviews() {
     <section className="section" id="reviews">
       <div className="container">
         <div className="section-head">
-          <h2>What travelers remember most</h2>
+          <h2>{t('reviews.title')}</h2>
           <p>
-            The strongest premium travel experiences create both emotional impact and operational confidence. This circuit is designed to do both.
+            {t('reviews.subtitle')}
           </p>
         </div>
 

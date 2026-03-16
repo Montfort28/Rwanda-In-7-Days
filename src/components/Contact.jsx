@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const context = useLanguage();
+  const t = context?.t || ((key) => key);
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -50,9 +54,9 @@ export default function Contact() {
     <section className="section contact-section" id="contact">
       <div className="container">
         <div className="section-head">
-          <h2>Book Your Rwanda in 7 Days Experience</h2>
+          <h2>{t('contact.title')}</h2>
           <p>
-            Sunday Arrival Intake • Permits Bundled • Premium Lodges
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -70,7 +74,7 @@ export default function Contact() {
 
               <div className={`form-content ${submitted ? 'hidden' : ''}`}>
                 <div className="form-group">
-                  <label htmlFor="fullName">Full Name (Passport) *</label>
+                  <label htmlFor="fullName">{t('contact.fullName')} *</label>
                   <input
                     type="text"
                     id="fullName"
@@ -83,7 +87,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email *</label>
+                  <label htmlFor="email">{t('contact.email')} *</label>
                   <input
                     type="email"
                     id="email"
@@ -96,7 +100,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="whatsapp">WhatsApp Number *</label>
+                  <label htmlFor="whatsapp">{t('contact.whatsapp')} *</label>
                   <input
                     type="tel"
                     id="whatsapp"
@@ -109,7 +113,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="arrivalDate">Preferred Arrival Sunday *</label>
+                  <label htmlFor="arrivalDate">{t('contact.arrivalDate')} *</label>
                   <input
                     type="date"
                     id="arrivalDate"
@@ -122,7 +126,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="groupSize">Group Size *</label>
+                  <label htmlFor="groupSize">{t('contact.groupSize')} *</label>
                   <select
                     id="groupSize"
                     name="groupSize"
@@ -130,18 +134,18 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">Select</option>
-                    <option value="1">1 Person</option>
-                    <option value="2">2 People</option>
-                    <option value="3">3 People</option>
-                    <option value="4">4 People</option>
-                    <option value="5">5 People</option>
-                    <option value="6+">6+ People</option>
+                    <option value="">{t('contact.selectPlaceholder')}</option>
+                    <option value="1">{t('contact.groupSizeOpt1')}</option>
+                    <option value="2">{t('contact.groupSizeOpt2')}</option>
+                    <option value="3">{t('contact.groupSizeOpt3')}</option>
+                    <option value="4">{t('contact.groupSizeOpt4')}</option>
+                    <option value="5">{t('contact.groupSizeOpt5')}</option>
+                    <option value="6+">{t('contact.groupSizeOpt6')}</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="rooming">Rooming *</label>
+                  <label htmlFor="rooming">{t('contact.rooming')} *</label>
                   <select
                     id="rooming"
                     name="rooming"
@@ -149,16 +153,16 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">Select</option>
-                    <option value="single">Single Room</option>
-                    <option value="double">Double/Twin Room</option>
-                    <option value="triple">Triple Room</option>
-                    <option value="mixed">Mixed (specify in notes)</option>
+                    <option value="">{t('contact.selectPlaceholder')}</option>
+                    <option value="single">{t('contact.roomingOpt1')}</option>
+                    <option value="double">{t('contact.roomingOpt2')}</option>
+                    <option value="triple">{t('contact.roomingOpt3')}</option>
+                    <option value="mixed">{t('contact.roomingOpt4')}</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="language">Language *</label>
+                  <label htmlFor="language">{t('contact.language')} *</label>
                   <select
                     id="language"
                     name="language"
@@ -166,31 +170,31 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                   >
-                    <option value="">Select</option>
-                    <option value="english">English</option>
-                    <option value="french">French</option>
-                    <option value="spanish">Spanish</option>
-                    <option value="german">German</option>
-                    <option value="other">Other (specify in notes)</option>
+                    <option value="">{t('contact.selectPlaceholder')}</option>
+                    <option value="english">{t('contact.languageOpt1')}</option>
+                    <option value="french">{t('contact.languageOpt2')}</option>
+                    <option value="spanish">{t('contact.languageOpt3')}</option>
+                    <option value="german">{t('contact.languageOpt4')}</option>
+                    <option value="other">{t('contact.languageOpt5')}</option>
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="airportService">Sunday Airport Intake Service (Optional)</label>
+                  <label htmlFor="airportService">{t('contact.airportService')}</label>
                   <select
                     id="airportService"
                     name="airportService"
                     value={formData.airportService}
                     onChange={handleChange}
                   >
-                    <option value="">Select</option>
-                    <option value="yes">Yes, include airport pickup</option>
-                    <option value="no">No, I'll arrange my own transport</option>
+                    <option value="">{t('contact.selectPlaceholder')}</option>
+                    <option value="yes">{t('contact.airportOpt1')}</option>
+                    <option value="no">{t('contact.airportOpt2')}</option>
                   </select>
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="dietary">Dietary Requirements (Optional)</label>
+                  <label htmlFor="dietary">{t('contact.dietary')}</label>
                   <input
                     type="text"
                     id="dietary"
@@ -202,7 +206,7 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group full-width">
-                  <label htmlFor="notes">Notes / Questions (Optional)</label>
+                  <label htmlFor="notes">{t('contact.notes')}</label>
                   <textarea
                     id="notes"
                     name="notes"
@@ -218,7 +222,7 @@ export default function Contact() {
                 </div>
 
                 <button type="submit" className="btn btn-primary form-submit">
-                  Submit Booking Request
+                  {t('contact.submit')}
                 </button>
               </div>
             </form>
@@ -227,7 +231,7 @@ export default function Contact() {
           {/* Info Card */}
           <div className="contact-card">
             <div className="card-header">
-              <h3>What happens after you submit</h3>
+              <h3>{t('contact.cardTitle')}</h3>
             </div>
             <div className="card-content">
               <div className="info-item">
@@ -237,7 +241,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p>FYT confirms availability for your preferred Sunday arrival cycle.</p>
+                  <p>{t('contact.step1')}</p>
                 </div>
               </div>
 
@@ -249,7 +253,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p>We issue your invoice and deposit instructions.</p>
+                  <p>{t('contact.step2')}</p>
                 </div>
               </div>
 
@@ -260,7 +264,7 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p>Upon deposit, permits are allocated and your booking is confirmed.</p>
+                  <p>{t('contact.step3')}</p>
                 </div>
               </div>
 
@@ -272,17 +276,17 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p>You receive your guest briefing + packing list + final itinerary.</p>
+                  <p>{t('contact.step4')}</p>
                 </div>
               </div>
 
               <div className="contact-info-section">
-                <h4>Contact</h4>
-                <p><strong>NORRSKEN HOUSE</strong><br />KN 78 ST., Kigali, Rwanda</p>
-                <p><a href="mailto:booking@iforeveryoungtours.com">booking@iforeveryoungtours.com</a></p>
+                <h4>{t('contact.contactTitle')}</h4>
+                <p><strong>NORRSKEN HOUSE</strong><br />{t('contact.address')}</p>
+                <p><a href="mailto:booking@iforeveryoungtours.com">{t('contact.emailValue')}</a></p>
                 <p>
-                  Rwanda: <a href="tel:+250794004336">+250 794 004 336</a><br />
-                  US: <a href="tel:+16787017785">+1 678 701 7785</a>
+                  {t('contact.rwandaPhone')}<br />
+                  {t('contact.usPhone')}
                 </p>
               </div>
             </div>

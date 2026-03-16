@@ -1,51 +1,55 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export default function Highlights() {
+  const { t } = useLanguage();
+
   const highlights = [
     {
       number: 1,
-      title: 'See Rwanda\'s iconic pillars in one journey',
-      description: 'Gorillas, chimpanzees, safari, Kigali, and curated cultural moments without fragmented planning.'
+      title: t('highlights.benefit1Title'),
+      description: t('highlights.benefit1Desc')
     },
     {
       number: 2,
-      title: 'Travel with premium operational flow',
-      description: 'Private 4×4 transport, guided sequencing, strong timing discipline, and 24/7 support.'
+      title: t('highlights.benefit2Title'),
+      description: t('highlights.benefit2Desc')
     },
     {
       number: 3,
-      title: 'Balance adventure with comfort',
-      description: 'Luxury-minded lodging, strong pacing, and a route designed for enjoyment rather than exhaustion.'
+      title: t('highlights.benefit3Title'),
+      description: t('highlights.benefit3Desc')
     },
     {
       number: 4,
-      title: 'Built for meaningful storytelling',
-      description: 'Culture, cuisine, local engagement, and unforgettable wildlife moments in a single curated narrative.'
+      title: t('highlights.benefit4Title'),
+      description: t('highlights.benefit4Desc')
     }
   ];
 
   const cards = [
     {
       image: 'public/images/chimpanzee.jpg',
-      pill: 'Wildlife',
-      title: 'Gorilla & Chimpanzee Encounters',
-      description: 'Includes the high-value primate experiences that make Rwanda globally distinctive.'
+      pill: t('highlights.pillWildlife'),
+      title: t('highlights.gorillaTitle'),
+      description: t('highlights.gorillaDesc')
     },
     {
       image: 'public/images/national park.jpg',
-      pill: 'Safari',
-      title: 'Akagera National Park',
-      description: 'Classic East African game viewing with structured access, scenic landscapes, and boat safari potential.'
+      pill: t('highlights.pillSafari'),
+      title: t('highlights.safariTitle'),
+      description: t('highlights.safariDesc')
     },
     {
       image: 'public/images/Kigali & Cultural Moments.jpg',
-      pill: 'Culture',
-      title: 'Kigali & Cultural Moments',
-      description: 'Balanced city immersion with carefully selected experiences that deepen the journey.'
+      pill: t('highlights.pillCulture'),
+      title: t('highlights.kigaliTitle'),
+      description: t('highlights.kigaliDesc')
     },
     {
       image: 'public/images/lodging.jpg',
-      pill: 'Comfort',
-      title: 'Premium Lodging & Guided Support',
-      description: 'Designed for travelers who value excellent execution as much as the destination itself.'
+      pill: t('highlights.pillComfort'),
+      title: t('highlights.lodgingTitle'),
+      description: t('highlights.lodgingDesc')
     }
   ];
 
@@ -53,15 +57,15 @@ export default function Highlights() {
     <section className="section" id="highlights">
       <div className="container">
         <div className="section-head">
-          <h2>Why this circuit stands apart</h2>
+          <h2>{t('highlights.title')}</h2>
           <p>
-            This itinerary is designed as the premium signature introduction to Rwanda: immersive, efficient, and emotionally memorable, without sacrificing comfort, timing discipline, or logistical excellence.
+            {t('highlights.subtitle')}
           </p>
         </div>
 
         <div className="tour-highlights">
           <div className="highlight-panel">
-            <h3>Signature experience benefits</h3>
+            <h3>{t('highlights.benefitsTitle')}</h3>
             <div className="highlight-list">
               {highlights.map((item) => (
                 <div key={item.number} className="highlight-item">
