@@ -28,25 +28,25 @@ export default function Highlights() {
 
   const cards = [
     {
-      image: 'public/images/chimpanzee.jpg',
+      image: 'images/chimpanzee.jpg',
       pill: t('highlights.pillWildlife'),
       title: t('highlights.gorillaTitle'),
       description: t('highlights.gorillaDesc')
     },
     {
-      image: 'public/images/national park.jpg',
+      image: 'images/national park.jpg',
       pill: t('highlights.pillSafari'),
       title: t('highlights.safariTitle'),
       description: t('highlights.safariDesc')
     },
     {
-      image: 'public/images/Kigali & Cultural Moments.jpg',
+      image: 'images/Kigali & Cultural Moments.jpg',
       pill: t('highlights.pillCulture'),
       title: t('highlights.kigaliTitle'),
       description: t('highlights.kigaliDesc')
     },
     {
-      image: 'public/images/lodging.jpg',
+      image: 'images/lodging.jpg',
       pill: t('highlights.pillComfort'),
       title: t('highlights.lodgingTitle'),
       description: t('highlights.lodgingDesc')

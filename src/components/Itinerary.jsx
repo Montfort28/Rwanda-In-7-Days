@@ -8,43 +8,43 @@ export default function Itinerary() {
       day: 1,
       title: t('itinerary.day1Title'),
       description: t('itinerary.day1Desc'),
-      image: 'public/images/city break.jpg'
+      image: 'images/city break.jpg'
     },
     {
       day: 2,
       title: t('itinerary.day2Title'),
       description: t('itinerary.day2Desc'),
-      image: 'public/images/city break 1.jpg'
+      image: 'images/city break 1.jpg'
     },
     {
       day: 3,
       title: t('itinerary.day3Title'),
       description: t('itinerary.day3Desc'),
-      image: 'public/images/placeholder.jpg'
+      image: 'images/Mountain Gorilla Trekking in Virunga - Your Dream Safari Adventure.jpg'
     },
     {
       day: 4,
       title: t('itinerary.day4Title'),
       description: t('itinerary.day4Desc'),
-      image: 'public/images/Virunga Mountains.jpg'
+      image: 'images/Virunga Mountains.jpg'
     },
     {
       day: 5,
       title: t('itinerary.day5Title'),
       description: t('itinerary.day5Desc'),
-      image: 'public/images/canopy.jpg'
+      image: 'images/canopy.jpg'
     },
     {
       day: 6,
       title: t('itinerary.day6Title'),
       description: t('itinerary.day6Desc'),
-      image: 'public/images/akagera.jpg'
+      image: 'images/akagera.jpg'
     },
     {
       day: 7,
       title: t('itinerary.day7Title'),
       description: t('itinerary.day7Desc'),
-      image: 'public/images/akagera extension.jpg'
+      image: 'images/akagera extension.jpg'
     }
   ];
 
