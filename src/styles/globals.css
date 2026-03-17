@@ -1539,15 +1539,134 @@ section[id] {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (min-width: 861px) and (max-width: 950px) {
+  /* Surface Pro 7, iPad Air */
+  main {
+    padding-top: 95px;
+  }
+
+  .hero {
+    padding: 20px 0 16px;
+    min-height: auto;
+    margin-bottom: 40px;
+  }
+
+  .hero-card {
+    border-radius: 32px;
+  }
+
+  .hero-grid {
+    padding: 28px 28px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .hero-panel {
+    padding: 20px;
+  }
+
+  .nav-links.desktop-nav {
+    display: none;
+  }
+
+  .desktop-icons {
+    display: none !important;
+  }
+
+  .nav-actions .btn-primary {
+    display: none !important;
+  }
+
+  .nav-links.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 118px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.1);
+    border-bottom: 2px solid rgba(240, 249, 255, 0.4);
+    flex-direction: column;
+    width: 100vw;
+    padding: 8px 16px;
+    gap: 4px;
+    z-index: 999;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+
+  .nav-links.mobile-nav.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    color: #0f172a;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+    cursor: pointer;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
+  main {
+    padding-top: 100px;
+  }
+
   .hero {
     margin-top: 0;
+    padding: 16px 0 20px;
+    min-height: auto;
+    margin-bottom: 40px;
+  }
+
+  .hero-grid {
+    padding: 32px 30px;
+    gap: 22px;
+  }
+
+  .hero-card {
+    border-radius: 36px;
   }
 }
 
 @media (min-width: 641px) and (max-width: 860px) {
   .hero {
     margin-top: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  main {
+    padding-top: 110px;
+  }
+
+  .hero {
+    padding: 16px 0 24px;
+    min-height: 90vh;
+  }
+
+  .hero-grid {
+    padding: 40px 48px;
   }
 }
 
@@ -1598,7 +1717,9 @@ section[id] {
   }
 
   .hero {
-    padding: 0 0 20px;
+    padding: 0 0 16px;
+    min-height: auto;
+    margin-bottom: 30px;
   }
 
   .contact-card {
