@@ -8,13 +8,13 @@ export default function Itinerary() {
       day: 1,
       title: t('itinerary.day1Title'),
       description: t('itinerary.day1Desc'),
-      image: 'images/Kigali.jpg'
+      image: 'images/Kigali.png'
     },
     {
       day: 2,
       title: t('itinerary.day2Title'),
       description: t('itinerary.day2Desc'),
-      image: 'images/kigali cultural.jpg'
+      image: 'images/kigali cultural.png'
     },
     {
       day: 3,
