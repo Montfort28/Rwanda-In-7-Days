@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { submitBookingToBaserow } from '../services/baserowService';
 
 export default function Contact() {
   const context = useLanguage();
@@ -9,16 +10,38 @@ export default function Contact() {
     fullName: '',
     email: '',
     whatsapp: '',
-    arrivalDate: '',
+    departureDate: '',
     groupSize: '',
+    tier: 'Premium',
     rooming: '',
     language: '',
-    airportService: '',
+    nationality: '',
+    dateOfBirth: '',
+    passportConfirmed: false,
     dietary: '',
-    notes: ''
+    notes: '',
+    source: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [bookingReference, setBookingReference] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  // Get minimum date (30 days from now)
+  const getMinDepartureDate = () => {
+    const date = new Date();
+    date.setDate(date.getDate() + 30);
+    return date.toISOString().split('T')[0];
+  };
+
+  // Get maximum date of birth (15 years ago)
+  const getMaxDateOfBirth = () => {
+    const date = new Date();
+    date.setFullYear(date.getFullYear() - 15);
+    return date.toISOString().split('T')[0];
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,28 +49,54 @@ export default function Contact() {
       ...prev,
       [name]: value
     }));
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Booking submitted:', formData);
-    setSubmitted(true);
-    
-    setTimeout(() => {
-      setFormData({
-        fullName: '',
-        email: '',
-        whatsapp: '',
-        arrivalDate: '',
-        groupSize: '',
-        rooming: '',
-        language: '',
-        airportService: '',
-        dietary: '',
-        notes: ''
-      });
-      setSubmitted(false);
-    }, 3000);
+    setLoading(true);
+    setError('');
+    setFieldErrors({});
+
+    const result = await submitBookingToBaserow(formData);
+
+    if (result.success) {
+      setSubmitted(true);
+      setBookingReference(result.reference);
+      
+      // Reset form after 10 seconds (increased from 5)
+      setTimeout(() => {
+        setFormData({
+          fullName: '',
+          email: '',
+          whatsapp: '',
+          departureDate: '',
+          groupSize: '',
+          tier: 'Premium',
+          rooming: '',
+          language: '',
+          nationality: '',
+          dateOfBirth: '',
+          passportConfirmed: false,
+          dietary: '',
+          notes: '',
+          source: ''
+        });
+        setSubmitted(false);
+        setBookingReference('');
+      }, 10000);
+    } else {
+      setError(result.error);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -68,128 +117,217 @@ export default function Contact() {
                 <div className="form-success">
                   <div className="success-icon">✓</div>
                   <h4>Booking Received!</h4>
+                  <p>Your booking reference: <strong>{bookingReference}</strong></p>
                   <p>We'll confirm availability and send your invoice within 24 hours.</p>
+                  <button 
+                    type="button" 
+                    onClick={() => navigator.clipboard.writeText(bookingReference)}
+                    style={{
+                      marginTop: '12px',
+                      padding: '8px 16px',
+                      background: 'rgba(14, 165, 233, 0.1)',
+                      border: '1px solid rgba(14, 165, 233, 0.3)',
+                      borderRadius: '8px',
+                      color: '#0284c7',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      fontWeight: '600'
+                    }}
+                  >
+                    📋 Copy Reference
+                  </button>
+                </div>
+              )}
+
+              {error && (
+                <div className="form-error">
+                  <div className="error-icon">✕</div>
+                  <p>{error}</p>
                 </div>
               )}
 
               <div className={`form-content ${submitted ? 'hidden' : ''}`}>
-                <div className="form-group">
-                  <label htmlFor="fullName">{t('contact.fullName')} *</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    placeholder="e.g., Jane Marie Doe"
-                    required
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="fullName">{t('contact.fullName')} *</label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      placeholder="e.g., Jane Marie Doe"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">{t('contact.email')} *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="name@email.com"
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">{t('contact.email')} *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="name@email.com"
-                    required
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="whatsapp">{t('contact.whatsapp')} *</label>
+                    <input
+                      type="tel"
+                      id="whatsapp"
+                      name="whatsapp"
+                      value={formData.whatsapp}
+                      onChange={handleChange}
+                      placeholder="+250..."
+                      pattern="\+[0-9]{10,15}"
+                      title="Please enter phone number in international format (e.g., +250123456789)"
+                      required
+                    />
+                    <small style={{ color: '#64748b', fontSize: '0.85rem', marginTop: '4px', display: 'block' }}>
+                      International format: +[country code][number]
+                    </small>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="nationality">{t('contact.nationality')} *</label>
+                    <input
+                      type="text"
+                      id="nationality"
+                      name="nationality"
+                      value={formData.nationality}
+                      onChange={handleChange}
+                      placeholder="e.g., American, British"
+                      required
+                    />
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="whatsapp">{t('contact.whatsapp')} *</label>
-                  <input
-                    type="tel"
-                    id="whatsapp"
-                    name="whatsapp"
-                    value={formData.whatsapp}
-                    onChange={handleChange}
-                    placeholder="+250..."
-                    required
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="departureDate">{t('contact.departureDate')} *</label>
+                    <input
+                      type="date"
+                      id="departureDate"
+                      name="departureDate"
+                      value={formData.departureDate}
+                      onChange={handleChange}
+                      min={getMinDepartureDate()}
+                      required
+                    />
+                    <small style={{ color: '#64748b', fontSize: '0.85rem', marginTop: '4px', display: 'block' }}>
+                      Minimum 30 days advance booking required
+                    </small>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="dateOfBirth">{t('contact.dateOfBirth')} *</label>
+                    <input
+                      type="date"
+                      id="dateOfBirth"
+                      name="dateOfBirth"
+                      value={formData.dateOfBirth}
+                      onChange={handleChange}
+                      max={getMaxDateOfBirth()}
+                      required
+                    />
+                    <small style={{ color: '#64748b', fontSize: '0.85rem', marginTop: '4px', display: 'block' }}>
+                      Minimum age 15 years for gorilla trekking
+                    </small>
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="arrivalDate">{t('contact.arrivalDate')} *</label>
-                  <input
-                    type="date"
-                    id="arrivalDate"
-                    name="arrivalDate"
-                    value={formData.arrivalDate}
-                    onChange={handleChange}
-                    placeholder="YYYY-MM-DD (Sunday arrival)"
-                    required
-                  />
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="groupSize">{t('contact.groupSize')} *</label>
+                    <select
+                      id="groupSize"
+                      name="groupSize"
+                      value={formData.groupSize}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">{t('contact.selectPlaceholder')}</option>
+                      <option value="1">{t('contact.groupSizeOpt1')}</option>
+                      <option value="2">{t('contact.groupSizeOpt2')}</option>
+                      <option value="3">{t('contact.groupSizeOpt3')}</option>
+                      <option value="4">{t('contact.groupSizeOpt4')}</option>
+                      <option value="5">{t('contact.groupSizeOpt5')}</option>
+                      <option value="6+">{t('contact.groupSizeOpt6')}</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="tier">{t('contact.tier')} *</label>
+                    <select
+                      id="tier"
+                      name="tier"
+                      value={formData.tier}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="Premium">{t('contact.tierPremium')}</option>
+                      <option value="Luxury">{t('contact.tierLuxury')}</option>
+                    </select>
+                  </div>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="groupSize">{t('contact.groupSize')} *</label>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="rooming">{t('contact.rooming')} *</label>
+                    <select
+                      id="rooming"
+                      name="rooming"
+                      value={formData.rooming}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">{t('contact.selectPlaceholder')}</option>
+                      <option value="King">{t('contact.roomingKing')}</option>
+                      <option value="Queen">{t('contact.roomingQueen')}</option>
+                      <option value="Full / Double">{t('contact.roomingDouble')}</option>
+                      <option value="Twin (or Single)">{t('contact.roomingTwin')}</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="language">{t('contact.language')} *</label>
+                    <select
+                      id="language"
+                      name="language"
+                      value={formData.language}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">{t('contact.selectPlaceholder')}</option>
+                      <option value="English">{t('contact.languageOpt1')}</option>
+                      <option value="French">{t('contact.languageOpt2')}</option>
+                      <option value="Spanish">{t('contact.languageOpt3')}</option>
+                      <option value="Chinese">{t('contact.languageChinese')}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group full-width">
+                  <label htmlFor="source">{t('contact.source')} *</label>
                   <select
-                    id="groupSize"
-                    name="groupSize"
-                    value={formData.groupSize}
+                    id="source"
+                    name="source"
+                    value={formData.source}
                     onChange={handleChange}
                     required
                   >
                     <option value="">{t('contact.selectPlaceholder')}</option>
-                    <option value="1">{t('contact.groupSizeOpt1')}</option>
-                    <option value="2">{t('contact.groupSizeOpt2')}</option>
-                    <option value="3">{t('contact.groupSizeOpt3')}</option>
-                    <option value="4">{t('contact.groupSizeOpt4')}</option>
-                    <option value="5">{t('contact.groupSizeOpt5')}</option>
-                    <option value="6+">{t('contact.groupSizeOpt6')}</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="rooming">{t('contact.rooming')} *</label>
-                  <select
-                    id="rooming"
-                    name="rooming"
-                    value={formData.rooming}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">{t('contact.selectPlaceholder')}</option>
-                    <option value="single">{t('contact.roomingOpt1')}</option>
-                    <option value="double">{t('contact.roomingOpt2')}</option>
-                    <option value="triple">{t('contact.roomingOpt3')}</option>
-                    <option value="mixed">{t('contact.roomingOpt4')}</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="language">{t('contact.language')} *</label>
-                  <select
-                    id="language"
-                    name="language"
-                    value={formData.language}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">{t('contact.selectPlaceholder')}</option>
-                    <option value="english">{t('contact.languageOpt1')}</option>
-                    <option value="french">{t('contact.languageOpt2')}</option>
-                    <option value="spanish">{t('contact.languageOpt3')}</option>
-                    <option value="german">{t('contact.languageOpt4')}</option>
-                    <option value="other">{t('contact.languageOpt5')}</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="airportService">{t('contact.airportService')}</label>
-                  <select
-                    id="airportService"
-                    name="airportService"
-                    value={formData.airportService}
-                    onChange={handleChange}
-                  >
-                    <option value="">{t('contact.selectPlaceholder')}</option>
-                    <option value="yes">{t('contact.airportOpt1')}</option>
-                    <option value="no">{t('contact.airportOpt2')}</option>
+                    <option value="Google">{t('contact.sourceGoogle')}</option>
+                    <option value="Facebook">{t('contact.sourceFacebook')}</option>
+                    <option value="Instagram">{t('contact.sourceInstagram')}</option>
+                    <option value="Referral">{t('contact.sourceReferral')}</option>
+                    <option value="Other">{t('contact.sourceOther')}</option>
                   </select>
                 </div>
 
@@ -217,12 +355,27 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
+                <div className="form-group full-width">
+                  <label htmlFor="passportConfirmed" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                    <input
+                      type="checkbox"
+                      id="passportConfirmed"
+                      name="passportConfirmed"
+                      checked={formData.passportConfirmed}
+                      onChange={(e) => setFormData(prev => ({ ...prev, passportConfirmed: e.target.checked }))}
+                      required
+                      style={{ width: 'auto', marginRight: '8px' }}
+                    />
+                    {t('contact.passportConfirmed')} *
+                  </label>
+                </div>
+
                 <div className="form-policy">
                   <p><strong>Policy:</strong> Deposit locks permits and confirms your seat. Permit issuance is time-specific and may be non-refundable once issued.</p>
                 </div>
 
-                <button type="submit" className="btn btn-primary form-submit">
-                  {t('contact.submit')}
+                <button type="submit" className="btn btn-primary form-submit" disabled={loading}>
+                  {loading ? t('contact.submitting') : t('contact.submit')}
                 </button>
               </div>
             </form>

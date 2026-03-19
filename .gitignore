@@ -32,3 +32,8 @@ out/
 .env
 .env.local
 .env.*.local
+
+# API Security - DO NOT COMMIT
+api/config.php
+api/submissions.json
+api/*.log
