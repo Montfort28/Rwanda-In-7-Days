@@ -8,37 +8,37 @@ export default function Itinerary() {
       day: 1,
       title: t('itinerary.day1Title'),
       description: t('itinerary.day1Desc'),
-      image: 'images/city break.jpg'
+      image: 'images/Kigali.jpg'
     },
     {
       day: 2,
       title: t('itinerary.day2Title'),
       description: t('itinerary.day2Desc'),
-      image: 'images/city break 1.jpg'
+      image: 'images/kigali cultural.jpg'
     },
     {
       day: 3,
       title: t('itinerary.day3Title'),
       description: t('itinerary.day3Desc'),
-      image: 'images/Mountain Gorilla Trekking in Virunga - Your Dream Safari Adventure.jpg'
+      image: 'images/gorilla-trekking-volcanoes.jpg'
     },
     {
       day: 4,
       title: t('itinerary.day4Title'),
       description: t('itinerary.day4Desc'),
-      image: 'images/Virunga Mountains.jpg'
+      image: 'images/Akagera-Safari1.jpg'
     },
     {
       day: 5,
       title: t('itinerary.day5Title'),
       description: t('itinerary.day5Desc'),
-      image: 'images/canopy.jpg'
+      image: 'images/Canopy-Walk-Nyungwe27.jpg'
     },
     {
       day: 6,
       title: t('itinerary.day6Title'),
       description: t('itinerary.day6Desc'),
-      image: 'images/akagera.jpg'
+      image: 'images/Akagera Safaris3.jpg'
     },
     {
       day: 7,

@@ -34,7 +34,7 @@ export default function Highlights() {
       description: t('highlights.gorillaDesc')
     },
     {
-      image: 'images/national park.jpg',
+      image: 'images/Akagera-Safari4.jpg',
       pill: t('highlights.pillSafari'),
       title: t('highlights.safariTitle'),
       description: t('highlights.safariDesc')

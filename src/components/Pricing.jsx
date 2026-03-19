@@ -3,60 +3,114 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Pricing() {
   const { t } = useLanguage();
 
-  const included = [
-    t('pricing.include1'),
-    t('pricing.include2'),
-    t('pricing.include3'),
-    t('pricing.include4'),
-    t('pricing.include5'),
-    t('pricing.include6'),
-    t('pricing.include7'),
-    t('pricing.include8'),
-  ];
-
-  const notIncluded = [
-    t('pricing.exclude1'),
-    t('pricing.exclude2'),
-    t('pricing.exclude3'),
-    t('pricing.exclude4'),
-    t('pricing.exclude5'),
-    t('pricing.exclude6'),
-  ];
-
   return (
     <section className="section" id="pricing">
       <div className="container">
         <div className="section-head">
-          <h2>{t('pricing.title')}</h2>
-          <p>
-            {t('pricing.subtitle')}
-          </p>
+          <h2>Premium Pricing</h2>
+          <p>Pricing shown per person (USD). Permits bundled. Weekly cycle (Sunday–Sunday). Original pricing preserved.</p>
         </div>
 
-        <div className="pricing-band">
-          <div className="pricing-grid">
-            <div className="pricing-cell">
-              <span className="pill" style={{ background: 'rgba(255,255,255,.12)', borderColor: 'rgba(255,255,255,.18)', color: '#fff' }}>{t('pricing.from')}</span>
-              <div className="pricing-price">{t('pricing.price')}</div>
-              <p>{t('pricing.priceNote')}</p>
-            </div>
-
-            <div className="pricing-cell">
-              <h3>{t('pricing.included')}</h3>
-              <ul>
-                {included.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
+        <div className="cards cards-3" style={{ marginTop: '40px' }}>
+          {/* Premium 15 Guests Card */}
+          <div className="card">
+            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <h3 style={{ marginTop: 0, marginBottom: '8px' }}>Premium (15 Guests)</h3>
+              <p style={{ color: 'var(--muted)', marginBottom: '20px', fontSize: '0.95rem', margin: 0 }}>Best value per person for weekly departures.</p>
+              
+              <div style={{
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                color: 'var(--blue-700)',
+                marginBottom: '4px',
+                marginTop: '12px'
+              }}>$6,695</div>
+              <p style={{ color: 'var(--muted)', marginBottom: '24px', fontSize: '0.9rem', margin: 0 }}>per person • permits included</p>
+              
+              <ul style={{ flex: 1, marginBottom: '24px', listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold' }}>✓</span>
+                  <span>7 nights premium accommodation</span>
+                </li>
+                <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold' }}>✓</span>
+                  <span>Gorillas + Chimps + Canopy + Safari + Boat</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold' }}>✓</span>
+                  <span>Emergency Evacuation Plan included</span>
+                </li>
               </ul>
-            </div>
 
-            <div className="pricing-cell">
-              <h3>{t('pricing.notIncluded')}</h3>
-              <ul>
-                {notIncluded.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
+              <a className="btn btn-primary" href="#contact" style={{ width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                BOOK PREMIUM (15)
+              </a>
+            </div>
+          </div>
+
+          {/* Premium 12 Guests Card */}
+          <div className="card">
+            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <h3 style={{ marginTop: 0, marginBottom: '8px' }}>Premium (12 Guests)</h3>
+              <p style={{ color: 'var(--muted)', marginBottom: '20px', fontSize: '0.95rem', margin: 0 }}>More space and upgraded comfort.</p>
+              
+              <div style={{
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                color: 'var(--blue-700)',
+                marginBottom: '4px',
+                marginTop: '12px'
+              }}>$6,845</div>
+              <p style={{ color: 'var(--muted)', marginBottom: '24px', fontSize: '0.9rem', margin: 0 }}>per person • permits included</p>
+              
+              <ul style={{ flex: 1, marginBottom: '24px', listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold' }}>✓</span>
+                  <span>7 nights premium accommodation</span>
+                </li>
+                <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold' }}>✓</span>
+                  <span>Small group pacing (12 guests)</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold' }}>✓</span>
+                  <span>Dedicated ops oversight</span>
+                </li>
               </ul>
+
+              <a className="btn btn-primary" href="#contact" style={{ width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                BOOK PREMIUM (12)
+              </a>
+            </div>
+          </div>
+
+          {/* Notes Card */}
+          <div className="card">
+            <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <h3 style={{ marginTop: 0, marginBottom: '24px' }}>Notes</h3>
+              
+              <ul style={{ flex: 1, marginBottom: '24px', listStyle: 'none', padding: 0, margin: 0 }}>
+                <li style={{ marginBottom: '16px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold', minWidth: '20px' }}>•</span>
+                  <span><strong style={{ color: 'var(--text)' }}>Single supplement:</strong> <span style={{ color: 'var(--muted)' }}>USD $720</span></span>
+                </li>
+                <li style={{ marginBottom: '16px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold', minWidth: '20px' }}>•</span>
+                  <span><strong style={{ color: 'var(--text)' }}>Optional add-on:</strong> <span style={{ color: 'var(--muted)' }}>Sunday airport intake + briefing service USD $50/guest</span></span>
+                </li>
+                <li style={{ marginBottom: '16px', display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold', minWidth: '20px' }}>•</span>
+                  <span><strong style={{ color: 'var(--text)' }}>Deposit:</strong> <span style={{ color: 'var(--muted)' }}>locks permits and confirms seat</span></span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', color: 'var(--text)' }}>
+                  <span style={{ marginRight: '8px', color: 'var(--blue-700)', fontWeight: 'bold', minWidth: '20px' }}>•</span>
+                  <span><strong style={{ color: 'var(--text)' }}>Timings:</strong> <span style={{ color: 'var(--muted)' }}>can shift due to weather, park regulations, and safety</span></span>
+                </li>
+              </ul>
+
+              <a className="btn btn-secondary" href="#contact" style={{ width: '100%', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                REQUEST ADD-ONS
+              </a>
             </div>
           </div>
         </div>

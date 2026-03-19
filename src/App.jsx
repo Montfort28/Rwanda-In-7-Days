@@ -22,9 +22,9 @@ function App() {
           <Highlights />
           <Itinerary />
           <Pricing />
+          <Contact />
           <Reviews />
           <CTA />
-          <Contact />
         </main>
         <Footer />
       </>

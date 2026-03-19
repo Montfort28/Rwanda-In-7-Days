@@ -551,6 +551,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  align-items: center;
 }
 
 .hero-stats {
@@ -1084,6 +1085,7 @@ section[id] {
 /* ===== CONTACT SECTION ===== */
 .contact-section {
   padding: 42px 0;
+  background: linear-gradient(180deg, #f8fcff 0%, #ffffff 100%);
 }
 
 .contact-grid {
@@ -1091,6 +1093,12 @@ section[id] {
   grid-template-columns: 0.95fr 1.05fr;
   gap: 24px;
   align-items: stretch;
+}
+
+/* ===== REVIEWS SECTION ===== */
+#reviews {
+  background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+  padding: 42px 0;
 }
 
 .contact-card {
@@ -1370,6 +1378,7 @@ section[id] {
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 36px;
+  max-height: 48px;
 }
 
 .form-group textarea {
@@ -1690,6 +1699,23 @@ section[id] {
     grid-template-columns: 2.2fr 1fr 1fr 1fr 1fr 1fr;
     gap: 28px;
   }
+
+  /* Make Reviews form grid responsive at this breakpoint */
+  #reviews form > div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Center hero card buttons on smaller screens */
+  .hero .container > div[style*="marginTop: '32px'"] > div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero .container > div[style*="marginTop: '32px'"] > div > div:last-child {
+    justify-content: center !important;
+    width: 100% !important;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -1743,6 +1769,39 @@ section[id] {
   .form-group select,
   .form-group textarea {
     font-size: 16px;
+  }
+
+  /* Make Reviews form grid single column on tablet */
+  #reviews form > div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix select dropdowns to stay within viewport */
+  .form-group select {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Ensure CTA band is responsive */
+  .cta-band {
+    grid-template-columns: 1fr !important;
+    padding: 24px 20px;
+  }
+
+  /* Prevent select dropdown from overflowing */
+  .form-group {
+    position: relative;
+    overflow: visible;
+  }
+
+  select {
+    overflow-y: auto;
+  }
+
+  /* Fix native select dropdown positioning */
+  .form-group select option {
+    background: white;
+    color: var(--text);
   }
 
   .nav-links.desktop-nav {
@@ -2048,6 +2107,57 @@ section[id] {
   }
 }
 
+@media (max-width: 768px) {
+  /* Select dropdown containment for mobile/tablet */
+  .form-group select {
+    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  /* Ensure select wrapper doesn't overflow */
+  .form-group {
+    overflow: visible;
+  }
+
+  /* SVG icon wrapper sizing for mobile */
+  .form-group div[style*="position: relative"] {
+    width: 100%;
+  }
+
+  /* Make Reviews form grid responsive */
+  #reviews form > div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ensure CTA band (which contains Reviews form) is responsive */
+  .cta-band {
+    grid-template-columns: 1fr !important;
+    padding: 20px 16px;
+  }
+
+  /* Fix tab navigation wrapping */
+  #reviews .cta-band > div > div[style*="display: flex"] {
+    flex-wrap: wrap;
+    gap: 8px !important;
+  }
+
+  #reviews .cta-band button[style*="padding: 12px 20px"] {
+    padding: 10px 14px !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Fix select dropdowns positioning */
+  .form-group select {
+    position: relative;
+  }
+
+  /* Ensure select options stay within viewport */
+  select {
+    max-height: 200px;
+  }
+}
+
 @media (max-width: 640px) {
   .hero-pill {
     font-size: 11px;
@@ -2084,6 +2194,76 @@ section[id] {
 
   .cta-band {
     padding: 20px;
+  }
+
+  /* Select dropdown sizing for small screens */
+  .form-group select {
+    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
+    font-size: 16px;
+  }
+
+  /* Ensure select menu options are readable */
+  .form-group select option {
+    padding: 8px 12px;
+    line-height: 1.5;
+  }
+
+  /* Make Reviews form single column on very small screens */
+  #reviews form > div[style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Fix Reviews tab navigation on mobile */
+  #reviews .cta-band > div > div[style*="display: flex"] {
+    gap: 4px !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #reviews .cta-band button[style*="padding: 12px 20px"] {
+    padding: 8px 12px !important;
+    font-size: 0.8rem !important;
+    white-space: nowrap;
+  }
+
+  /* Move Refer a Friend tab to new line on small screens */
+  .reviews-tab-nav {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  .reviews-tab-nav button:nth-child(1),
+  .reviews-tab-nav button:nth-child(2) {
+    border-bottom: 1px solid var(--line) !important;
+    padding-bottom: 16px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .reviews-tab-nav button:nth-child(3) {
+    grid-column: 1 / -1 !important;
+    margin-top: 8px !important;
+    border-bottom: none !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* Ensure select dropdowns work properly on mobile */
+  .form-group {
+    overflow: visible !important;
+  }
+
+  .form-group select {
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-group select option {
+    background: white;
+    color: var(--text);
   }
 }
 

@@ -70,6 +70,64 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        {/* Limited Permits Card */}
+        <div style={{
+          marginTop: '32px',
+          padding: '28px',
+          background: 'var(--surface)',
+          border: '1px solid var(--line)',
+          borderRadius: 'var(--radius-xl)',
+          boxShadow: 'var(--shadow)',
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '20px',
+            flexWrap: 'wrap'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              minWidth: '0',
+              flex: '1 1 auto'
+            }}>
+              <div style={{
+                fontSize: '1.5rem',
+                color: 'var(--blue-700)',
+                minWidth: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}>
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              </div>
+              <p style={{
+                fontSize: '1rem',
+                lineHeight: '1.6',
+                color: 'var(--text)',
+                marginBottom: 0,
+                minWidth: '0'
+              }}>
+                <strong style={{ color: 'var(--blue-700)' }}>Limited weekly permits:</strong> <span style={{ color: 'var(--muted)' }}>Deposit secures allocation immediately. Arrive Kigali on or before Sunday for check-in and briefing.</span>
+              </p>
+            </div>
+            <div style={{
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
+              flex: '0 0 auto',
+              justifyContent: 'center',
+              width: '100%'
+            }}>
+              <a className="btn btn-primary" href="#contact" style={{ whiteSpace: 'nowrap' }}>CHECK AVAILABILITY</a>
+              <a className="btn btn-secondary" href="/public/FYT_Rwanda_7_Days_Signature_Circuit_Premium.pdf" target="_blank" rel="noopener noreferrer" style={{ whiteSpace: 'nowrap' }}>VIEW PDF</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

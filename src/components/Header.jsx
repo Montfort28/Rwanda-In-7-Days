@@ -13,7 +13,7 @@ export default function Header() {
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
     { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'sw', name: 'Kiswahili', flag: '🇹🇿' },
+    { code: 'sw', name: 'Kiswahili', flag: '🇰🇪' },
   ];
 
   const navLinks = [
@@ -46,6 +46,18 @@ export default function Header() {
     }
     return () => { document.body.style.overflowY = 'unset'; };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (langMenuOpen && !e.target.closest('.lang-switcher') && !e.target.closest('.lang-menu') && !e.target.closest('.lang-menu-fixed')) {
+        setLangMenuOpen(false);
+      }
+    };
+    if (langMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [langMenuOpen]);
 
   return (
     <>

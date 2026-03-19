@@ -12,7 +12,8 @@ export default function CTA() {
               {t('cta.title')}
             </h2>
             <p style={{ margin: '0 0 20px', color: 'var(--muted)', fontSize: '1.02rem', maxWidth: '700px' }}>
-              {t('cta.subtitle')}
+              Limited weekly permits: Deposit secures allocation immediately.<br />
+              Arrive Kigali on or before Sunday for check-in and briefing.
             </p>
             <div className="cta-buttons">
               <a className="btn btn-primary" href="#contact">{t('cta.bookNow')}</a>
