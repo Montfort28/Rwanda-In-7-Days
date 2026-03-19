@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0284c7;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .success {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+        }
+        .error {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+        }
+        h1 {
+            color: #0f172a;
+        }
+        h2 {
+            color: #334155;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Booking API Test Suite</h1>
+    <p>Test the booking form API endpoints to ensure everything works correctly.</p>
+
+    <!-- Test 1: CSRF Token -->
+    <div class="test-section">
+        <h2>Test 1: Get CSRF Token</h2>
+        <button onclick="testCSRFToken()">Run Test</button>
+        <div id="csrf-result"></div>
+    </div>
+
+    <!-- Test 2: Valid Submission -->
+    <div class="test-section">
+        <h2>Test 2: Valid Booking Submission</h2>
+        <button onclick="testValidSubmission()">Run Test</button>
+        <div id="valid-result"></div>
+    </div>
+
+    <!-- Test 3: Invalid Phone -->
+    <div class="test-section">
+        <h2>Test 3: Invalid Phone Number</h2>
+        <button onclick="testInvalidPhone()">Run Test</button>
+        <div id="phone-result"></div>
+    </div>
+
+    <!-- Test 4: Past Date -->
+    <div class="test-section">
+        <h2>Test 4: Past Departure Date</h2>
+        <button onclick="testPastDate()">Run Test</button>
+        <div id="date-result"></div>
+    </div>
+
+    <!-- Test 5: Duplicate Email -->
+    <div class="test-section">
+        <h2>Test 5: Duplicate Email (Run Test 2 first)</h2>
+        <button onclick="testDuplicate()">Run Test</button>
+        <div id="duplicate-result"></div>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin + '/Rwanda-In-7-Days/api';
+        let csrfToken = null;
+
+        function displayResult(elementId, success, data) {
+            const element = document.getElementById(elementId);
+            element.className = 'result ' + (success ? 'success' : 'error');
+            element.textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function testCSRFToken() {
+            try {
+                const response = await fetch(`${API_BASE}/get-csrf-token.php`, {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                csrfToken = data.csrfToken;
+                displayResult('csrf-result', response.ok, data);
+            } catch (error) {
+                displayResult('csrf-result', false, { error: error.message });
+            }
+        }
+
+        async function testValidSubmission() {
+            if (!csrfToken) {
+                alert('Please run Test 1 first to get CSRF token');
+                return;
+            }
+
+            const futureDate = new Date();
+            futureDate.setDate(futureDate.getDate() + 35);
+            const departureDateStr = futureDate.toISOString().split('T')[0];
+
+            const pastDate = new Date();
+            pastDate.setFullYear(pastDate.getFullYear() - 25);
+            const dobStr = pastDate.toISOString().split('T')[0];
+
+            const bookingData = {
+                fullName: 'Test User ' + Date.now(),
+                email: 'test' + Date.now() + '@example.com',
+                whatsapp: '+250123456789',
+                nationality: 'American',
+                departureDate: departureDateStr,
+                dateOfBirth: dobStr,
+                groupSize: '2',
+                tier: 'Premium',
+                rooming: 'King',
+                language: 'English',
+                source: 'Google',
+                dietary: 'None',
+                notes: 'Test booking',
+                passportConfirmed: true,
+                csrfToken: csrfToken
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/submit-booking.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(bookingData)
+                });
+                const data = await response.json();
+                displayResult('valid-result', response.ok, data);
+            } catch (error) {
+                displayResult('valid-result', false, { error: error.message });
+            }
+        }
+
+        async function testInvalidPhone() {
+            if (!csrfToken) {
+                alert('Please run Test 1 first to get CSRF token');
+                return;
+            }
+
+            const futureDate = new Date();
+            futureDate.setDate(futureDate.getDate() + 35);
+            const departureDateStr = futureDate.toISOString().split('T')[0];
+
+            const pastDate = new Date();
+            pastDate.setFullYear(pastDate.getFullYear() - 25);
+            const dobStr = pastDate.toISOString().split('T')[0];
+
+            const bookingData = {
+                fullName: 'Test User',
+                email: 'test@example.com',
+                whatsapp: '1234567890', // Invalid - no country code
+                nationality: 'American',
+                departureDate: departureDateStr,
+                dateOfBirth: dobStr,
+                groupSize: '2',
+                tier: 'Premium',
+                rooming: 'King',
+                language: 'English',
+                source: 'Google',
+                dietary: '',
+                notes: '',
+                passportConfirmed: true,
+                csrfToken: csrfToken
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/submit-booking.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(bookingData)
+                });
+                const data = await response.json();
+                displayResult('phone-result', false, data);
+            } catch (error) {
+                displayResult('phone-result', false, { error: error.message });
+            }
+        }
+
+        async function testPastDate() {
+            if (!csrfToken) {
+                alert('Please run Test 1 first to get CSRF token');
+                return;
+            }
+
+            const pastDate = new Date();
+            pastDate.setFullYear(pastDate.getFullYear() - 1);
+            const pastDateStr = pastDate.toISOString().split('T')[0];
+
+            const dobDate = new Date();
+            dobDate.setFullYear(dobDate.getFullYear() - 25);
+            const dobStr = dobDate.toISOString().split('T')[0];
+
+            const bookingData = {
+                fullName: 'Test User',
+                email: 'test@example.com',
+                whatsapp: '+250123456789',
+                nationality: 'American',
+                departureDate: pastDateStr, // Past date - should fail
+                dateOfBirth: dobStr,
+                groupSize: '2',
+                tier: 'Premium',
+                rooming: 'King',
+                language: 'English',
+                source: 'Google',
+                dietary: '',
+                notes: '',
+                passportConfirmed: true,
+                csrfToken: csrfToken
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/submit-booking.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(bookingData)
+                });
+                const data = await response.json();
+                displayResult('date-result', false, data);
+            } catch (error) {
+                displayResult('date-result', false, { error: error.message });
+            }
+        }
+
+        async function testDuplicate() {
+            if (!csrfToken) {
+                alert('Please run Test 1 first to get CSRF token');
+                return;
+            }
+
+            const futureDate = new Date();
+            futureDate.setDate(futureDate.getDate() + 35);
+            const departureDateStr = futureDate.toISOString().split('T')[0];
+
+            const pastDate = new Date();
+            pastDate.setFullYear(pastDate.getFullYear() - 25);
+            const dobStr = pastDate.toISOString().split('T')[0];
+
+            const bookingData = {
+                fullName: 'Test User',
+                email: 'duplicate@example.com', // Use same email
+                whatsapp: '+250123456789',
+                nationality: 'American',
+                departureDate: departureDateStr,
+                dateOfBirth: dobStr,
+                groupSize: '2',
+                tier: 'Premium',
+                rooming: 'King',
+                language: 'English',
+                source: 'Google',
+                dietary: '',
+                notes: '',
+                passportConfirmed: true,
+                csrfToken: csrfToken
+            };
+
+            try {
+                // Submit twice
+                await fetch(`${API_BASE}/submit-booking.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(bookingData)
+                });
+
+                // Second submission should fail
+                const response = await fetch(`${API_BASE}/submit-booking.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(bookingData)
+                });
+                const data = await response.json();
+                displayResult('duplicate-result', false, data);
+            } catch (error) {
+                displayResult('duplicate-result', false, { error: error.message });
+            }
+        }
+    </script>
+</body>
+</html>
