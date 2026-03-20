@@ -124,7 +124,7 @@ export default function Hero() {
               width: '100%'
             }}>
               <a className="btn btn-primary" href="#contact" style={{ whiteSpace: 'nowrap' }}>CHECK AVAILABILITY</a>
-              <a className="btn btn-secondary" href="/public/FYT_Rwanda_7_Days_Signature_Circuit_Premium.pdf" target="_blank" rel="noopener noreferrer" style={{ whiteSpace: 'nowrap' }}>VIEW PDF</a>
+              <a className="btn btn-secondary" href="/FYT_Rwanda_7_Days_Signature_Circuit_Premium.pdf" target="_blank" rel="noopener noreferrer" style={{ whiteSpace: 'nowrap' }}>VIEW PDF</a>
             </div>
           </div>
         </div>
