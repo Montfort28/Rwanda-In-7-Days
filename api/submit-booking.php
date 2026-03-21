@@ -157,7 +157,7 @@ if (!$languageCheck['valid']) {
 // Source
 $sourceCheck = Validator::validateSelect(
     $data['source'] ?? '',
-    ['Google', 'Facebook', 'Instagram', 'Referral', 'Other'],
+    ['Google', 'Facebook', 'Instagram', 'Referral', 'Other', 'Affiliate', 'Social Media', 'Email', 'Ad'],
     'Source'
 );
 if (!$sourceCheck['valid']) {
@@ -205,7 +205,8 @@ if (!$result['success']) {
     http_response_code(500);
     echo json_encode([
         'success' => false,
-        'error' => $result['error']
+        'error' => $result['error'],
+        'debug' => $result['debug'] ?? null // Include debug info
     ]);
     exit;
 }

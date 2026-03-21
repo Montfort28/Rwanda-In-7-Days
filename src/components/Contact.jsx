@@ -61,39 +61,45 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     setLoading(true);
     setError('');
     setFieldErrors({});
 
-    const result = await submitBookingToBaserow(formData);
+    try {
+      const result = await submitBookingToBaserow(formData);
 
-    if (result.success) {
-      setSubmitted(true);
-      setBookingReference(result.reference);
-      
-      // Reset form after 10 seconds (increased from 5)
-      setTimeout(() => {
-        setFormData({
-          fullName: '',
-          email: '',
-          whatsapp: '',
-          departureDate: '',
-          groupSize: '',
-          tier: 'Premium',
-          rooming: '',
-          language: '',
-          nationality: '',
-          dateOfBirth: '',
-          passportConfirmed: false,
-          dietary: '',
-          notes: '',
-          source: ''
-        });
-        setSubmitted(false);
-        setBookingReference('');
-      }, 10000);
-    } else {
-      setError(result.error);
+      if (result.success) {
+        setSubmitted(true);
+        setBookingReference(result.reference);
+        
+        // Reset form after 10 seconds (increased from 5)
+        setTimeout(() => {
+          setFormData({
+            fullName: '',
+            email: '',
+            whatsapp: '',
+            departureDate: '',
+            groupSize: '',
+            tier: 'Premium',
+            rooming: '',
+            language: '',
+            nationality: '',
+            dateOfBirth: '',
+            passportConfirmed: false,
+            dietary: '',
+            notes: '',
+            source: ''
+          });
+          setSubmitted(false);
+          setBookingReference('');
+        }, 10000);
+      } else {
+        setError(result.error);
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      setError('An unexpected error occurred. Please try again.');
     }
 
     setLoading(false);

@@ -21,36 +21,57 @@ class BaserowService {
     public static function submitBooking($formData) {
         $reference = self::generateReference();
         
-        // Prepare data for Baserow
+        // Dates must be in YYYY-MM-DD format for Baserow
+        // formData already has dates in YYYY-MM-DD from HTML date inputs
+        
+        // Prepare data for Baserow with CORRECT field IDs and formats
         $bookingData = [
-            'field_4789' => 'Rwanda In 7 Days – Signature Circuit (Premium)',
-            'field_4790' => $formData['departureDate'],
-            'field_4791' => $formData['groupSize'],
-            'field_4792' => $formData['tier'],
-            'field_4793' => $formData['rooming'],
-            'field_4794' => $formData['language'],
-            'field_4795' => $formData['fullName'],
-            'field_4796' => $formData['email'],
-            'field_4797' => $formData['whatsapp'],
-            'field_4798' => $formData['nationality'],
-            'field_4799' => $formData['dateOfBirth'],
-            'field_4800' => $formData['passportConfirmed'],
-            'field_4801' => $formData['dietary'] ?? '',
-            'field_4802' => $formData['notes'] ?? '',
-            'field_4803' => $formData['source'],
-            'field_4804' => 'Unassigned',
-            'field_4805' => 'New',
-            'field_4806' => '0',
-            'field_4807' => '0',
-            'field_4808' => '0',
-            'field_4809' => '0',
-            'field_4810' => '0',
-            'field_4811' => '0',
-            'field_4812' => '0',
-            'field_4813' => date('c'), // ISO 8601 format
-            'field_4814' => 'Pending',
-            'field_4815' => 'Not Issued',
-            'field_4816' => $reference
+            'field_10913' => 4566, // Tour - Rwanda in 7 Days (option ID)
+            'field_10914' => $formData['departureDate'], // Departure Date (YYYY-MM-DD)
+            'field_10915' => (int)$formData['groupSize'] <= 12 ? 4559 : 4560, // Group Size (option ID: 4559=12, 4560=15)
+            'field_10916' => $formData['tier'] === 'Premium' ? 4567 : 4568, // Tier (option ID: 4567=Premium, 4568=Luxury)
+            'field_10917' => match($formData['rooming']) {
+                'King' => 4569,
+                'Queen' => 4570,
+                'Full / Double' => 4571,
+                'Twin (or Single)' => 4572,
+                default => 4572
+            }, // Rooming (option IDs)
+            'field_10918' => [$formData['language']], // Language (multiple_select - array of text values)
+            'field_10919' => $formData['fullName'], // Full Name (text)
+            'field_10920' => $formData['email'], // Email
+            'field_10921' => $formData['whatsapp'], // WhatsApp (text)
+            // field_10922 is link_row (Nationality) - skip for now
+            'field_10923' => $formData['dateOfBirth'], // Date of Birth (YYYY-MM-DD)
+            'field_10924' => $formData['passportConfirmed'] ? 'True' : 'False', // Passport Confirmed (text)
+            'field_10925' => $formData['dietary'] ?? '', // Dietary (text)
+            'field_10926' => $formData['notes'] ?? '', // Notes (long_text)
+            'field_10927' => match($formData['source']) {
+                'Google' => 4578, // Map to 'Social Media'
+                'Facebook' => 4578, // Map to 'Social Media'
+                'Instagram' => 4578, // Map to 'Social Media'
+                'Referral' => 4577, // Map to 'Affiliate'
+                'Other' => 4580, // Map to 'Ad'
+                'Affiliate' => 4577,
+                'Social Media' => 4578,
+                'Email' => 4579,
+                'Ad' => 4580,
+                default => 4578 // Default to Social Media
+            }, // Source (option IDs)
+            'field_10928' => 'Unassigned', // Assigned To (text)
+            'field_10929' => 'New', // Lead Status (text)
+            'field_10930' => '0', // Deposit Due (text)
+            'field_10931' => 'False', // Deposit Paid (text)
+            'field_10932' => '0', // Balance Due (text)
+            'field_10933' => 'False', // Balance Paid (text)
+            'field_10934' => '0', // Total Package Price (text)
+            'field_10935' => '0', // Single Supplement (text)
+            'field_10936' => '100', // Emergency Evacuation (text)
+            'field_10937' => date('Y-m-d'), // Created At (YYYY-MM-DD)
+            'field_10938' => 'Pending', // Permit Mode (text)
+            'field_10939' => 'Not Issued', // Permit Status (text)
+            'field_10940' => $reference, // Internal Reference (text)
+            'field_10941' => '' // Follow-Up Date (text)
         ];
         
         // Make API request to Baserow
@@ -83,6 +104,10 @@ class BaserowService {
             $errorData = json_decode($response, true);
             $errorMessage = 'Failed to submit booking. Please try again.';
             
+            // Log the full error for debugging
+            error_log('Baserow API Error: ' . print_r($errorData, true));
+            error_log('Sent data: ' . json_encode($bookingData));
+            
             if (isset($errorData['error'])) {
                 $errorMessage = $errorData['error'];
             } elseif (isset($errorData['detail'])) {
@@ -92,7 +117,8 @@ class BaserowService {
             return [
                 'success' => false,
                 'error' => $errorMessage,
-                'httpCode' => $httpCode
+                'httpCode' => $httpCode,
+                'debug' => $errorData // Include full error details
             ];
         }
         

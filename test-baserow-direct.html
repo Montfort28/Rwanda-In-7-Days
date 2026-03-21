@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baserow Direct Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0284c7;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            color: #065f46;
+        }
+        .error {
+            background: #fee2e2;
+            border: 1px solid #ef4444;
+            color: #991b1b;
+        }
+        h1 {
+            color: #0f172a;
+        }
+        h2 {
+            color: #334155;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Baserow Direct Connection Test</h1>
+    <p>This will test the direct connection to Baserow API to verify credentials and table access.</p>
+
+    <!-- Test 1: Check Baserow API Connection -->
+    <div class="test-section">
+        <h2>Test 1: Check Baserow API Connection</h2>
+        <button onclick="testBaserowConnection()">Run Test</button>
+        <div id="connection-result"></div>
+    </div>
+
+    <!-- Test 2: List Table Fields -->
+    <div class="test-section">
+        <h2>Test 2: List Table Fields (Schema)</h2>
+        <button onclick="listTableFields()">Run Test</button>
+        <div id="fields-result"></div>
+    </div>
+
+    <!-- Test 3: Submit Test Record -->
+    <div class="test-section">
+        <h2>Test 3: Submit Test Record to Baserow</h2>
+        <button onclick="submitTestRecord()">Run Test</button>
+        <div id="submit-result"></div>
+    </div>
+
+    <!-- Test 4: List Recent Records -->
+    <div class="test-section">
+        <h2>Test 4: List Recent Records</h2>
+        <button onclick="listRecentRecords()">Run Test</button>
+        <div id="records-result"></div>
+    </div>
+
+    <script>
+        const BASEROW_CONFIG = {
+            apiUrl: 'https://baserow.odiecloud.org/api',
+            token: 'e9auwsf47aYBRi70wMy5ptzDbTfHGwWs',
+            databaseId: '301',
+            tableId: '1103'
+        };
+
+        function displayResult(elementId, success, data) {
+            const element = document.getElementById(elementId);
+            element.className = 'result ' + (success ? 'success' : 'error');
+            element.textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function testBaserowConnection() {
+            try {
+                const response = await fetch(
+                    `${BASEROW_CONFIG.apiUrl}/database/tables/database/${BASEROW_CONFIG.databaseId}/`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Token ${BASEROW_CONFIG.token}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayResult('connection-result', true, {
+                        status: 'Connected!',
+                        statusCode: response.status,
+                        tables: data.length,
+                        message: 'Successfully connected to Baserow API'
+                    });
+                } else {
+                    displayResult('connection-result', false, {
+                        status: 'Failed',
+                        statusCode: response.status,
+                        error: data
+                    });
+                }
+            } catch (error) {
+                displayResult('connection-result', false, {
+                    error: error.message,
+                    message: 'Network error or CORS issue'
+                });
+            }
+        }
+
+        async function listTableFields() {
+            try {
+                const response = await fetch(
+                    `${BASEROW_CONFIG.apiUrl}/database/fields/table/${BASEROW_CONFIG.tableId}/`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Token ${BASEROW_CONFIG.token}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const fields = data.map(field => ({
+                        id: field.id,
+                        name: field.name,
+                        type: field.type
+                    }));
+                    displayResult('fields-result', true, {
+                        status: 'Success',
+                        totalFields: fields.length,
+                        fields: fields
+                    });
+                } else {
+                    displayResult('fields-result', false, data);
+                }
+            } catch (error) {
+                displayResult('fields-result', false, { error: error.message });
+            }
+        }
+
+        async function submitTestRecord() {
+            try {
+                const now = Date.now();
+                const futureDate = new Date();
+                futureDate.setDate(futureDate.getDate() + 35);
+                const departureDateStr = futureDate.toISOString().split('T')[0];
+
+                const pastDate = new Date();
+                pastDate.setFullYear(pastDate.getFullYear() - 25);
+                const dobStr = pastDate.toISOString().split('T')[0];
+
+                const bookingData = {
+                    'field_4789': 'Rwanda In 7 Days – Signature Circuit (Premium)',
+                    'field_4790': departureDateStr,
+                    'field_4791': '2',
+                    'field_4792': 'Premium',
+                    'field_4793': 'King',
+                    'field_4794': 'English',
+                    'field_4795': 'Direct Test User ' + now,
+                    'field_4796': 'directtest' + now + '@example.com',
+                    'field_4797': '+250123456789',
+                    'field_4798': 'American',
+                    'field_4799': dobStr,
+                    'field_4800': true,
+                    'field_4801': 'None',
+                    'field_4802': 'Direct API test',
+                    'field_4803': 'Google',
+                    'field_4804': 'Unassigned',
+                    'field_4805': 'New',
+                    'field_4806': '0',
+                    'field_4807': '0',
+                    'field_4808': '0',
+                    'field_4809': '0',
+                    'field_4810': '0',
+                    'field_4811': '0',
+                    'field_4812': '0',
+                    'field_4813': new Date().toISOString(),
+                    'field_4814': 'Pending',
+                    'field_4815': 'Not Issued',
+                    'field_4816': 'RW7D-' + new Date().toISOString().split('T')[0].replace(/-/g, '') + '-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0')
+                };
+
+                console.log('Submitting:', bookingData);
+
+                const response = await fetch(
+                    `${BASEROW_CONFIG.apiUrl}/database/rows/table/${BASEROW_CONFIG.tableId}/`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Token ${BASEROW_CONFIG.token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(bookingData)
+                    }
+                );
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    displayResult('submit-result', true, {
+                        status: 'Record Created!',
+                        statusCode: response.status,
+                        reference: bookingData['field_4816'],
+                        recordId: data.id,
+                        message: 'Check your Baserow table now!',
+                        data: data
+                    });
+                } else {
+                    displayResult('submit-result', false, {
+                        status: 'Failed',
+                        statusCode: response.status,
+                        error: data
+                    });
+                }
+            } catch (error) {
+                displayResult('submit-result', false, {
+                    error: error.message,
+                    stack: error.stack
+                });
+            }
+        }
+
+        async function listRecentRecords() {
+            try {
+                const response = await fetch(
+                    `${BASEROW_CONFIG.apiUrl}/database/rows/table/${BASEROW_CONFIG.tableId}/?size=10&page=1`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Token ${BASEROW_CONFIG.token}`
+                        }
+                    }
+                );
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const records = data.results.map(record => ({
+                        id: record.id,
+                        reference: record.field_4816,
+                        fullName: record.field_4795,
+                        email: record.field_4796,
+                        status: record.field_4805,
+                        created: record.field_4813
+                    }));
+                    
+                    displayResult('records-result', true, {
+                        status: 'Success',
+                        totalRecords: data.count,
+                        showing: records.length,
+                        records: records
+                    });
+                } else {
+                    displayResult('records-result', false, data);
+                }
+            } catch (error) {
+                displayResult('records-result', false, { error: error.message });
+            }
+        }
+    </script>
+</body>
+</html>

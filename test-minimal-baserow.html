@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Baserow Minimal Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { padding: 10px 20px; margin: 10px; background: #0ea5e9; color: white; border: none; cursor: pointer; }
+        .result { margin: 20px 0; padding: 15px; background: #f0f0f0; border-radius: 5px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>Baserow Minimal Field Test</h1>
+    <button onclick="testMinimal()">Test Minimal Record</button>
+    <button onclick="testWithSelects()">Test With Select Fields</button>
+    <button onclick="testFullRecord()">Test Full Record</button>
+    <div id="result" class="result"></div>
+
+    <script>
+        const BASEROW = {
+            url: 'https://baserow.odiecloud.org/api',
+            token: 'e9auwsf47aYBRi70wMy5ptzDbTfHGwWs',
+            tableId: '1103'
+        };
+
+        function display(data) {
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function testMinimal() {
+            try {
+                const data = {
+                    'field_10919': 'Test User Minimal',
+                    'field_10920': 'minimal@test.com',
+                    'field_10921': '+250123456789'
+                };
+
+                const response = await fetch(
+                    `${BASEROW.url}/database/rows/table/${BASEROW.tableId}/`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Token ${BASEROW.token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+
+                const result = await response.json();
+                display({ status: response.status, result });
+            } catch (error) {
+                display({ error: error.message });
+            }
+        }
+
+        async function testWithSelects() {
+            try {
+                const data = {
+                    'field_10913': 'Rwanda in 7 Days — Signature Circuit (Premium)',
+                    'field_10916': 'Premium',
+                    'field_10917': 'King',
+                    'field_10918': ['English'],
+                    'field_10919': 'Test User With Selects',
+                    'field_10920': 'selects@test.com',
+                    'field_10921': '+250123456789'
+                };
+
+                const response = await fetch(
+                    `${BASEROW.url}/database/rows/table/${BASEROW.tableId}/`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Token ${BASEROW.token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+
+                const result = await response.json();
+                display({ status: response.status, result });
+            } catch (error) {
+                display({ error: error.message });
+            }
+        }
+
+        async function testFullRecord() {
+            try {
+                const now = Date.now();
+                const futureDate = new Date();
+                futureDate.setDate(futureDate.getDate() + 35);
+                
+                const pastDate = new Date();
+                pastDate.setFullYear(pastDate.getFullYear() - 25);
+
+                const data = {
+                    'field_10913': 'Rwanda in 7 Days — Signature Circuit (Premium)',
+                    'field_10914': futureDate.toISOString().split('T')[0],
+                    'field_10915': '2',
+                    'field_10916': 'Premium',
+                    'field_10917': 'King',
+                    'field_10918': ['English'],
+                    'field_10919': 'Test Full User ' + now,
+                    'field_10920': 'full' + now + '@test.com',
+                    'field_10921': '+250123456789',
+                    'field_10923': pastDate.toISOString().split('T')[0],
+                    'field_10924': 'True',
+                    'field_10925': 'None',
+                    'field_10926': 'Test notes',
+                    'field_10927': 'Google',
+                    'field_10928': 'Unassigned',
+                    'field_10929': 'New',
+                    'field_10937': new Date().toISOString().split('T')[0],
+                    'field_10940': 'RW7D-TEST-' + now
+                };
+
+                console.log('Sending:', data);
+
+                const response = await fetch(
+                    `${BASEROW.url}/database/rows/table/${BASEROW.tableId}/`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Token ${BASEROW.token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+
+                const result = await response.json();
+                display({ status: response.status, result });
+            } catch (error) {
+                display({ error: error.message });
+            }
+        }
+    </script>
+</body>
+</html>

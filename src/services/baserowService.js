@@ -1,5 +1,9 @@
 // API Configuration
-const API_BASE_URL = window.location.origin + '/api';
+// For development: use localhost with project path
+// For production: use relative path
+const API_BASE_URL = import.meta.env.DEV 
+  ? 'http://localhost/Rwanda-In-7-Days/api'
+  : 'https://rwanda-in-7-days.iforeveryoungtours.com/api';
 
 let csrfToken = null;
 
@@ -42,8 +46,6 @@ export const submitBookingToBaserow = async (formData) => {
       csrfToken: token
     };
     
-    console.log('Submitting booking...');
-    
     // Submit to backend API
     const response = await fetch(`${API_BASE_URL}/submit-booking.php`, {
       method: 'POST',
@@ -55,8 +57,6 @@ export const submitBookingToBaserow = async (formData) => {
     });
     
     const result = await response.json();
-    
-    console.log('Response status:', response.status);
     
     if (!response.ok) {
       // Handle specific error cases
@@ -76,8 +76,6 @@ export const submitBookingToBaserow = async (formData) => {
       
       throw new Error(result.error || 'Failed to submit booking. Please try again.');
     }
-    
-    console.log('Booking submitted successfully:', result);
     
     return {
       success: true,
