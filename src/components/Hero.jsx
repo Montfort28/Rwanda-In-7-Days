@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="hero" id="overview">
       <div className="container">
         <div className="hero-card" style={{
-          backgroundImage: 'linear-gradient(135deg, rgba(15, 52, 96, 0.48) 0%, rgba(26, 84, 144, 0.48) 50%, rgba(6, 182, 212, 0.48) 100%), url("public/images/placeholder.png")',
+          backgroundImage: 'linear-gradient(135deg, rgba(15, 52, 96, 0.48) 0%, rgba(26, 84, 144, 0.48) 50%, rgba(6, 182, 212, 0.48) 100%), url("images/placeholder.png")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundBlendMode: 'darken',

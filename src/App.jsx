@@ -7,6 +7,7 @@ import Pricing from './components/Pricing';
 import Reviews from './components/Reviews';
 import CTA from './components/CTA';
 import Contact from './components/Contact';
+import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import { LanguageProvider } from './context/LanguageContext';
 import './styles/globals.css';
@@ -25,6 +26,7 @@ function App() {
           <Contact />
           <Reviews />
           <CTA />
+          <Testimonials />
         </main>
         <Footer />
       </>

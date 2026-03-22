@@ -111,7 +111,7 @@ export default function Reviews() {
           </div>
 
           {/* Tabbed Interface like CTA */}
-          <div className="cta-band" style={{ marginTop: '40px' }}>
+          <div className="cta-band" style={{ marginTop: '40px', alignItems: 'start' }}>
             <div className="cta-content">
               {/* Tab Navigation */}
               <div className="reviews-tab-nav" style={{
@@ -640,7 +640,7 @@ export default function Reviews() {
             </div>
 
             {/* QR Code Sidebar */}
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center', height: 'fit-content' }}>
               <div style={{
                 background: 'var(--surface)',
                 border: '1px solid var(--line)',
@@ -659,7 +659,7 @@ export default function Reviews() {
 
                 {/* QR Code Image */}
                 <img
-                  src="public/images/QR code.png"
+                  src="images/QR code.png"
                   alt="QR Code"
                   style={{
                     width: '200px',

@@ -64,30 +64,29 @@ export default function Highlights() {
         </div>
 
         <div className="tour-highlights">
-          <div className="highlight-panel">
-            <h3>{t('highlights.benefitsTitle')}</h3>
-            <div className="highlight-list">
+          <div className="highlight-panel" style={{ padding: '24px' }}>
+            <h3 style={{ fontSize: '1.3rem', marginBottom: '16px' }}>{t('highlights.benefitsTitle')}</h3>
+            <div className="highlight-list" style={{ gap: '10px' }}>
               {highlights.map((item) => (
-                <div key={item.number} className="highlight-item">
-                  <span className="index-dot">{item.number}</span>
+                <div key={item.number} className="highlight-item" style={{ padding: '10px 0', gap: '12px' }}>
+                  <span className="index-dot" style={{ width: '32px', height: '32px', fontSize: '0.9rem' }}>{item.number}</span>
                   <div>
-                    <strong>{item.title}</strong>
-                    <br />
-                    <span>{item.description}</span>
+                    <strong style={{ fontSize: '0.95rem', display: 'block', marginBottom: '4px' }}>{item.title}</strong>
+                    <span style={{ fontSize: '0.88rem', lineHeight: '1.5', color: 'var(--muted)' }}>{item.description}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="cards cards-2">
+          <div className="cards cards-2" style={{ gap: '18px' }}>
             {cards.map((card, index) => (
-              <div key={index} className="card">
-                <img src={card.image} alt={card.title} className="card-image" />
-                <div className="card-body">
+              <div key={index} className="card" style={{ minHeight: 'auto' }}>
+                <img src={card.image} alt={card.title} className="card-image" style={{ height: '180px' }} />
+                <div className="card-body" style={{ padding: '20px', gap: '10px' }}>
                   <span className="pill">{card.pill}</span>
-                  <h3>{card.title}</h3>
-                  <p>{card.description}</p>
+                  <h3 style={{ fontSize: '1.1rem', margin: '0 0 8px' }}>{card.title}</h3>
+                  <p style={{ fontSize: '0.9rem', margin: 0, lineHeight: '1.55' }}>{card.description}</p>
                 </div>
               </div>
             ))}
