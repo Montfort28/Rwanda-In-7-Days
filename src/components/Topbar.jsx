@@ -37,6 +37,38 @@ export default function Topbar() {
     return () => clearInterval(interval);
   }, [messages.length]);
 
+  // Hide topbar on scroll
+  useEffect(() => {
+    let lastScroll = 0;
+    const topbar = document.querySelector('.topbar');
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+    
+    const onScroll = () => {
+      if (!topbar || !header || !main) return;
+      
+      if (window.scrollY > 10) {
+        topbar.classList.add('hide-on-scroll');
+        header.classList.remove('topbar-visible');
+        main.classList.remove('topbar-visible');
+      } else {
+        topbar.classList.remove('hide-on-scroll');
+        header.classList.add('topbar-visible');
+        main.classList.add('topbar-visible');
+      }
+      lastScroll = window.scrollY;
+    };
+    
+    // Set initial state
+    if (window.scrollY <= 10) {
+      header.classList.add('topbar-visible');
+      main.classList.add('topbar-visible');
+    }
+    
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className="topbar">
       <div className="container topbar-inner">

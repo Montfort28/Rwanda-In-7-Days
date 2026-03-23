@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Highlights() {
   const { t } = useLanguage();
+  const [currentCard, setCurrentCard] = useState(0);
 
   const highlights = [
     {
@@ -28,16 +30,16 @@ export default function Highlights() {
 
   const cards = [
     {
-      image: 'images/chimpanzee.jpg',
-      pill: t('highlights.pillWildlife'),
-      title: t('highlights.gorillaTitle'),
-      description: t('highlights.gorillaDesc')
-    },
-    {
       image: 'images/Akagera-Safari4.jpg',
       pill: t('highlights.pillSafari'),
       title: t('highlights.safariTitle'),
       description: t('highlights.safariDesc')
+    },
+    {
+      image: 'images/chimpanzee.jpg',
+      pill: t('highlights.pillWildlife'),
+      title: t('highlights.gorillaTitle'),
+      description: t('highlights.gorillaDesc')
     },
     {
       image: 'images/Kigali & Cultural Moments.jpg',
@@ -52,6 +54,13 @@ export default function Highlights() {
       description: t('highlights.lodgingDesc')
     }
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCard((prev) => (prev + 1) % cards.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [cards.length]);
 
   return (
     <section className="section" id="highlights">
@@ -80,16 +89,14 @@ export default function Highlights() {
           </div>
 
           <div className="cards cards-2" style={{ gap: '18px' }}>
-            {cards.map((card, index) => (
-              <div key={index} className="card" style={{ minHeight: 'auto' }}>
-                <img src={card.image} alt={card.title} className="card-image" style={{ height: '180px' }} />
-                <div className="card-body" style={{ padding: '20px', gap: '10px' }}>
-                  <span className="pill">{card.pill}</span>
-                  <h3 style={{ fontSize: '1.1rem', margin: '0 0 8px' }}>{card.title}</h3>
-                  <p style={{ fontSize: '0.9rem', margin: 0, lineHeight: '1.55' }}>{card.description}</p>
-                </div>
+            <div className="card" style={{ minHeight: 'auto', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+              <img src={cards[currentCard].image} alt={cards[currentCard].title} className="card-image" style={{ height: '280px', transition: 'opacity 0.5s ease', flexShrink: 0 }} />
+              <div className="card-body" style={{ padding: '20px', gap: '10px', flex: 1 }}>
+                <span className="pill">{cards[currentCard].pill}</span>
+                <h3 style={{ fontSize: '1.1rem', margin: '0 0 8px' }}>{cards[currentCard].title}</h3>
+                <p style={{ fontSize: '0.9rem', margin: 0, lineHeight: '1.55' }}>{cards[currentCard].description}</p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

@@ -28,8 +28,8 @@ export default function Testimonials() {
     <section className="section" id="testimonials">
       <div className="container">
         <div className="section-head">
-          <h2>{t('reviews.testimonialsTitle')}</h2>
-          <p>{t('reviews.testimonialsSubtitle')}</p>
+          <h2>{t('reviews.title')}</h2>
+          <p>{t('reviews.subtitle')}</p>
         </div>
 
         <div className="cards cards-3">
