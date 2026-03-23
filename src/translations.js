@@ -187,10 +187,152 @@ const translations = {
       day6Desc: 'Transition from rainforest and mountains into savannah and safari country, preparing for the circuit\'s final wildlife chapter.',
       day7Title: 'Akagera Safari & Departure / Overnight Extension',
       day7Desc: 'Game drive and optional boat safari depending on timing, followed by return to Kigali for departure or extension planning.',
+      days: [
+        {
+          day: 'itinerary.day0.day',
+          label: 'itinerary.day0.label',
+          title: 'itinerary.day0.title',
+          subtitle: 'itinerary.day0.subtitle',
+          description: 'itinerary.day0.description',
+          timing: 'itinerary.day0.timing',
+          addon: 'itinerary.day0.addon',
+          image: 'kigali-nightfall.jpg'
+        },
+        {
+          day: 'itinerary.day1.day',
+          dayNumber: 'itinerary.day1.dayNumber',
+          label: 'itinerary.day1.label',
+          title: 'itinerary.day1.title',
+          description: 'itinerary.day1.description',
+          timing: 'itinerary.day1.timing',
+          image: 'Kigali-Genocide-Memorial.jpg'
+        },
+        {
+          day: 'itinerary.day2.day',
+          dayNumber: 'itinerary.day2.dayNumber',
+          label: 'itinerary.day2.label',
+          title: 'itinerary.day2.title',
+          description: 'itinerary.day2.description',
+          timing: 'itinerary.day2.timing',
+          image: 'images/Akagera-Safari1.jpg'
+        },
+        {
+          day: 'itinerary.day3.day',
+          dayNumber: 'itinerary.day3.dayNumber',
+          label: 'itinerary.day3.label',
+          title: 'itinerary.day3.title',
+          description: 'itinerary.day3.description',
+          timing: 'itinerary.day3.timing',
+          image: 'gorilla-village-dance7.jpg'
+        },
+        {
+          day: 'itinerary.day4.day',
+          dayNumber: 'itinerary.day4.dayNumber',
+          label: 'itinerary.day4.label',
+          title: 'itinerary.day4.title',
+          description: 'itinerary.day4.description',
+          timing: 'itinerary.day4.timing',
+          image: 'images/gorilla-trekking-volcanoes.jpg'
+        },
+        {
+          day: 'itinerary.day5.day',
+          dayNumber: 'itinerary.day5.dayNumber',
+          label: 'itinerary.day5.label',
+          title: 'itinerary.day5.title',
+          description: 'itinerary.day5.description',
+          timing: 'itinerary.day5.timing',
+          image: 'Lake-Kivu-Kayaking.jpg'
+        },
+        {
+          day: 'itinerary.day6.day',
+          dayNumber: 'itinerary.day6.dayNumber',
+          label: 'itinerary.day6.label',
+          title: 'itinerary.day6.title',
+          description: 'itinerary.day6.description',
+          timing: 'itinerary.day6.timing',
+          image: 'nyungwe-canopy-walk.jpg'
+        },
+        {
+          day: 'itinerary.day7.day',
+          dayNumber: 'itinerary.day7.dayNumber',
+          label: 'itinerary.day7.label',
+          title: 'itinerary.day7.title',
+          description: 'itinerary.day7.description',
+          timing: 'itinerary.day7.timing',
+          image: 'Kings-palace-museum.jpg'
+        }
+      ],
+      day0: {
+        day: 'Sunday',
+        label: 'Arrival Intake',
+        title: 'Meet & greet + briefing',
+        subtitle: 'Arrivals • Airport Meet & Greet • Check-in • Briefing',
+        description: 'Arrive Kigali on or before Sunday. FYT team meet-and-greet, baggage handling, hotel transfer, room assignments, tour briefing.',
+        timing: 'Arrivals window: 09:00–15:00 • Check-in: ~15:00 • Briefing: 18:00–19:00',
+        addon: 'Optional add-on: Airport intake + briefing service USD $50/guest.'
+      },
+      day1: {
+        day: 'Monday',
+        dayNumber: 'Day 1',
+        label: 'Kigali heritage',
+        title: 'Kigali Heritage + Transfer Toward Akagera',
+        description: 'Kigali city orientation with a key heritage stop (Kigali Genocide Memorial) and disciplined transfer routing.',
+        timing: 'Breakfast: 07:30 • Memorial: 10:00–12:00 • Transfer: 13:00–17:00'
+      },
+      day2: {
+        day: 'Tuesday',
+        dayNumber: 'Day 2',
+        label: 'Big Five safari',
+        title: 'Akagera Safari + Lake Ihema Boat',
+        description: 'Classic savannah day: game drive plus Lake Ihema boat safari for hippos, crocodiles, and birdlife.',
+        timing: 'Depart: 06:00 • Game: 09:30–14:30 • Boat: 16:30–17:30'
+      },
+      day3: {
+        day: 'Wednesday',
+        dayNumber: 'Day 3',
+        label: 'Scenic transfer',
+        title: 'Transfer to Volcanoes Region',
+        description: 'Cross-country drive to Musanze/Volcanoes with controlled timing. Evening cultural moment + Dinner & Show rotation.',
+        timing: 'Depart: 08:00 • Arrive: 15:30–17:00 • Dinner & Show: 19:00–21:00'
+      },
+      day4: {
+        day: 'Thursday',
+        dayNumber: 'Day 4',
+        label: 'Gorilla trekking',
+        title: 'Gorilla Trekking + Transfer to Lake Kivu',
+        description: 'Early briefing, gorilla encounter, recovery and logistics, then transfer to Lake Kivu for a lakeside reset.',
+        timing: 'Briefing: 07:00 • Trek: 08:00–13:00 • Kivu: 16:00–18:00'
+      },
+      day5: {
+        day: 'Friday',
+        dayNumber: 'Day 5',
+        label: 'Kivu leisure',
+        title: 'Lake Kivu Leisure + Sunset Dinner',
+        description: 'Downtime, optional kayaking, curated lakeside moments, then a signature sunset dinner experience.',
+        timing: 'Leisure: 10:00–16:30 • Optional Kayak: 14:00–16:00 • Sunset Dinner: 18:00–21:00'
+      },
+      day6: {
+        day: 'Saturday',
+        dayNumber: 'Day 6',
+        label: 'Rainforest + canopy',
+        title: 'Nyungwe Canopy Walk + Forest Experiences',
+        description: 'Transfer through tea country and execute Nyungwe canopy walk with controlled timing and guest pacing.',
+        timing: 'Depart: 08:00 • Arrive: 12:30–14:00 • Canopy: 15:00–17:00'
+      },
+      day7: {
+        day: 'Sunday',
+        dayNumber: 'Day 7',
+        label: 'Chimp + King\'s Palace',
+        title: 'Chimp Trek + King\'s Palace → Kigali Departure',
+        description: 'Finale day: chimp trekking, visit King\'s Palace Museum, then transfer to Kigali for farewell lunch and airport drop-off. End of FYT Services.',
+        timing: 'Breakfast: 07:00 • Chimp Trek: 05:30–11:00 • King\'s Palace: 11:00 • Airport Drop: 17:00'
+      }
     },
     pricing: {
       title: 'Premium pricing and inclusions',
       subtitle: 'Positioned as a premium signature circuit with high-value permits, private logistics, strong accommodation standards, and curated support.',
+      pageTitle: 'Premium Pricing',
+      pageSubtitle: 'Pricing shown per person (USD). Permits bundled. Weekly cycle (Sunday–Sunday). Original pricing preserved.',
       from: 'From',
       price: 'US$ 3,995 pp',
       priceNote: 'Indicative starting price based on premium shared departure structure. Private departures and customization may vary.',
@@ -210,6 +352,32 @@ const translations = {
       exclude4: 'Laundry and personal expenses',
       exclude5: 'Alcoholic beverages unless stated',
       exclude6: 'Optional add-ons and extensions',
+      premium15Title: 'Premium (15 Guests)',
+      premium15Desc: 'Best value per person for weekly departures.',
+      premium15Price: '$6,695',
+      premium15PriceNote: 'per person • permits included',
+      premium15Feature1: '7 nights premium accommodation',
+      premium15Feature2: 'Gorillas + Chimps + Canopy + Safari + Boat',
+      premium15Feature3: 'Emergency Evacuation Plan included',
+      premium15Button: 'BOOK PREMIUM (15)',
+      premium12Title: 'Premium (12 Guests)',
+      premium12Desc: 'More space and upgraded comfort.',
+      premium12Price: '$6,845',
+      premium12PriceNote: 'per person • permits included',
+      premium12Feature1: '7 nights premium accommodation',
+      premium12Feature2: 'Small group pacing (12 guests)',
+      premium12Feature3: 'Dedicated ops oversight',
+      premium12Button: 'BOOK PREMIUM (12)',
+      notesTitle: 'Notes',
+      singleSupplement: 'Single supplement:',
+      singleSupplementPrice: 'USD $720',
+      optionalAddon: 'Optional add-on:',
+      optionalAddonDesc: 'Sunday airport intake + briefing service USD $50/guest',
+      deposit: 'Deposit:',
+      depositDesc: 'locks permits and confirms seat',
+      timings: 'Timings:',
+      timingsDesc: 'can shift due to weather, park regulations, and safety',
+      requestAddonsButton: 'REQUEST ADD-ONS',
     },
     reviews: {
       title: 'What travelers remember most',
@@ -224,7 +392,7 @@ const translations = {
       author3: 'Adventure Couple',
       type3: 'East Africa Circuit Traveler',
       // New Rate Tour Form translations
-      rateTitle: 'Rate This Tour • Testimonial • Refer a Friend',
+      rateTitle: 'Rate, Review & Recommend',
       rateSubtitle: 'For registered guests: submit your tour rating + testimonial and refer a friend. Anyone can also scan the QR code to share this tour instantly.',
       tabRate: 'Rate & Recommend',
       tabTestimonial: 'Testimonial',
@@ -465,6 +633,71 @@ const translations = {
       day6Desc: 'Transition de la forêt tropicale et des montagnes à la savane et au pays du safari, préparant le chapitre faunique final du circuit.',
       day7Title: 'Safari d\'Akagera et Départ / Extension Nuit',
       day7Desc: 'Jeu safari et safari en bateau facultatif selon le timing, suivi du retour à Kigali pour départ ou planification d\'extension.',
+      day0: {
+        day: 'Dimanche',
+        label: 'Accueil à l\'Arrivée',
+        title: 'Accueil & briefing',
+        subtitle: 'Arrivées • Accueil Aéroport • Enregistrement • Briefing',
+        description: 'Arrivée à Kigali au plus tard le dimanche. Accueil de l\'équipe FYT, gestion des bagages, transfert hôtel, assignation des chambres, briefing du circuit.',
+        timing: 'Fenêtre d\'arrivée: 09:00–15:00 • Enregistrement: ~15:00 • Briefing: 18:00–19:00',
+        addon: 'Module complémentaire en option: Service accueil aéroport + briefing USD $50/invité.'
+      },
+      day1: {
+        day: 'Lundi',
+        dayNumber: 'Jour 1',
+        label: 'Patrimoine Kigali',
+        title: 'Patrimoine Kigali + Transfert vers Akagera',
+        description: 'Orientation urbaine de Kigali avec un arrêt patrimonial clé (Mémorial du Génocide de Kigali) et routage de transfert discipliné.',
+        timing: 'Petit déjeuner: 07:30 • Mémorial: 10:00–12:00 • Transfert: 13:00–17:00'
+      },
+      day2: {
+        day: 'Mardi',
+        dayNumber: 'Jour 2',
+        label: 'Safari des Grands',
+        title: 'Safari Akagera + Bateau Lac Ihema',
+        description: 'Journée classique de savane: game drive plus safari en bateau du Lac Ihema pour hippos, crocodiles et observation d\'oiseaux.',
+        timing: 'Départ: 06:00 • Game: 09:30–14:30 • Bateau: 16:30–17:30'
+      },
+      day3: {
+        day: 'Mercredi',
+        dayNumber: 'Jour 3',
+        label: 'Transfert panoramique',
+        title: 'Transfert Région Volcans',
+        description: 'Trajet transnational vers Musanze/Volcans avec timing contrôlé. Moment culturel en soirée + rotation Dîner & Spectacle.',
+        timing: 'Départ: 08:00 • Arrivée: 15:30–17:00 • Dîner & Spectacle: 19:00–21:00'
+      },
+      day4: {
+        day: 'Jeudi',
+        dayNumber: 'Jour 4',
+        label: 'Trek Gorilles',
+        title: 'Trek Gorilles + Transfert Lac Kivu',
+        description: 'Briefing matinal, rencontre gorille, récupération et logistique, puis transfert au Lac Kivu pour réinitialisation lacustre.',
+        timing: 'Briefing: 07:00 • Trek: 08:00–13:00 • Kivu: 16:00–18:00'
+      },
+      day5: {
+        day: 'Vendredi',
+        dayNumber: 'Jour 5',
+        label: 'Loisirs Kivu',
+        title: 'Loisirs Lac Kivu + Dîner Coucher Soleil',
+        description: 'Temps libre, kayak en option, moments lacustres curaté, puis expérience signature de dîner coucher soleil.',
+        timing: 'Loisirs: 10:00–16:30 • Kayak Optionnel: 14:00–16:00 • Dîner Coucher Soleil: 18:00–21:00'
+      },
+      day6: {
+        day: 'Samedi',
+        dayNumber: 'Jour 6',
+        label: 'Forêt tropicale + canopée',
+        title: 'Promenade Canopée Nyungwe + Expériences Forêt',
+        description: 'Transfert à travers pays d\'où du thé et exécution de la promenade canopée Nyungwe avec timing contrôlé et rythme invité.',
+        timing: 'Départ: 08:00 • Arrivée: 12:30–14:00 • Canopée: 15:00–17:00'
+      },
+      day7: {
+        day: 'Dimanche',
+        dayNumber: 'Jour 7',
+        label: 'Chimps + Palais du Roi',
+        title: 'Trek Chimps + Palais du Roi → Départ Kigali',
+        description: 'Jour finale: trek chimps, visite Musée Palais du Roi, puis transfert à Kigali pour dîner d\'adieu et départ aéroport. Fin des Services FYT.',
+        timing: 'Petit déjeuner: 07:00 • Trek Chimps: 05:30–11:00 • Palais du Roi: 11:00 • Départ Aéroport: 17:00'
+      }
     },
     pricing: {
       title: 'Tarification premium et inclusions',
@@ -488,6 +721,34 @@ const translations = {
       exclude4: 'Blanchisserie et dépenses personnelles',
       exclude5: 'Boissons alcoolisées sauf indication contraire',
       exclude6: 'Modules complémentaires et extensions optionnels',
+      pageTitle: 'Tarification Premium',
+      pageSubtitle: 'Prix par personne (USD). Permis inclus. Cycle hebdomadaire (Dimanche–Dimanche). Prix d\'origine conservés.',
+      premium15Title: 'Premium (15 Invités)',
+      premium15Desc: 'Le meilleur rapport qualité-prix par personne pour les départs hebdomadaires.',
+      premium15Price: '$6 695',
+      premium15PriceNote: 'par personne • permis inclus',
+      premium15Feature1: '7 nuits hébergement premium',
+      premium15Feature2: 'Gorilles + Chimps + Canopée + Safari + Bateau',
+      premium15Feature3: 'Plan d\'Évacuation d\'Urgence inclus',
+      premium15Button: 'RÉSERVER PREMIUM (15)',
+      premium12Title: 'Premium (12 Invités)',
+      premium12Desc: 'Plus d\'espace et confort amélioré.',
+      premium12Price: '$6 845',
+      premium12PriceNote: 'par personne • permis inclus',
+      premium12Feature1: '7 nuits hébergement premium',
+      premium12Feature2: 'Rythme petit groupe (12 invités)',
+      premium12Feature3: 'Surveillance dédiée des opérations',
+      premium12Button: 'RÉSERVER PREMIUM (12)',
+      notesTitle: 'Notes',
+      singleSupplement: 'Supplément simple:',
+      singleSupplementPrice: 'USD $720',
+      optionalAddon: 'Module complémentaire en option:',
+      optionalAddonDesc: 'Service accueil aéroport dimanche + briefing USD $50/invité',
+      deposit: 'Acompte:',
+      depositDesc: 'verrouille les permis et confirme la place',
+      timings: 'Horaires:',
+      timingsDesc: 'peuvent changer en raison de la météo, des réglementations du parc et de la sécurité',
+      requestAddonsButton: 'DEMANDER DES MODULES COMPLÉMENTAIRES',
     },
     reviews: {
       title: 'Ce que les voyageurs se souviennent le plus',
@@ -743,6 +1004,71 @@ const translations = {
       day6Desc: 'Transición de selva tropical y montañas a sabana y país de safari, preparando el capítulo final de fauna del circuito.',
       day7Title: 'Safari de Akagera y Salida / Extensión Nocturna',
       day7Desc: 'Paseo en safari y safari en bote opcional según el tiempo, seguido de regreso a Kigali para salida o planificación de extensión.',
+      day0: {
+        day: 'Domingo',
+        label: 'Toma de Llegada',
+        title: 'Bienvenida y briefing',
+        subtitle: 'Llegadas • Bienvenida en Aeropuerto • Check-in • Briefing',
+        description: 'Llegada a Kigali el domingo o antes. Bienvenida del equipo FYT, manejo de equipaje, traslado al hotel, asignación de habitaciones, briefing del circuito.',
+        timing: 'Ventana de llegada: 09:00–15:00 • Check-in: ~15:00 • Briefing: 18:00–19:00',
+        addon: 'Complemento opcional: Servicio de toma de llegada en aeropuerto + briefing USD $50/huésped.'
+      },
+      day1: {
+        day: 'Lunes',
+        dayNumber: 'Día 1',
+        label: 'Patrimonio Kigali',
+        title: 'Patrimonio Kigali + Traslado hacia Akagera',
+        description: 'Orientación urbana de Kigali con una parada patrimonial clave (Memorial del Genocidio de Kigali) y enrutamiento de traslado disciplinado.',
+        timing: 'Desayuno: 07:30 • Memorial: 10:00–12:00 • Traslado: 13:00–17:00'
+      },
+      day2: {
+        day: 'Martes',
+        dayNumber: 'Día 2',
+        label: 'Safari de Grandes',
+        title: 'Safari Akagera + Bote Lago Ihema',
+        description: 'Día de sabana clásico: paseo en auto plus safari en bote del Lago Ihema para hipopótamos, cocodrilos y avifauna.',
+        timing: 'Salida: 06:00 • Game: 09:30–14:30 • Bote: 16:30–17:30'
+      },
+      day3: {
+        day: 'Miércoles',
+        dayNumber: 'Día 3',
+        label: 'Traslado pano rámico',
+        title: 'Traslado Región Volcanes',
+        description: 'Viaje transnacional hacia Musanze/Volcanes con tiempo controlado. Momento cultural vespertino + rotación de Cena y Espectáculo.',
+        timing: 'Salida: 08:00 • Llegada: 15:30–17:00 • Cena y Espectáculo: 19:00–21:00'
+      },
+      day4: {
+        day: 'Jueves',
+        dayNumber: 'Día 4',
+        label: 'Trekking Gorilas',
+        title: 'Trekking Gorilas + Traslado Lago Kivu',
+        description: 'Briefing matutino, encuentro con gorilas, recuperación y logística, luego traslado al Lago Kivu para reinicio lacustre.',
+        timing: 'Briefing: 07:00 • Trekking: 08:00–13:00 • Kivu: 16:00–18:00'
+      },
+      day5: {
+        day: 'Viernes',
+        dayNumber: 'Día 5',
+        label: 'Ocio Kivu',
+        title: 'Ocio Lago Kivu + Cena Atardecer',
+        description: 'Tiempo libre, kayak opcional, momentos lacustres curados, luego experiencia de firma de cena atardecer.',
+        timing: 'Ocio: 10:00–16:30 • Kayak Opcional: 14:00–16:00 • Cena Atardecer: 18:00–21:00'
+      },
+      day6: {
+        day: 'Sábado',
+        dayNumber: 'Día 6',
+        label: 'Selva tropical + dosel',
+        title: 'Paseo Dosel Nyungwe + Experiencias Bosque',
+        description: 'Traslado a través de país del té y ejecución del paseo dosel Nyungwe con tiempo controlado y ritmo de huésped.',
+        timing: 'Salida: 08:00 • Llegada: 12:30–14:00 • Dosel: 15:00–17:00'
+      },
+      day7: {
+        day: 'Domingo',
+        dayNumber: 'Día 7',
+        label: 'Chimps + Palacio del Rey',
+        title: 'Trekking Chimps + Palacio del Rey → Salida Kigali',
+        description: 'Día final: trekking chimpancés, visita Museo Palacio del Rey, luego traslado a Kigali para almuerzo de despedida y salida del aeropuerto. Fin de Servicios FYT.',
+        timing: 'Desayuno: 07:00 • Trekking Chimps: 05:30–11:00 • Palacio del Rey: 11:00 • Salida Aeropuerto: 17:00'
+      }
     },
     pricing: {
       title: 'Precios premium e inclusiones',
@@ -766,6 +1092,34 @@ const translations = {
       exclude4: 'Lavandería y gastos personales',
       exclude5: 'Bebidas alcohólicas a menos que se especifique',
       exclude6: 'Complementos opcionales y extensiones',
+      pageTitle: 'Precios Premium',
+      pageSubtitle: 'Precios por persona (USD). Permisos incluidos. Ciclo semanal (Domingo–Domingo). Precios originales conservados.',
+      premium15Title: 'Premium (15 Huéspedes)',
+      premium15Desc: 'Mejor relación calidad-precio por persona para salidas semanales.',
+      premium15Price: '$6.695',
+      premium15PriceNote: 'por persona • permisos incluidos',
+      premium15Feature1: '7 noches alojamiento premium',
+      premium15Feature2: 'Gorilas + Chimpancés + Dosel + Safari + Bote',
+      premium15Feature3: 'Plan de Evacuación de Emergencia incluido',
+      premium15Button: 'RESERVAR PREMIUM (15)',
+      premium12Title: 'Premium (12 Huéspedes)',
+      premium12Desc: 'Más espacio y comodidad mejorada.',
+      premium12Price: '$6.845',
+      premium12PriceNote: 'por persona • permisos incluidos',
+      premium12Feature1: '7 noches alojamiento premium',
+      premium12Feature2: 'Ritmo de grupo pequeño (12 huéspedes)',
+      premium12Feature3: 'Supervisión de operaciones dedicada',
+      premium12Button: 'RESERVAR PREMIUM (12)',
+      notesTitle: 'Notas',
+      singleSupplement: 'Suplemente individual:',
+      singleSupplementPrice: 'USD $720',
+      optionalAddon: 'Complemento opcional:',
+      optionalAddonDesc: 'Servicio de toma en aeropuerto domingo + briefing USD $50/huésped',
+      deposit: 'Depósito:',
+      depositDesc: 'bloquea permisos y confirma asiento',
+      timings: 'Horarios:',
+      timingsDesc: 'pueden cambiar debido a clima, regulaciones del parque y seguridad',
+      requestAddonsButton: 'SOLICITAR COMPLEMENTOS',
     },
     reviews: {
       title: 'Lo que los viajeros recuerdan más',
@@ -1021,6 +1375,71 @@ const translations = {
       day6Desc: 'Kusambaa kutoka msitu na milima kwenda savanna na nchi ya safari inayoandaa sehemu ya wanyama ya mwisho ya mzunguko.',
       day7Title: 'Safari ya Akagera na Kuondoka / Kupanua Usiku',
       day7Desc: 'Chezaji safari na safari kwa baharini ikichaguliwaka wakati, ikifuatiwa na kurudi Kigali kwa kuondoka au kupanga kupanua.',
+      day0: {
+        day: 'Jumapili',
+        label: 'Kupokelewa kwa Kuwasili',
+        title: 'Kuwakamata na mazungumzo',
+        subtitle: 'Kuwasili • Kuwakamata Kawa • Kujiandaa • Mazungumzo',
+        description: 'Kuwasili Kigali siku ya Jumapili au kabla. Kumkamatia timu ya FYT, kusimamia mabegi, kuhamisha mahali popote, kugawa vyumba, mazungumzo ya safari.',
+        timing: 'Dirisha la kuwasili: 09:00–15:00 • Kujiandaa: ~15:00 • Mazungumzo: 18:00–19:00',
+        addon: 'Nyongezako ya chaguo: Huduma ya kupokelewa kwa kawa + mazungumzo USD $50/mgeni.'
+      },
+      day1: {
+        day: 'Jumatatu',
+        dayNumber: 'Siku 1',
+        label: 'Urithi wa Kigali',
+        title: 'Urithi wa Kigali + Kuhamisha kwenda Akagera',
+        description: 'Mwenyekiti wa jiji wa Kigali yenye kituo cha urithi muhimu (Kumbumbu la Jenoside ya Kigali) na kuhamisha kwa nidhamu.',
+        timing: 'Kiamsha: 07:30 • Kumbumbu: 10:00–12:00 • Kuhamisha: 13:00–17:00'
+      },
+      day2: {
+        day: 'Jumanne',
+        dayNumber: 'Siku 2',
+        label: 'Safari ya Waharamu',
+        title: 'Safari Akagera + Bahari Ziwa Ihema',
+        description: 'Siku ya asubuhu ya kawaida: mchezo wa safari pamoja na safari ya bahari ya Ziwa Ihema kwa timba, mamba na mnyama wa angavu.',
+        timing: 'Kurudi: 06:00 • Mchezo: 09:30–14:30 • Bahari: 16:30–17:30'
+      },
+      day3: {
+        day: 'Jumatano',
+        dayNumber: 'Siku 3',
+        label: 'Kuhamisha mandhari',
+        title: 'Kuhamisha Mkoa wa Volkeno',
+        description: 'Kuendesha mahali popote kwenda Musanze/Volkeno kwa timing yenye nadhamu. Wakati wa husika kwa jioni + kumwaga kwa basi na maonyesho.',
+        timing: 'Kurudi: 08:00 • Kuwasili: 15:30–17:00 • Kumwaga na Maonyesho: 19:00–21:00'
+      },
+      day4: {
+        day: 'Alhamis',
+        dayNumber: 'Siku 4',
+        label: 'Trekking ya Gorila',
+        title: 'Trekking ya Gorila + Kuhamisha Ziwa Kivu',
+        description: 'Mazungumzo ya mapema, kupinga gorila, kurudi na mantiki, kisha kuhamisha kwenda Ziwa Kivu kwa kupumzika kwa ziwa.',
+        timing: 'Mazungumzo: 07:00 • Trekking: 08:00–13:00 • Kivu: 16:00–18:00'
+      },
+      day5: {
+        day: 'Ijumaa',
+        dayNumber: 'Siku 5',
+        label: 'Kusisimka Kivu',
+        title: 'Kusisimka Ziwa Kivu + Kumwaga Kipindi cha Jua',
+        description: 'Wakati wa kupumzika, mkakati wa bahari, kukamatia wakati wa ziwa, kisha uzoefu wa kuweka habari wa kumwaga kipindi cha jua.',
+        timing: 'Kusisimka: 10:00–16:30 • Mkakati wa Chaguo: 14:00–16:00 • Kumwaga Kipindi cha Jua: 18:00–21:00'
+      },
+      day6: {
+        day: 'Jumamosi',
+        dayNumber: 'Siku 6',
+        label: 'Msitu + canopy',
+        title: 'Matembezi ya Canopy Nyungwe + Uzoefu wa Msitu',
+        description: 'Kuhamisha kupitia nchi ya chai na matembezi ya canopy Nyungwe yenye timing yenye nadhamu na kasi ya mgeni.',
+        timing: 'Kurudi: 08:00 • Kuwasili: 12:30–14:00 • Canopy: 15:00–17:00'
+      },
+      day7: {
+        day: 'Jumapili',
+        dayNumber: 'Siku 7',
+        label: 'Chimpanzi + Palace ya Mfalme',
+        title: 'Trekking Chimpanzi + Palace ya Mfalme → Kurudi Kigali',
+        description: 'Siku ya mwisho: trekking chimpanzi, ziarani Makumbusho ya Palace ya Mfalme, kish kuhamisha Kigali kwa kumwaga kwa mazuizi na kuondoka kwa kawa. Mwisho wa Huduma za FYT.',
+        timing: 'Kiamsha: 07:00 • Trekking Chimpanzi: 05:30–11:00 • Palace ya Mfalme: 11:00 • Kurudi Kawa: 17:00'
+      }
     },
     pricing: {
       title: 'Bei ya premium na kinachojumuishwa',
@@ -1044,6 +1463,34 @@ const translations = {
       exclude4: 'Kufulia na mengi ya binafsi',
       exclude5: 'Vinywaji vya kulevya isipokuwa ilivyoelezwa',
       exclude6: 'Nyongezako za chaguo na kupanua',
+      pageTitle: 'Bei ya Premium',
+      pageSubtitle: 'Bei iliyoonyeshwa kwa kila mtoto (USD). Leseni zimejumuishwa. Mzunguko wa kila wiki (Jumapili–Jumapili). Bei ya asili iliyohifadhiwa.',
+      premium15Title: 'Premium (Wageni 15)',
+      premium15Desc: 'Thamani nzuri zaidi kwa kila mtoto kwa safari za kila wiki.',
+      premium15Price: '$6.695',
+      premium15PriceNote: 'kwa kila mtoto • leseni zimejumuishwa',
+      premium15Feature1: 'Mahali pa kukamatia ya premium kwa usiku 7',
+      premium15Feature2: 'Gorila + Chimpanzi + Canopy + Safari + Bahari',
+      premium15Feature3: 'Mpango wa Kumwaga wa Haraka ujumuishwa',
+      premium15Button: 'SALAMA PREMIUM (15)',
+      premium12Title: 'Premium (Wageni 12)',
+      premium12Desc: 'Mahali zaidi na kukamatia kupandũzia.',
+      premium12Price: '$6.845',
+      premium12PriceNote: 'kwa kila mtoto • leseni zimejumuishwa',
+      premium12Feature1: 'Mahali pa kukamatia ya premium kwa usiku 7',
+      premium12Feature2: 'Kasi ya kundi kidogo (wageni 12)',
+      premium12Feature3: 'Uchumi wa juu wa uendeshaji',
+      premium12Button: 'SALAMA PREMIUM (12)',
+      notesTitle: 'Maelezo',
+      singleSupplement: 'Nyongezako kwa fardi:',
+      singleSupplementPrice: 'USD $720',
+      optionalAddon: 'Nyongezako ya chaguo:',
+      optionalAddonDesc: 'Huduma ya kupokelewa kwa kawa Jumapili + mazungumzo USD $50/mgeni',
+      deposit: 'Fedha ya kumwaga:',
+      depositDesc: 'inachoma leseni na inakubali kiti',
+      timings: 'Nyakati:',
+      timingsDesc: 'zinaweza kubadilika kutokana na tabia, sheria za hifadhi na usalama',
+      requestAddonsButton: 'OMBA NYONGEZAKO',
     },
     reviews: {
       title: 'Walichokumbuka wasafiri zaidi',

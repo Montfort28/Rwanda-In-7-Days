@@ -156,8 +156,63 @@ export default function Contact() {
         </div>
 
         <div className="cta-band" style={{ marginTop: '40px', alignItems: 'start' }}>
+          {/* Info Card Sidebar */}
+          <div style={{ textAlign: 'center', height: 'fit-content' }}>
+            <div style={{
+              background: 'var(--surface)',
+              border: '1px solid var(--line)',
+              borderRadius: 'var(--radius-xl)',
+              padding: '28px',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <h3 style={{ color: 'var(--text)', marginTop: 0, marginBottom: '16px', fontSize: '1.15rem' }}>What happens after you submit</h3>
+              <p style={{ color: 'var(--muted)', marginBottom: '20px', fontSize: '0.9rem', borderBottom: '1px solid var(--line)', paddingBottom: '20px', width: '100%' }}>
+                {t('contact.subtitle')}
+              </p>
+
+              <div style={{ width: '100%', textAlign: 'left', marginBottom: '20px' }}>
+                <div className="info-item" style={{ marginBottom: '12px' }}>
+                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
+                  <div>
+                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step1')}</p>
+                  </div>
+                </div>
+
+                <div className="info-item" style={{ marginBottom: '12px' }}>
+                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
+                  <div>
+                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step2')}</p>
+                  </div>
+                </div>
+
+                <div className="info-item" style={{ marginBottom: '12px' }}>
+                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
+                  <div>
+                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step3')}</p>
+                  </div>
+                </div>
+
+                <div className="info-item" style={{ marginBottom: '12px' }}>
+                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
+                  <div>
+                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step4')}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Booking Form */}
-          <div className="cta-content">
+          <div className="cta-content" style={{
+            background: 'var(--surface)',
+            border: '1px solid var(--line)',
+            borderRadius: 'var(--radius-xl)',
+            padding: '28px'
+          }}>
             {/* Step Progress Indicator */}
             {!submitted && (
               <div style={{
@@ -492,70 +547,6 @@ export default function Contact() {
                 )}
               </div>
             </form>
-          </div>
-
-          {/* Info Card Sidebar */}
-          <div style={{ textAlign: 'center', height: 'fit-content' }}>
-            <div style={{
-              background: 'var(--surface)',
-              border: '1px solid var(--line)',
-              borderRadius: 'var(--radius-xl)',
-              padding: '28px',
-              display: 'flex',
-              flexDirection: 'column',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <h3 style={{ color: 'var(--text)', marginTop: 0, marginBottom: '16px' }}>{t('contact.cardTitle')}</h3>
-              <p style={{ color: 'var(--muted)', marginBottom: '20px', fontSize: '0.9rem', borderBottom: '1px solid var(--line)', paddingBottom: '20px', width: '100%' }}>
-                {t('contact.subtitle')}
-              </p>
-
-              <div style={{ width: '100%', textAlign: 'left', marginBottom: '20px' }}>
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step1')}</p>
-                  </div>
-                </div>
-
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step2')}</p>
-                  </div>
-                </div>
-
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step3')}</p>
-                  </div>
-                </div>
-
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step4')}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ width: '100%', textAlign: 'center', paddingTop: '20px', borderTop: '1px solid var(--line)' }}>
-                <h4 style={{ color: 'var(--text)', marginBottom: '12px', fontSize: '0.95rem', fontWeight: '700' }}>{t('contact.contactTitle')}</h4>
-                <p style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: '8px' }}>
-                  <strong>NORRSKEN HOUSE</strong><br />{t('contact.address')}
-                </p>
-                <p style={{ color: 'var(--blue-700)', fontSize: '0.85rem', marginBottom: '8px' }}>
-                  <a href="mailto:booking@iforeveryoungtours.com" style={{ color: 'inherit', textDecoration: 'none' }}>{t('contact.emailValue')}</a>
-                </p>
-                <p style={{ color: 'var(--muted)', fontSize: '0.85rem', margin: 0 }}>
-                  {t('contact.rwandaPhone')}<br />
-                  {t('contact.usPhone')}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -37,6 +37,44 @@ export default function Topbar() {
     return () => clearInterval(interval);
   }, [messages.length]);
 
+  useEffect(() => {
+    const topbar = document.querySelector('.topbar');
+    const header = document.querySelector('header');
+    const main = document.querySelector('main');
+    
+    const onScroll = () => {
+      if (!topbar || !header || !main) return;
+      
+      const mobileNav = document.querySelector('.nav-links.mobile-nav');
+      
+      if (window.scrollY > 10) {
+        topbar.classList.add('hide-on-scroll');
+        header.classList.remove('topbar-visible');
+        header.classList.add('topbar-hidden');
+        main.classList.remove('topbar-visible');
+        if (mobileNav && mobileNav.classList.contains('active')) {
+          mobileNav.style.top = '76px';
+        }
+      } else {
+        topbar.classList.remove('hide-on-scroll');
+        header.classList.add('topbar-visible');
+        header.classList.remove('topbar-hidden');
+        main.classList.add('topbar-visible');
+        if (mobileNav && mobileNav.classList.contains('active')) {
+          mobileNav.style.top = '118px';
+        }
+      }
+    };
+    
+    if (window.scrollY <= 10) {
+      header.classList.add('topbar-visible');
+      main.classList.add('topbar-visible');
+    }
+    
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className="topbar">
       <div className="container topbar-inner">

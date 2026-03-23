@@ -41,11 +41,10 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-first">
-          <div className="footer-logo-box" style={{ width: '96px', height: '96px' }}>
-            <img src="images/logo.png?v=2" alt="Forever Young Tours" style={{ width: '96px', height: '96px', objectFit: 'contain' }} />
+          <div className="footer-logo-box" style={{ width: '96px', height: '96px', marginBottom: '16px' }}>
+            <img src="images/logo-1.png?v=2" alt="Forever Young Tours" style={{ width: '96px', height: '96px', objectFit: 'contain' }} />
           </div>
           <div className="footer-content">
-            <p className="footer-slogan" style={{ fontSize: '1rem', marginTop: '8px' }}>{t('footer.slogan')}</p>
             <p>{t('footer.description')}</p>
           </div>
         </div>
@@ -69,6 +68,15 @@ export default function Footer() {
           {communityLinks.map((link, index) => (
             <a key={index} href={link.href}>{link.label}</a>
           ))}
+        </div>
+
+        <div>
+          <h4>Contact Us</h4>
+          <p style={{ margin: '8px 0', fontSize: '0.9rem' }}><strong>NORRSKEN HOUSE</strong></p>
+          <p style={{ margin: '4px 0', fontSize: '0.85rem' }}>KN 78 ST., Kigali, Rwanda</p>
+          <a href="mailto:booking@iforeveryoungtours.com" style={{ margin: '8px 0', fontSize: '0.85rem' }}>booking@iforeveryoungtours.com</a>
+          <p style={{ margin: '8px 0 4px', fontSize: '0.85rem' }}>Rwanda: +250 794 004 336</p>
+          <p style={{ margin: '4px 0', fontSize: '0.85rem' }}>US: +1 678 701 7785</p>
         </div>
 
         <div>
