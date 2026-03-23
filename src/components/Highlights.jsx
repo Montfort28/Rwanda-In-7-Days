@@ -62,6 +62,16 @@ export default function Highlights() {
     return () => clearInterval(interval);
   }, [cards.length]);
 
+  useEffect(() => {
+    // Trigger Google Translate to re-translate when card changes
+    if (window.google && window.google.translate) {
+      setTimeout(() => {
+        const event = new Event('DOMContentLoaded', { bubbles: true });
+        document.dispatchEvent(event);
+      }, 100);
+    }
+  }, [currentCard]);
+
   return (
     <section className="section" id="highlights">
       <div className="container">
@@ -88,13 +98,13 @@ export default function Highlights() {
             </div>
           </div>
 
-          <div className="cards cards-2" style={{ gap: '18px' }}>
-            <div className="card" style={{ minHeight: 'auto', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          <div className="cards" style={{ gap: '18px', flexGrow: 1 }}>
+            <div key={`card-${currentCard}`} className="card" style={{ minHeight: 'auto', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
               <img src={cards[currentCard].image} alt={cards[currentCard].title} className="card-image" style={{ height: '280px', transition: 'opacity 0.5s ease', flexShrink: 0 }} />
               <div className="card-body" style={{ padding: '20px', gap: '10px', flex: 1 }}>
-                <span className="pill">{cards[currentCard].pill}</span>
-                <h3 style={{ fontSize: '1.1rem', margin: '0 0 8px' }}>{cards[currentCard].title}</h3>
-                <p style={{ fontSize: '0.9rem', margin: 0, lineHeight: '1.55' }}>{cards[currentCard].description}</p>
+                <span className="pill" key={`pill-${currentCard}`}>{cards[currentCard].pill}</span>
+                <h3 key={`title-${currentCard}`} style={{ fontSize: '1.1rem', margin: '0 0 8px' }}>{cards[currentCard].title}</h3>
+                <p key={`desc-${currentCard}`} style={{ fontSize: '0.9rem', margin: 0, lineHeight: '1.55' }}>{cards[currentCard].description}</p>
               </div>
             </div>
           </div>

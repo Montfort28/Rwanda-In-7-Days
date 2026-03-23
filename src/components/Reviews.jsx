@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Reviews() {
@@ -21,6 +21,20 @@ export default function Reviews() {
     friendWhatsapp: '',
     friendMessage: ''
   });
+
+  useEffect(() => {
+    // Trigger Google Translate to re-scan after tab change
+    const timer = setTimeout(() => {
+      if (window.google && window.google.translate) {
+        const selectElement = document.querySelector('.goog-te-combo');
+        if (selectElement && selectElement.value) {
+          const currentLang = selectElement.value;
+          selectElement.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [activeTab]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -123,6 +137,7 @@ export default function Reviews() {
                 flexWrap: 'wrap'
               }}>
                 <button
+                  key="rate-tab"
                   onClick={() => setActiveTab('rate')}
                   style={{
                     background: 'none',
@@ -139,9 +154,10 @@ export default function Reviews() {
                     fontFamily: 'inherit'
                   }}
                 >
-                 {t('reviews.tabRate')}
+                 <span key={`rate-${activeTab}`}>{t('reviews.tabRate')}</span>
                 </button>
                 <button
+                  key="testimonial-tab"
                   onClick={() => setActiveTab('testimonial')}
                   style={{
                     background: 'none',
@@ -158,9 +174,10 @@ export default function Reviews() {
                     fontFamily: 'inherit'
                   }}
                 >
-                 {t('reviews.tabTestimonial')}
+                 <span key={`testimonial-${activeTab}`}>{t('reviews.tabTestimonial')}</span>
                 </button>
                 <button
+                  key="refer-tab"
                   onClick={() => setActiveTab('refer')}
                   style={{
                     background: 'none',
@@ -177,7 +194,7 @@ export default function Reviews() {
                     fontFamily: 'inherit'
                   }}
                 >
-                  {t('reviews.tabRefer')}
+                  <span key={`refer-${activeTab}`}>{t('reviews.tabRefer')}</span>
                 </button>
               </div>
 
@@ -198,7 +215,7 @@ export default function Reviews() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} style={{ display: submitted ? 'none' : 'block' }}>
+              <form key={`form-${activeTab}`} onSubmit={handleSubmit} style={{ display: submitted ? 'none' : 'block' }}>
                 {/* RATE Tab */}
                 {activeTab === 'rate' && (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '32px' }}>

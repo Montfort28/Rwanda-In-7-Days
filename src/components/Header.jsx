@@ -5,13 +5,17 @@ import { HiGlobeAlt, HiMail } from 'react-icons/hi';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState('en');
+  const [translateReady, setTranslateReady] = useState(false);
+  const mobileLangBtnRef = useRef(null);
+  const [mobileLangPos, setMobileLangPos] = useState({ top: 0, left: 0 });
   const { language, changeLanguage, t } = useLanguage();
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
     { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'sw', name: 'Kiswahili', flag: '🇰🇪' },
+    { code: 'sw', name: 'Kiswahili', flag: '🇹🇿' },
     { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
     { code: 'it', name: 'Italiano', flag: '🇮🇹' },
     { code: 'pt', name: 'Português', flag: '🇵🇹' },
@@ -36,40 +40,8 @@ export default function Header() {
     setLangMenuOpen(false);
   };
 
-  const handleLanguageChange = (code) => {
-    changeLanguage(code);
-    // Trigger Google Translate for the selected language
-    if (code === 'en') {
-      window.location.reload();
-    } else {
-      const langMap = { 
-        fr: 'fr', 
-        es: 'es', 
-        sw: 'sw',
-        de: 'de',
-        it: 'it',
-        pt: 'pt',
-        nl: 'nl',
-        ru: 'ru',
-        ja: 'ja',
-        zh: 'zh-CN',
-        ar: 'ar',
-        hi: 'hi'
-      };
-      const googleLang = langMap[code];
-      if (googleLang && window.google && window.google.translate) {
-        setTimeout(() => {
-          const select = document.querySelector('.goog-te-combo');
-          if (select) {
-            select.value = googleLang;
-            select.dispatchEvent(new Event('change'));
-          }
-        }, 100);
-      }
-    }
-  };
-
-  const handleMobileLangToggle = () => {
+  const handleMobileLangToggle = (e) => {
+    e.stopPropagation();
     if (!langMenuOpen && mobileLangBtnRef.current) {
       const rect = mobileLangBtnRef.current.getBoundingClientRect();
       setMobileLangPos({ top: rect.bottom + 8, left: rect.left });
@@ -77,68 +49,166 @@ export default function Header() {
     setLangMenuOpen(!langMenuOpen);
   };
 
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflowY = 'hidden';
-    } else {
-      document.body.style.overflowY = 'unset';
-      setLangMenuOpen(false);
-    }
-    return () => { document.body.style.overflowY = 'unset'; };
-  }, [menuOpen]);
+  const handleMobileLanguageChange = (e, code) => {
+    e.stopPropagation();
+    setCurrentLang(code);
+    changeLanguage(code);
+    setLangMenuOpen(false);
+    setMenuOpen(false);
+    
+    // Trigger Google Translate immediately
+    triggerGoogleTranslate(code);
+  };
 
+  const triggerGoogleTranslate = (langCode) => {
+    const langMap = { 
+      en: 'en', fr: 'fr', es: 'es', sw: 'sw', de: 'de',
+      it: 'it', pt: 'pt', nl: 'nl', ru: 'ru', ja: 'ja',
+      zh: 'zh-CN', ar: 'ar', hi: 'hi'
+    };
+    
+    const googleLangCode = langMap[langCode] || langCode;
+    
+    console.log('Triggering translation to:', googleLangCode);
+    
+    try {
+      // Set the googtrans cookie to trigger translation
+      const translationPair = `/en/${googleLangCode}`;
+      document.cookie = `googtrans=${translationPair}; path=/; SameSite=Lax`;
+      
+      // Reload the page to apply the translation via the cookie
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
+      
+      return true;
+    } catch (e) {
+      console.error('Translation trigger error:', e);
+      return false;
+    }
+  };
+
+  const handleLanguageChange = (code) => {
+    setCurrentLang(code);
+    changeLanguage(code);
+    setLangMenuOpen(false);
+    
+    // Trigger Google Translate immediately
+    triggerGoogleTranslate(code);
+  };
+
+  // Close language menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (langMenuOpen && !e.target.closest('.lang-switcher') && !e.target.closest('.lang-menu') && !e.target.closest('.lang-menu-fixed')) {
+    const handleClickOutside = (event) => {
+      if (langMenuOpen && !event.target.closest('.lang-switcher') && !event.target.closest('.lang-menu-fixed')) {
         setLangMenuOpen(false);
       }
     };
+    
     if (langMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, [langMenuOpen]);
 
-  // Initialize Google Translate Widget after component mounts
   useEffect(() => {
-    const initGoogleTranslate = () => {
-      if (window.google && window.google.translate && window.google.translate.TranslateElement) {
-        try {
-          // Initialize desktop version
-          new window.google.translate.TranslateElement(
-            { pageLanguage: 'en', includedLanguages: 'en,fr,es,sw,de,it,pt,nl,ru,ja,zh-CN,ar,hi' },
-            'google_translate_element'
-          );
-          
-          // Initialize mobile version
-          new window.google.translate.TranslateElement(
-            { pageLanguage: 'en', includedLanguages: 'en,fr,es,sw,de,it,pt,nl,ru,ja,zh-CN,ar,hi' },
-            'google_translate_element_mobile'
-          );
-        } catch (err) {
-          console.log('Google Translate already initialized or error:', err);
-        }
-      } else if (window.google?.translate?.TranslateElement) {
-        // Alternative check for the translate element
-        try {
-          new window.google.translate.TranslateElement(
-            { pageLanguage: 'en', includedLanguages: 'en,fr,es,sw,de,it,pt,nl,ru,ja,zh-CN,ar,hi' },
-            'google_translate_element'
-          );
-          
-          new window.google.translate.TranslateElement(
-            { pageLanguage: 'en', includedLanguages: 'en,fr,es,sw,de,it,pt,nl,ru,ja,zh-CN,ar,hi' },
-            'google_translate_element_mobile'
-          );
-        } catch (err) {
-          console.log('Google Translate already initialized or error:', err);
-        }
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+      setLangMenuOpen(false);
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [menuOpen]);
+
+  // Initialize Google Translate
+  useEffect(() => {
+    // Define the callback function globally
+    window.googleTranslateElementInit = function() {
+      try {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,fr,es,sw,de,it,pt,nl,ru,ja,zh-CN,ar,hi',
+            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          },
+          'google_translate_element'
+        );
+        
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,fr,es,sw,de,it,pt,nl,ru,ja,zh-CN,ar,hi',
+            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          },
+          'google_translate_element_mobile'
+        );
+        
+        setTranslateReady(true);
+        
+        // Only hide the banner that appears (not the select element)
+        setTimeout(() => {
+          const banner = document.querySelector('.goog-te-banner-frame');
+          if (banner) {
+            banner.style.display = 'none';
+          }
+          document.body.style.top = '0';
+          document.body.style.position = 'static';
+        }, 500);
+      } catch (err) {
+        console.log('Google Translate initialization error:', err);
       }
     };
-    
-    // Wait a bit for Google Translate to load, then initialize
-    const timer = setTimeout(initGoogleTranslate, 1000);
-    return () => clearTimeout(timer);
+
+    // Check if Google Translate script is loaded
+    const checkGoogleTranslate = () => {
+      if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+        window.googleTranslateElementInit();
+      } else {
+        setTimeout(checkGoogleTranslate, 500);
+      }
+    };
+
+    checkGoogleTranslate();
+
+    // Cleanup
+    return () => {
+      delete window.googleTranslateElementInit;
+    };
+  }, []);
+
+  // Monitor and hide Google Translate banner if it appears
+  useEffect(() => {
+    const hideGoogleTranslateBanner = () => {
+      try {
+        const banner = document.querySelector('.goog-te-banner-frame');
+        if (banner && banner.style.display !== 'none') {
+          banner.style.display = 'none';
+          document.body.style.top = '0';
+        }
+      } catch (e) {
+        // Silently fail
+      }
+    };
+
+    const observer = new MutationObserver(() => {
+      hideGoogleTranslateBanner();
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: false
+    });
+
+    // Initial check
+    hideGoogleTranslateBanner();
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -146,10 +216,10 @@ export default function Header() {
       <header>
         <div className="container nav-row">
           <a href="#overview" className="brand" onClick={handleNavClick}>
-            <img src="images/logo 1.png?v=2" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
+            <img src="public/images/logo.png" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
             <div>
               <strong>{t('nav.brand')}</strong>
-              <span className="brand-tagline-desktop">{t('nav.tagline')}</span>
+              <span>{t('nav.tagline')}</span>
             </div>
           </a>
 
@@ -162,8 +232,22 @@ export default function Header() {
           <div className="nav-actions">
             <a className="btn btn-primary" href="#contact" onClick={handleNavClick}>{t('nav.bookTrip')}</a>
             <div className="icon-group desktop-icons">
-              {/* Google Translate Widget - Compact Selector */}
-              <div id="google_translate_element" className="gt-navbar-compact"></div>
+              <div className="lang-switcher">
+                <button className="lang-toggle" onClick={() => setLangMenuOpen(!langMenuOpen)} title="Change Language">
+                  <HiGlobeAlt size={20} />
+                </button>
+                {langMenuOpen && (
+                  <div className="lang-menu">
+                    {languages.map((lang) => (
+                      <button key={lang.code} className={`lang-option ${currentLang === lang.code ? 'active' : ''}`}
+                        onClick={() => handleLanguageChange(lang.code)}>
+                        <span>{lang.flag}</span>{lang.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div id="google_translate_element" style={{ display: 'none', visibility: 'hidden', position: 'absolute', left: '-9999px' }}></div>
               <a className="nav-icon-btn" href="#contact" title="Send Email"><HiMail size={20} /></a>
             </div>
           </div>
@@ -187,11 +271,34 @@ export default function Header() {
             <a className="mobile-mail-btn" href="#contact" title="Send Email" onClick={handleNavClick}>
               <HiMail size={28} />
             </a>
+            <div className="lang-switcher">
+              <button ref={mobileLangBtnRef} className="lang-toggle" onClick={handleMobileLangToggle} title="Change Language">
+                <HiGlobeAlt size={24} />
+              </button>
+            </div>
           </div>
-          <div className="mobile-translate">
-            <div id="google_translate_element_mobile"></div>
-          </div>
+          <div id="google_translate_element_mobile" style={{ display: 'none', visibility: 'hidden', position: 'absolute', left: '-9999px' }}></div>
         </nav>
+      )}
+
+      {langMenuOpen && menuOpen && (
+        <div
+          className="lang-menu lang-menu-fixed"
+          style={{ 
+            top: mobileLangPos.top, 
+            left: mobileLangPos.left,
+            maxHeight: '60vh',
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {languages.map((lang) => (
+            <button key={lang.code} className={`lang-option ${currentLang === lang.code ? 'active' : ''}`}
+              onClick={(e) => handleMobileLanguageChange(e, lang.code)}>
+              <span>{lang.flag}</span>{lang.name}
+            </button>
+          ))}
+        </div>
       )}
 
       {menuOpen && <div className="menu-overlay" onClick={() => { setMenuOpen(false); setLangMenuOpen(false); }}></div>}

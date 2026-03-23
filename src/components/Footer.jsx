@@ -41,11 +41,10 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-first">
-          <div className="footer-logo-box" style={{ width: '96px', height: '96px' }}>
-            <img src="images/logo 1.png?v=2" alt="Forever Young Tours" style={{ width: '96px', height: '96px', objectFit: 'contain' }} />
+          <div className="footer-logo-box" style={{ width: '96px', height: '96px', marginBottom: '16px' }}>
+            <img src="images/logo-1.png?v=2" alt="Forever Young Tours" style={{ width: '96px', height: '96px', objectFit: 'contain' }} />
           </div>
           <div className="footer-content">
-            <p className="footer-slogan" style={{ fontSize: '1rem', marginTop: '8px' }}>{t('footer.slogan')}</p>
             <p>{t('footer.description')}</p>
           </div>
         </div>
