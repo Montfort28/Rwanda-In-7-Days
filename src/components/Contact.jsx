@@ -175,31 +175,31 @@ export default function Contact() {
               </p>
 
               <div style={{ width: '100%', textAlign: 'left', marginBottom: '20px' }}>
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
+                <div className="info-item" style={{ marginBottom: '16px' }}>
                   <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step1')}</p>
+                    <p style={{ margin: '0 0 4px', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text)' }}>{t('contact.step1Title')}</p>
+                    <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--muted)' }}>{t('contact.step1')}</p>
+                  </div>
+                </div>
+
+                <div className="info-item" style={{ marginBottom: '16px' }}>
+                  <div>
+                    <p style={{ margin: '0 0 4px', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text)' }}>{t('contact.step2Title')}</p>
+                    <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--muted)' }}>{t('contact.step2')}</p>
+                  </div>
+                </div>
+
+                <div className="info-item" style={{ marginBottom: '16px' }}>
+                  <div>
+                    <p style={{ margin: '0 0 4px', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text)' }}>{t('contact.step3Title')}</p>
+                    <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--muted)' }}>{t('contact.step3')}</p>
                   </div>
                 </div>
 
                 <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
                   <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step2')}</p>
-                  </div>
-                </div>
-
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step3')}</p>
-                  </div>
-                </div>
-
-                <div className="info-item" style={{ marginBottom: '12px' }}>
-                  <div style={{ fontSize: '1.5rem', color: 'var(--blue-700)', marginRight: '12px', lineHeight: '1' }}>•</div>
-                  <div>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>{t('contact.step4')}</p>
+                    <p style={{ margin: '0 0 4px', fontSize: '0.95rem', fontWeight: '600', color: 'var(--text)' }}>{t('contact.step4Title')}</p>
+                    <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--muted)' }}>{t('contact.step4')}</p>
                   </div>
                 </div>
               </div>
