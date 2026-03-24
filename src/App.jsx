@@ -25,8 +25,8 @@ function App() {
           <Pricing />
           <Contact />
           <Reviews />
-          <CTA />
           <Testimonials />
+          <CTA />
         </main>
         <Footer />
       </>

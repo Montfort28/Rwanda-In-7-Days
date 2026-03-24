@@ -8,7 +8,9 @@ export default function Header() {
   const [currentLang, setCurrentLang] = useState('en');
   const [translateReady, setTranslateReady] = useState(false);
   const mobileLangBtnRef = useRef(null);
+  const desktopLangBtnRef = useRef(null);
   const [mobileLangPos, setMobileLangPos] = useState({ top: 0, left: 0 });
+  const [desktopLangPos, setDesktopLangPos] = useState({ top: 0, left: 0 });
   const { language, changeLanguage, t } = useLanguage();
 
   const languages = [
@@ -44,7 +46,34 @@ export default function Header() {
     e.stopPropagation();
     if (!langMenuOpen && mobileLangBtnRef.current) {
       const rect = mobileLangBtnRef.current.getBoundingClientRect();
-      setMobileLangPos({ top: rect.bottom + 8, left: rect.left });
+      const viewportWidth = window.innerWidth;
+      const menuWidth = 180;
+      let leftPos = rect.left;
+      
+      // Adjust if menu would go off-screen on the right
+      if (leftPos + menuWidth > viewportWidth) {
+        leftPos = Math.max(16, viewportWidth - menuWidth - 16);
+      }
+      
+      setMobileLangPos({ top: rect.bottom + 8, left: leftPos });
+    }
+    setLangMenuOpen(!langMenuOpen);
+  };
+
+  const handleDesktopLangToggle = (e) => {
+    e.stopPropagation();
+    if (!langMenuOpen && desktopLangBtnRef.current) {
+      const rect = desktopLangBtnRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const menuWidth = 180;
+      let leftPos = rect.left;
+      
+      // Adjust if menu would go off-screen on the right
+      if (leftPos + menuWidth > viewportWidth) {
+        leftPos = Math.max(16, viewportWidth - menuWidth - 16);
+      }
+      
+      setDesktopLangPos({ top: rect.bottom + 8, left: leftPos });
     }
     setLangMenuOpen(!langMenuOpen);
   };
@@ -216,7 +245,7 @@ export default function Header() {
       <header>
         <div className="container nav-row">
           <a href="#overview" className="brand" onClick={handleNavClick}>
-            <img src="public/images/logo.png" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
+            <img src="public/images/logo 1.png" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
             <div>
               <strong>{t('nav.brand')}</strong>
               <span>{t('nav.tagline')}</span>
@@ -233,19 +262,9 @@ export default function Header() {
             <a className="btn btn-primary" href="#contact" onClick={handleNavClick}>{t('nav.bookTrip')}</a>
             <div className="icon-group desktop-icons">
               <div className="lang-switcher">
-                <button className="lang-toggle" onClick={() => setLangMenuOpen(!langMenuOpen)} title="Change Language">
+                <button ref={desktopLangBtnRef} className="lang-toggle" onClick={handleDesktopLangToggle} title="Change Language">
                   <HiGlobeAlt size={20} />
                 </button>
-                {langMenuOpen && (
-                  <div className="lang-menu">
-                    {languages.map((lang) => (
-                      <button key={lang.code} className={`lang-option ${currentLang === lang.code ? 'active' : ''}`}
-                        onClick={() => handleLanguageChange(lang.code)}>
-                        <span>{lang.flag}</span>{lang.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
               </div>
               <div id="google_translate_element" style={{ display: 'none', visibility: 'hidden', position: 'absolute', left: '-9999px' }}></div>
               <a className="nav-icon-btn" href="#contact" title="Send Email"><HiMail size={20} /></a>
@@ -279,6 +298,26 @@ export default function Header() {
           </div>
           <div id="google_translate_element_mobile" style={{ display: 'none', visibility: 'hidden', position: 'absolute', left: '-9999px' }}></div>
         </nav>
+      )}
+
+      {langMenuOpen && !menuOpen && (
+        <div
+          className="lang-menu lang-menu-fixed"
+          style={{ 
+            top: desktopLangPos.top, 
+            left: desktopLangPos.left,
+            maxHeight: '60vh',
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {languages.map((lang) => (
+            <button key={lang.code} className={`lang-option ${currentLang === lang.code ? 'active' : ''}`}
+              onClick={() => handleLanguageChange(lang.code)}>
+              <span>{lang.flag}</span>{lang.name}
+            </button>
+          ))}
+        </div>
       )}
 
       {langMenuOpen && menuOpen && (

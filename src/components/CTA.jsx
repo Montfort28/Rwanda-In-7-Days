@@ -21,7 +21,7 @@ export default function CTA() {
             </div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <img src="images/news letter 2.jpg" alt="Newsletter" className="cta-image" />
+            <img src="images/sunrise.jpg" alt="Newsletter" className="cta-image" />
           </div>
         </div>
       </div>
