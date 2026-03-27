@@ -4,7 +4,11 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section className="hero" id="overview">
+    <section className="hero" id="overview" style={{
+        padding: '20px 20px 40px',
+        background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+        position: 'relative'
+      }}>
       <div className="container">
         <div className="hero-card" style={{
           backgroundImage: 'linear-gradient(135deg, rgba(15, 52, 96, 0.48) 0%, rgba(26, 84, 144, 0.48) 50%, rgba(6, 182, 212, 0.48) 100%), url("images/placeholder.png")',

@@ -73,7 +73,9 @@ export default function Highlights() {
   }, [currentCard]);
 
   return (
-    <section className="section" id="highlights">
+    <section className="section" id="highlights" style={{
+        background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(14, 165, 233, 0.08) 50%, rgba(30, 64, 175, 0.08) 100%)'
+      }}>
       <div className="container">
         <div className="section-head">
           <h2>{t('highlights.title')}</h2>

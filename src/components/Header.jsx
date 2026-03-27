@@ -245,7 +245,7 @@ export default function Header() {
       <header>
         <div className="container nav-row">
           <a href="#overview" className="brand" onClick={handleNavClick}>
-            <img src="public/images/logo 1.png" alt="Forever Young Tours" style={{ width: '46px', height: '46px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
+            <img src="public/images/FYT_Logo.png" alt="Forever Young Tours" style={{ width: '56px', height: '56px', background: 'transparent', boxShadow: 'none', borderRadius: '0' }} />
             <div>
               <strong>{t('nav.brand')}</strong>
               <span>{t('nav.tagline')}</span>
@@ -288,7 +288,7 @@ export default function Header() {
           ))}
           <div className="mobile-menu-footer">
             <a className="mobile-mail-btn" href="#contact" title="Send Email" onClick={handleNavClick}>
-              <HiMail size={28} />
+              <HiMail size={24} />
             </a>
             <div className="lang-switcher">
               <button ref={mobileLangBtnRef} className="lang-toggle" onClick={handleMobileLangToggle} title="Change Language">

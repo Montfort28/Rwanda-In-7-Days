@@ -146,7 +146,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="section contact-section" id="contact">
+    <section className="section contact-section" id="contact" style={{ background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(14, 165, 233, 0.08) 50%, rgba(30, 64, 175, 0.08) 100%)' }}>
       <div className="container">
         <div className="section-head">
           <h2>{t('contact.title')}</h2>
@@ -208,10 +208,11 @@ export default function Contact() {
 
           {/* Booking Form */}
           <div className="cta-content" style={{
-            background: 'var(--surface)',
-            border: '1px solid var(--line)',
+            background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(14, 165, 233, 0.08) 50%, rgba(30, 64, 175, 0.08) 100%)',
+            border: '2px solid rgba(14, 165, 233, 0.5)',
             borderRadius: 'var(--radius-xl)',
-            padding: '28px'
+            padding: '28px',
+            boxShadow: '0 8px 32px rgba(14, 165, 233, 0.2)'
           }}>
             {/* Step Progress Indicator */}
             {!submitted && (

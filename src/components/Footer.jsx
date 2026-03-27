@@ -41,8 +41,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-first">
-          <div className="footer-logo-box" style={{ width: '96px', height: '96px', marginBottom: '16px' }}>
-            <img src="images/logo-1.png?v=2" alt="Forever Young Tours" style={{ width: '96px', height: '96px', objectFit: 'contain' }} />
+          <div className="footer-logo-box" style={{ width: '140px', height: '140px', marginBottom: '16px' }}>
+            <img src="images/logo-1.png?v=2" alt="Forever Young Tours" style={{ width: '140px', height: '140px', objectFit: 'contain' }} />
           </div>
           <div className="footer-content">
             <p>{t('footer.description')}</p>
@@ -94,7 +94,7 @@ export default function Footer() {
           <p>{t('footer.copyright')}</p>
         </div>
         <div className="footer-bottom-right">
-          <strong>{t('footer.poweredBy')}</strong>
+          <img src="public/images/Powered_By_ODIEBOARD.png" alt="Powered by ODIEBOARD" style={{ height: '140px', width: 'auto', objectFit: 'contain' }} />
         </div>
       </div>
     </footer>

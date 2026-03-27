@@ -9,13 +9,14 @@ import CTA from './components/CTA';
 import Contact from './components/Contact';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 import { LanguageProvider } from './context/LanguageContext';
 import './styles/globals.css';
 
 function App() {
   return (
     <LanguageProvider>
-      <>
+      <ErrorBoundary>
         <Topbar />
         <Header />
         <main>
@@ -24,12 +25,14 @@ function App() {
           <Itinerary />
           <Pricing />
           <Contact />
-          <Reviews />
+          <ErrorBoundary>
+            <Reviews />
+          </ErrorBoundary>
           <Testimonials />
           <CTA />
         </main>
         <Footer />
-      </>
+      </ErrorBoundary>
     </LanguageProvider>
   );
 }

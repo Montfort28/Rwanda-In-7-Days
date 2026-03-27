@@ -4,7 +4,8 @@ export default function Pricing() {
   const { t } = useLanguage();
 
   return (
-    <section className="section" id="pricing">
+    <section className="section" id="pricing" style={{background: 'linear-gradient(180deg, #cffafe 0%, #e0f2fe 100%)'
+      }}>
       <div className="container">
         <div className="section-head">
           <h2>{t('pricing.pageTitle')}</h2>
