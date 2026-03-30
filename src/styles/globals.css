@@ -247,7 +247,7 @@ img {
 /* ===== TOPBAR ===== */
 .topbar {
   background: linear-gradient(90deg, #0d2438, #081827);
-  color: rgba(191, 219, 254, 0.78);
+  color: #ffffff;
   border-bottom: 1px solid rgba(255,255,255,.12);
   overflow: hidden;
   position: fixed;
@@ -407,7 +407,7 @@ header.topbar-visible {
   flex: 1 1 0%;
   min-width: 0;
   overflow: visible;
-  margin: 0 4px;
+  margin: 0;
 }
 
 .nav-links.mobile-nav {
@@ -448,7 +448,7 @@ header.topbar-visible {
 
 .nav-actions {
   display: flex;
-  gap: 4px;
+  gap: 16px;
   flex-wrap: nowrap;
   flex-shrink: 0;
   align-items: center;
@@ -503,11 +503,13 @@ header.topbar-visible {
   flex-shrink: 0;
   position: relative;
   z-index: 100;
-  margin-left: 2px;
+  margin-left: 0;
 }
 
 .desktop-icons {
   display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .mobile-menu-footer {
@@ -1751,7 +1753,8 @@ section[id] {
 .nav-actions .icon-group {
   position: relative;
   z-index: 5;
-  margin-right: -20px;
+  margin-right: 0;
+  gap: 0.35rem;
 }
 
 .nav-actions .btn-primary {
@@ -3054,7 +3057,7 @@ section[id] {
 .desktop-icons {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
 }
 
 /* Google Translate Compact Styling */
