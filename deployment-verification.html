@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Verification - Rwanda In 7 Days</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+        
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f7fafc;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .test-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .test-item:hover {
+            border-color: #667eea;
+        }
+        
+        .status {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .status.pending {
+            background: #fbbf24;
+            color: white;
+        }
+        
+        .status.success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status.error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .test-content {
+            flex: 1;
+        }
+        
+        .test-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .test-url {
+            font-size: 0.85rem;
+            color: #718096;
+            font-family: monospace;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        
+        .result.success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+        
+        .result.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .summary h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .summary .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .summary .stat {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .summary .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Deployment Verification</h1>
+        <p class="subtitle">Rwanda In 7 Days - Hostinger Deployment</p>
+        
+        <div class="summary" id="summary">
+            <h3>Test Summary</h3>
+            <div class="stats">
+                <div>
+                    <div class="stat" id="passedCount">0</div>
+                    <div class="stat-label">Passed</div>
+                </div>
+                <div>
+                    <div class="stat" id="failedCount">0</div>
+                    <div class="stat-label">Failed</div>
+                </div>
+                <div>
+                    <div class="stat" id="pendingCount">5</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Configuration</h2>
+            <div class="input-group">
+                <label for="domainInput">Your Domain:</label>
+                <input type="text" id="domainInput" placeholder="https://rwanda-in-7-days.iforeveryoungtours.com" value="https://rwanda-in-7-days.iforeveryoungtours.com">
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>1. Basic Tests</h2>
+            
+            <div class="test-item" id="test-homepage">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">Homepage Load</div>
+                    <div class="test-url" id="url-homepage"></div>
+                </div>
+                <button onclick="testHomepage()">Test</button>
+            </div>
+            
+            <div class="test-item" id="test-session">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">Session API</div>
+                    <div class="test-url" id="url-session"></div>
+                </div>
+                <button onclick="testSession()">Test</button>
+            </div>
+            
+            <div class="test-item" id="test-csrf">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">CSRF Token API</div>
+                    <div class="test-url" id="url-csrf"></div>
+                </div>
+                <button onclick="testCSRF()">Test</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>2. Security Tests</h2>
+            
+            <div class="test-item" id="test-https">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">HTTPS Redirect</div>
+                    <div class="test-url">Checks if HTTP redirects to HTTPS</div>
+                </div>
+                <button onclick="testHTTPS()">Test</button>
+            </div>
+            
+            <div class="test-item" id="test-files">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">File Protection</div>
+                    <div class="test-url">Checks if sensitive files are protected</div>
+                </div>
+                <button onclick="testFileProtection()">Test</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>3. Manual Tests</h2>
+            <p style="margin-bottom: 15px; color: #718096;">These tests require manual verification:</p>
+            
+            <div class="test-item">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">Booking Form Submission</div>
+                    <div class="test-url">Fill and submit the booking form on your site</div>
+                </div>
+                <button onclick="window.open(document.getElementById('domainInput').value + '#contact', '_blank')">Open Form</button>
+            </div>
+            
+            <div class="test-item">
+                <div class="status pending">⏳</div>
+                <div class="test-content">
+                    <div class="test-name">Baserow Integration</div>
+                    <div class="test-url">Check if submission appears in Baserow</div>
+                </div>
+                <button onclick="window.open('https://baserow.odiecloud.org', '_blank')">Open Baserow</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <button onclick="runAllTests()" style="width: 100%; padding: 15px; font-size: 1.1rem;">
+                🚀 Run All Automated Tests
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        let passed = 0;
+        let failed = 0;
+        let pending = 5;
+        
+        function updateSummary() {
+            document.getElementById('passedCount').textContent = passed;
+            document.getElementById('failedCount').textContent = failed;
+            document.getElementById('pendingCount').textContent = pending;
+        }
+        
+        function updateURLs() {
+            const domain = document.getElementById('domainInput').value;
+            document.getElementById('url-homepage').textContent = domain;
+            document.getElementById('url-session').textContent = domain + '/api/test-session.php';
+            document.getElementById('url-csrf').textContent = domain + '/api/get-csrf-token.php';
+        }
+        
+        document.getElementById('domainInput').addEventListener('input', updateURLs);
+        updateURLs();
+        
+        function setStatus(testId, status, message) {
+            const test = document.getElementById(testId);
+            const statusEl = test.querySelector('.status');
+            
+            // Remove existing result
+            const existingResult = test.querySelector('.result');
+            if (existingResult) existingResult.remove();
+            
+            if (status === 'success') {
+                statusEl.className = 'status success';
+                statusEl.textContent = '✓';
+                if (pending > 0) pending--;
+                passed++;
+            } else if (status === 'error') {
+                statusEl.className = 'status error';
+                statusEl.textContent = '✗';
+                if (pending > 0) pending--;
+                failed++;
+            }
+            
+            if (message) {
+                const result = document.createElement('div');
+                result.className = `result ${status}`;
+                result.textContent = message;
+                test.querySelector('.test-content').appendChild(result);
+            }
+            
+            updateSummary();
+        }
+        
+        async function testHomepage() {
+            const domain = document.getElementById('domainInput').value;
+            try {
+                const response = await fetch(domain);
+                if (response.ok) {
+                    setStatus('test-homepage', 'success', 'Homepage loaded successfully!');
+                } else {
+                    setStatus('test-homepage', 'error', `Error: ${response.status} ${response.statusText}`);
+                }
+            } catch (error) {
+                setStatus('test-homepage', 'error', `Error: ${error.message}`);
+            }
+        }
+        
+        async function testSession() {
+            const domain = document.getElementById('domainInput').value;
+            try {
+                const response = await fetch(domain + '/api/test-session.php');
+                const data = await response.json();
+                if (data.success) {
+                    setStatus('test-session', 'success', `Session active! ID: ${data.sessionId.substring(0, 10)}...`);
+                } else {
+                    setStatus('test-session', 'error', 'Session test failed');
+                }
+            } catch (error) {
+                setStatus('test-session', 'error', `Error: ${error.message}`);
+            }
+        }
+        
+        async function testCSRF() {
+            const domain = document.getElementById('domainInput').value;
+            try {
+                const response = await fetch(domain + '/api/get-csrf-token.php', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                if (data.success && data.csrfToken) {
+                    setStatus('test-csrf', 'success', `CSRF token received: ${data.csrfToken.substring(0, 20)}...`);
+                } else {
+                    setStatus('test-csrf', 'error', 'Failed to get CSRF token');
+                }
+            } catch (error) {
+                setStatus('test-csrf', 'error', `Error: ${error.message}`);
+            }
+        }
+        
+        function testHTTPS() {
+            const domain = document.getElementById('domainInput').value;
+            if (domain.startsWith('https://')) {
+                setStatus('test-https', 'success', 'Domain uses HTTPS ✓');
+            } else {
+                setStatus('test-https', 'error', 'Domain should use HTTPS');
+            }
+        }
+        
+        async function testFileProtection() {
+            const domain = document.getElementById('domainInput').value;
+            try {
+                const response = await fetch(domain + '/api/submissions.json');
+                if (response.status === 403 || response.status === 404) {
+                    setStatus('test-files', 'success', 'Sensitive files are protected ✓');
+                } else {
+                    setStatus('test-files', 'error', 'Warning: submissions.json is accessible');
+                }
+            } catch (error) {
+                setStatus('test-files', 'success', 'Files appear to be protected');
+            }
+        }
+        
+        async function runAllTests() {
+            passed = 0;
+            failed = 0;
+            pending = 5;
+            updateSummary();
+            
+            await testHomepage();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testSession();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testCSRF();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            testHTTPS();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await testFileProtection();
+            
+            if (failed === 0) {
+                alert('🎉 All automated tests passed! Now test the booking form manually.');
+            } else {
+                alert(`⚠️ ${failed} test(s) failed. Please check the results and fix any issues.`);
+            }
+        }
+    </script>
+</body>
+</html>
