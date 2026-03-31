@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Test - Rwanda In 7 Days</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .test-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0f3556;
+            margin-top: 0;
+        }
+        h2 {
+            color: #0284c7;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+        button {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #0369a1;
+        }
+        .result {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .success {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+        }
+        .error {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+        .info {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            color: #1e40af;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .status.ok {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .status.fail {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔒 Security System Test</h1>
+    <p>This page tests the CSRF token and session functionality for the booking system.</p>
+
+    <div class="test-card">
+        <h2>Test 1: Session Status</h2>
+        <button onclick="testSession()">Test Session</button>
+        <div id="sessionResult"></div>
+    </div>
+
+    <div class="test-card">
+        <h2>Test 2: CSRF Token</h2>
+        <button onclick="testCSRF()">Get CSRF Token</button>
+        <div id="csrfResult"></div>
+    </div>
+
+    <div class="test-card">
+        <h2>Test 3: Full Booking Flow</h2>
+        <button onclick="testFullFlow()">Test Complete Flow</button>
+        <div id="flowResult"></div>
+    </div>
+
+    <div class="test-card">
+        <h2>Quick Diagnostics</h2>
+        <div class="result info">
+            <strong>Current URL:</strong> <span id="currentUrl"></span><br>
+            <strong>User Agent:</strong> <span id="userAgent"></span><br>
+            <strong>Cookies Enabled:</strong> <span id="cookiesEnabled"></span>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost/Rwanda-In-7-Days/api';
+
+        // Display diagnostics
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('userAgent').textContent = navigator.userAgent;
+        document.getElementById('cookiesEnabled').textContent = navigator.cookieEnabled ? 'Yes ✓' : 'No ✗';
+
+        async function testSession() {
+            const resultDiv = document.getElementById('sessionResult');
+            resultDiv.innerHTML = '<div class="result info">Testing...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/test-session.php`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="result success">
+                            <strong>✓ Session Working!</strong><br><br>
+                            Status: ${data.sessionStatusText} <span class="status ok">OK</span><br>
+                            Session ID: ${data.sessionId}<br>
+                            Test Value: ${data.testValue}<br>
+                            Origin: ${data.origin}<br>
+                            CORS Allowed: ${data.corsAllowed ? 'Yes' : 'No'}<br>
+                            PHP Version: ${data.phpVersion}
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<div class="result error">✗ Session test failed</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <strong>✗ Error:</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function testCSRF() {
+            const resultDiv = document.getElementById('csrfResult');
+            resultDiv.innerHTML = '<div class="result info">Fetching CSRF token...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/get-csrf-token.php`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (data.success && data.csrfToken) {
+                    resultDiv.innerHTML = `
+                        <div class="result success">
+                            <strong>✓ CSRF Token Retrieved!</strong><br><br>
+                            Token: ${data.csrfToken.substring(0, 20)}...<br>
+                            <span class="status ok">READY</span>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result error">
+                            <strong>✗ Failed to get CSRF token</strong><br>
+                            ${JSON.stringify(data, null, 2)}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <strong>✗ Error:</strong><br>
+                        ${error.message}<br><br>
+                        <strong>Possible causes:</strong><br>
+                        • Apache not running<br>
+                        • Wrong API path<br>
+                        • CORS blocked<br>
+                        • PHP session not working
+                    </div>
+                `;
+            }
+        }
+
+        async function testFullFlow() {
+            const resultDiv = document.getElementById('flowResult');
+            resultDiv.innerHTML = '<div class="result info">Testing complete flow...</div>';
+
+            try {
+                // Step 1: Get CSRF token
+                resultDiv.innerHTML = '<div class="result info">Step 1: Getting CSRF token...</div>';
+                const tokenResponse = await fetch(`${API_BASE}/get-csrf-token.php`, {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+
+                const tokenData = await tokenResponse.json();
+                
+                if (!tokenData.success) {
+                    throw new Error('Failed to get CSRF token');
+                }
+
+                // Step 2: Simulate booking submission (will fail validation, but tests security)
+                resultDiv.innerHTML = '<div class="result info">Step 2: Testing booking endpoint...</div>';
+                const bookingResponse = await fetch(`${API_BASE}/submit-booking.php`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        csrfToken: tokenData.csrfToken,
+                        fullName: 'Test User',
+                        email: 'test@example.com'
+                        // Intentionally incomplete to test validation
+                    })
+                });
+
+                const bookingData = await bookingResponse.json();
+
+                // We expect validation errors, which means security is working
+                if (bookingResponse.status === 400 && bookingData.errors) {
+                    resultDiv.innerHTML = `
+                        <div class="result success">
+                            <strong>✓ Security System Working!</strong><br><br>
+                            1. CSRF token: <span class="status ok">OK</span><br>
+                            2. Session: <span class="status ok">OK</span><br>
+                            3. Validation: <span class="status ok">OK</span><br>
+                            4. API endpoint: <span class="status ok">OK</span><br><br>
+                            <em>Validation errors are expected (incomplete form)</em>
+                        </div>
+                    `;
+                } else if (bookingResponse.status === 403) {
+                    resultDiv.innerHTML = `
+                        <div class="result error">
+                            <strong>✗ CSRF Token Validation Failed</strong><br>
+                            ${bookingData.error}
+                        </div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="result info">
+                            Response: ${JSON.stringify(bookingData, null, 2)}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="result error">
+                        <strong>✗ Flow Test Failed:</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

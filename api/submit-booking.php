@@ -23,6 +23,14 @@ if (in_array($origin, ALLOWED_ORIGINS)) {
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Allow-Methods: POST, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token');
+} else {
+    // Fallback for development
+    if (strpos($origin, 'localhost') !== false || strpos($origin, '127.0.0.1') !== false) {
+        header("Access-Control-Allow-Origin: $origin");
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Allow-Methods: POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type, X-CSRF-Token');
+    }
 }
 
 // Handle preflight

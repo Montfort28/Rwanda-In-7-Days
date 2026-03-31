@@ -1,17 +1,15 @@
 <?php
 /**
- * CSRF Token Endpoint
- * Provides CSRF token for form submission
+ * Session Test Endpoint
+ * Tests if sessions are working properly
  */
 
 // Enable API access
 define('API_ACCESS', true);
 
-// Load dependencies
+// Load config
 require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/security.php';
 
-// Set headers
 header('Content-Type: application/json');
 
 // Handle CORS
@@ -22,7 +20,6 @@ if (in_array($origin, ALLOWED_ORIGINS)) {
     header('Access-Control-Allow-Methods: GET, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
 } else {
-    // Fallback for development
     if (strpos($origin, 'localhost') !== false || strpos($origin, '127.0.0.1') !== false) {
         header("Access-Control-Allow-Origin: $origin");
         header('Access-Control-Allow-Credentials: true');
@@ -31,32 +28,31 @@ if (in_array($origin, ALLOWED_ORIGINS)) {
     }
 }
 
-// Handle preflight
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
-// Only accept GET
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'error' => 'Method not allowed']);
-    exit;
+// Test session
+$sessionStatus = session_status();
+$sessionId = session_id();
+
+// Set a test value
+if (!isset($_SESSION['test'])) {
+    $_SESSION['test'] = 'Session is working!';
 }
 
-try {
-    // Generate and return CSRF token
-    $token = SecurityHelper::generateCSRFToken();
-    
-    echo json_encode([
-        'success' => true,
-        'csrfToken' => $token
-    ]);
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode([
-        'success' => false,
-        'error' => 'Failed to generate security token',
-        'debug' => $e->getMessage()
-    ]);
-}
+echo json_encode([
+    'success' => true,
+    'sessionStatus' => $sessionStatus,
+    'sessionStatusText' => [
+        PHP_SESSION_DISABLED => 'DISABLED',
+        PHP_SESSION_NONE => 'NONE',
+        PHP_SESSION_ACTIVE => 'ACTIVE'
+    ][$sessionStatus],
+    'sessionId' => $sessionId,
+    'testValue' => $_SESSION['test'] ?? 'Not set',
+    'origin' => $origin,
+    'corsAllowed' => in_array($origin, ALLOWED_ORIGINS),
+    'phpVersion' => phpversion()
+]);

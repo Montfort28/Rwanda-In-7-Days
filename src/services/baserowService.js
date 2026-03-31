@@ -14,16 +14,31 @@ const getCSRFToken = async () => {
   if (csrfToken) return csrfToken;
   
   try {
+    console.log('Fetching CSRF token from:', `${API_BASE_URL}/get-csrf-token.php`);
+    
     const response = await fetch(`${API_BASE_URL}/get-csrf-token.php`, {
       method: 'GET',
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json'
+      }
     });
     
+    console.log('CSRF response status:', response.status);
+    
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('CSRF token fetch failed:', errorText);
       throw new Error('Failed to get security token');
     }
     
     const data = await response.json();
+    console.log('CSRF token received:', data.success);
+    
+    if (!data.success || !data.csrfToken) {
+      throw new Error('Invalid security token response');
+    }
+    
     csrfToken = data.csrfToken;
     return csrfToken;
   } catch (error) {

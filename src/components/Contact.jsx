@@ -237,33 +237,79 @@ export default function Contact() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} style={{ display: submitted ? 'none' : 'block' }}>
-              {submitted && (
-                <div className="form-success">
-                  <div className="success-icon">✓</div>
-                  <h4>Booking Received!</h4>
-                  <p>Your booking reference: <strong>{bookingReference}</strong></p>
-                  <p>We'll confirm availability and send your invoice within 24 hours.</p>
-                  <button 
-                    type="button" 
-                    onClick={() => navigator.clipboard.writeText(bookingReference)}
-                    style={{
-                      marginTop: '12px',
-                      padding: '8px 16px',
-                      background: 'rgba(14, 165, 233, 0.1)',
-                      border: '1px solid rgba(14, 165, 233, 0.3)',
-                      borderRadius: '8px',
-                      color: '#0284c7',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      fontWeight: '600'
-                    }}
-                  >
-                    📋 Copy Reference
-                  </button>
+            {/* Success Message - Outside Form */}
+            {submitted && (
+              <div className="form-success" style={{
+                textAlign: 'center',
+                padding: '40px 20px'
+              }}>
+                <div className="success-icon" style={{
+                  width: '80px',
+                  height: '80px',
+                  background: 'linear-gradient(135deg, #10b981, #059669)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '3rem',
+                  color: 'white',
+                  margin: '0 auto 24px',
+                  boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)'
+                }}>✓</div>
+                <h4 style={{
+                  fontSize: '1.5rem',
+                  fontWeight: '700',
+                  color: '#0f3556',
+                  marginBottom: '16px'
+                }}>Booking Received!</h4>
+                <p style={{
+                  fontSize: '1rem',
+                  color: '#64748b',
+                  marginBottom: '8px'
+                }}>Your booking reference:</p>
+                <div style={{
+                  background: 'rgba(14, 165, 233, 0.1)',
+                  border: '2px solid rgba(14, 165, 233, 0.3)',
+                  borderRadius: '12px',
+                  padding: '16px 24px',
+                  margin: '16px auto',
+                  maxWidth: '400px'
+                }}>
+                  <strong style={{
+                    fontSize: '1.5rem',
+                    color: '#0284c7',
+                    fontWeight: '700',
+                    letterSpacing: '1px',
+                    fontFamily: 'monospace'
+                  }}>{bookingReference}</strong>
                 </div>
-              )}
+                <p style={{
+                  fontSize: '0.95rem',
+                  color: '#64748b',
+                  marginBottom: '24px'
+                }}>We'll confirm availability and send your invoice within 24 hours.</p>
+                <button 
+                  type="button" 
+                  onClick={() => {
+                    navigator.clipboard.writeText(bookingReference);
+                    alert('Reference copied to clipboard!');
+                  }}
+                  className="btn btn-primary"
+                  style={{
+                    padding: '12px 32px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  📋 Copy Reference
+                </button>
+              </div>
+            )}
 
+            <form onSubmit={handleSubmit} style={{ display: submitted ? 'none' : 'block' }}>
               {error && (
                 <div className="form-error">
                   <div className="error-icon">✕</div>
